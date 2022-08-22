@@ -1,6 +1,5 @@
-import {Perk} from "../classes/perk";
+import {Perk, PerkCategory} from "../classes/perk";
 import {Character} from "../classes/character";
-import {PerkAndLevel} from "../classes/perk-and-level";
 import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {Stats} from "../classes/stats";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
@@ -13,6 +12,7 @@ import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
     tags: [""],
     description: "",
     startingLevel: 0,
+    internalCategory: PerkCategory.BASE,
     additionalData: null,
     getCpCostForLevel: function (level: number) : number { return 0; },
 }
@@ -20,16 +20,19 @@ import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 
 export const PERKS: Perk[] = [
     {
+        groupName: "Increase Health",
         name: "Increase Health",
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "You increase your Health by 1D6 + Vitality. Each time you gain a higher Rank for this perk, your\n" +
             "Health is increased again.\n" +
             "Rank Progression: Cost = Current Perk Rank * 50 + Cost of previous Rank",
         startingLevel: 0,
         priority: 100,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
         getCpCostForLevel: level => summTo(level) * 50,
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
 
             let charToEdit = { ...character } as Character;
@@ -51,16 +54,19 @@ export const PERKS: Perk[] = [
         }
     },
     {
+        groupName: "Increase Stamina",
         name: "Increase Stamina",
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "You increase your Stamina by 1D6 + Strength. Each time you gain a higher Rank for this perk, your\n" +
             "Stamina is increased again.\n" +
             "Rank Progression: Cost = Current Perk Rank * 50 + Cost of previous Rank",
         startingLevel: 0,
         priority: 100,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
         getCpCostForLevel: level => summTo(level) * 50,
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
             let charToEdit = { ...character } as Character;
             Object.setPrototypeOf(charToEdit, Character.prototype)
@@ -81,16 +87,19 @@ export const PERKS: Perk[] = [
         }
     },
     {
+        groupName: "Increase Mana",
         name: "Increase Mana",
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "You increase your Mana by 1D6 + Intellect. Each time you gain a higher Rank for this perk, your\n" +
             "Mana is increased again.\n" +
             "Rank Progression: Cost = Current Perk Rank * 50 + Cost of previous Rank",
         startingLevel: 0,
         priority: 100,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
         getCpCostForLevel: level => summTo(level) * 50,
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
             let charToEdit = { ...character } as Character;
             Object.setPrototypeOf(charToEdit, Character.prototype)
@@ -116,8 +125,9 @@ export const PERKS: Perk[] = [
         "Stamina",
         "Mana",
     ].map((stat : string) : Perk => ({
+        groupName: "Enhance Pool",
         name: "Enhance Pool: " + stat,
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "Choose a pool value. Whenever you gain a rank in the ”Increase” Perk for that pool value (In-\n" +
             "crease Health, Increase Stamina or Increase Mana), the amount of points you gain is increased\n" +
@@ -129,6 +139,7 @@ export const PERKS: Perk[] = [
             "value can be enhanced more than 3 times",
         startingLevel: 0,
         priority: 80,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
         getCpCostForLevel: (level, allPerks) => {
             let alreadyLevel = allPerks
@@ -145,6 +156,7 @@ export const PERKS: Perk[] = [
                 10000
             ][level + alreadyLevel - 1];
         },
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
             let charToEdit = { ...character } as Character;
             Object.setPrototypeOf(charToEdit, Character.prototype)
@@ -174,8 +186,9 @@ export const PERKS: Perk[] = [
         "Perception",
         "Empathy",
     ].map((stat : string) : Perk => ({
+        groupName: "Increase Attribute",
         name: "Increase Attribute: " + stat,
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "You increase one of your Attribute value by one, to a maximum of 12.\n" +
             "If you increase Strength, Intellect or Vitality, your Stamina, Mana or Health also increase by 1, plus\n" +
@@ -183,6 +196,7 @@ export const PERKS: Perk[] = [
             "gain a higher rank for this perk, you increase an Attribute value by one point, to a maximum of 12.",
         startingLevel: 0,
         priority: 30,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
         getCpCostForLevel: (level, allPerks) => {
             let alreadyLevel = allPerks
@@ -205,6 +219,7 @@ export const PERKS: Perk[] = [
                 75000,
             ][level + alreadyLevel - 1];
         },
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
             let charToEdit = { ...character } as Character;
             Object.setPrototypeOf(charToEdit, Character.prototype);
@@ -220,14 +235,17 @@ export const PERKS: Perk[] = [
         }
     })),
     {
+        groupName: "Alert",
         name: "Alert",
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "You have honed your senses and gained increased reflexes. You add your level to Notice",
         startingLevel: 0,
         priority: 100,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
-        getCpCostForLevel: level => [200, 800, 4500, 12500][level-1],
+        getCpCostForLevel: (level, allPerks) => [200, 800, 4500, 12500][level-1],
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
 
             let newModifier = new DiceAndFixedAndLevel(
@@ -240,15 +258,19 @@ export const PERKS: Perk[] = [
             return Object.setPrototypeOf({ ...character, noticeModifier: newModifier  }, Character.prototype);;
         }
     },
+
     {
+        groupName: "Resilient",
         name: "Resilient",
-        requirements: "",
+        requirements: [],
         tags: ["Passive", "Repeatable"],
         description: "You have become strong-willed and aren’t as easily swayed anymore. You add your level to Willpower",
         startingLevel: 0,
         priority: 100,
+        internalCategory: PerkCategory.BASE,
         additionalData: null,
-        getCpCostForLevel: level => [200, 800, 4500, 12500][level-1],
+        getCpCostForLevel: (level, allPerks) => [200, 800, 4500, 12500][level-1],
+        getGoldCostForLevel: (level, allPerks) => 0,
         applyEffect(character: Readonly<Character>, level) {
 
             let newModifier = new DiceAndFixedAndLevel(
@@ -261,8 +283,116 @@ export const PERKS: Perk[] = [
             return Object.setPrototypeOf({ ...character, noticeModifier: newModifier  }, Character.prototype);;
         }
     },
+
+    {
+        groupName: "Cloth Armor Training",
+        name: "Cloth Armor Training",
+        requirements: [],
+        tags: ["Passive", "Repeatable"],
+        description: "You are trained with armor made of cloth. You add your level to Dodge and Evade checks while naked, or equipped with armor with the Cloth” descriptor.",
+        startingLevel: 0,
+        priority: 150,
+        internalCategory: PerkCategory.MARTIAL,
+        additionalData: null,
+        getCpCostForLevel: (level, allPerks) => [10, 100, 250, 500][level-1],
+        getGoldCostForLevel: (level, allPerks) => [0,100,250,600][level-1],
+        applyEffect(character: Readonly<Character>, level) {
+
+            // TODO: check if current armor is none or cloth, or else return
+            return getArmorBonis(character, level);
+        }
+    },
+    {
+        groupName: "Light Armor Training",
+        name: "Light Armor Training",
+        requirements: [ { perkname: "Light Armor Training", level: 1 }],
+        tags: ["Passive", "Repeatable"],
+        description: "You are trained with light. You add your level to Dodge and Evade checks while equipped with armor with the ”Light” de scriptor.",
+        startingLevel: 0,
+        priority: 150,
+        internalCategory: PerkCategory.MARTIAL,
+        additionalData: null,
+        getCpCostForLevel: (level, allPerks) => [250, 550, 1200, 2500][level-1],
+        getGoldCostForLevel: (level, allPerks) => [250, 550, 1200, 2500][level-1],
+        applyEffect(character: Readonly<Character>, level) {
+
+            // TODO: check if current armor is light, or else return
+            return getArmorBonis(character, level);
+        }
+    },
+    {
+        groupName: "Medium Armor Training",
+        name: "Medium Armor Training",
+        requirements: [ { perkname: "Light Armor Training", level: 1 }],
+        tags: ["Passive", "Repeatable"],
+        description: "You are trained with medium armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Medium” descriptor.\n" +
+                "Additionally, your Agility can not exceed 9 while wearing this type of armor",
+        startingLevel: 0,
+        priority: 150,
+        internalCategory: PerkCategory.MARTIAL,
+        additionalData: null,
+        getCpCostForLevel: (level, allPerks) => [500, 1000, 2500, 5000 ][level-1],
+        getGoldCostForLevel: (level, allPerks) => [500,1000,2500,5000][level-1],
+        applyEffect(character: Readonly<Character>, level) {
+
+            // TODO: check if current armor is medium, or else return
+            let charToEdit = getArmorBonis(character, level);
+            let newStatcap = Object.setPrototypeOf({ ...charToEdit.statcap, agility: 9, AG: 9 }, Stats.prototype);
+            return Object.setPrototypeOf({ ...charToEdit, statcap: newStatcap }, Character.prototype)
+        }
+    },
+    {
+        groupName: "Heavy Armor Training",
+        name: "Heavy Armor Training",
+        requirements: [ { perkname: "Light Armor Training", level: 1 }],
+        tags: ["Passive", "Repeatable"],
+        description: "You are trained with heavy armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Heavy” de scriptor.\n" +
+                "Additionally, the resistance you gain from such armor against blunt, cutting and piercing is increased by 1.",
+        startingLevel: 0,
+        priority: 150,
+        internalCategory: PerkCategory.MARTIAL,
+        additionalData: null,
+        getCpCostForLevel: (level, allPerks) => [2500,7500,10000,15000][level-1],
+        getGoldCostForLevel: (level, allPerks) => [2500,7500,10000,15000][level-1],
+        applyEffect(character: Readonly<Character>, level) {
+
+            // TODO: check if current armor is heavy, or else return
+            // TODO: all resistances
+            // TODO:
+            return getArmorBonis(character, level);
+        }
+    }
 ];
 
+function getArmorBonis(character: Character, level: number) : Character {
+    let dodgeModifier = new DiceAndFixedAndLevel(
+        character.dodgeModifier.baseModifier,
+        character.dodgeModifier.socialModifier
+            .increaseDice(level - 1, 4)
+            .increaseFixed((level - 1) * 2 + character.getSocialLevel()),
+        character.dodgeModifier.combatModifier
+            .increaseDice(level - 1, 4)
+            .increaseFixed((level - 1) * 2 + character.getCombatLevel()),
+        character.dodgeModifier.adventuringModifier
+            .increaseDice(level - 1, 4)
+            .increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+    )
+
+    let evadeModifier = new DiceAndFixedAndLevel(
+        character.evadeModifier.baseModifier,
+        character.evadeModifier.socialModifier
+            .increaseDice(level - 1, 4)
+            .increaseFixed((level - 1) * 2 + character.getSocialLevel()),
+        character.evadeModifier.combatModifier
+            .increaseDice(level - 1, 4)
+            .increaseFixed((level - 1) * 2 + character.getCombatLevel()),
+        character.evadeModifier.adventuringModifier
+            .increaseDice(level - 1, 4)
+            .increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+    )
+
+    return Object.setPrototypeOf({ ...character, dodgeModifier: dodgeModifier, evadeModifier: evadeModifier  }, Character.prototype)
+}
 
 function summTo(val: number): number {
     let sum = 0;

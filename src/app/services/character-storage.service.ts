@@ -117,4 +117,13 @@ export class CharacterStorageService {
         this.allCharactersSubject.next(parsed);
     }
 
+    importAndLoad(txt: string) {
+        let characters = JSON.parse(window.localStorage.getItem("characters") || "[]");
+        let character = Object.setPrototypeOf(JSON.parse(txt), Character.prototype);
+
+        characters.push(character);
+        window.localStorage.setItem("characters", JSON.stringify(characters));
+
+        this.loadDataInitially();
+    }
 }

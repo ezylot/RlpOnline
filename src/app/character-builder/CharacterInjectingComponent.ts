@@ -3,6 +3,7 @@ import {Observable, Subject, takeUntil} from "rxjs";
 import {CharacterStorageService} from "../services/character-storage.service";
 import {Character} from "../classes/character";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({ template: '' })
 export abstract class CharacterInjectingComponent implements OnInit, OnDestroy {
@@ -10,7 +11,8 @@ export abstract class CharacterInjectingComponent implements OnInit, OnDestroy {
     protected destroy$ = new Subject<void>();
 
     constructor(protected characterStorageService: CharacterStorageService,
-                protected _snackBar: MatSnackBar) {
+                protected _snackBar: MatSnackBar,
+                protected router: Router) {
     }
 
     character$!: Observable<Readonly<Character>>;

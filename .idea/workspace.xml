@@ -3,10 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/quick-overview-bar/quick-overview-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/quick-overview-bar/quick-overview-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/CharacterInjectingComponent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/CharacterInjectingComponent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/equipment/equipment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/equipment/equipment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/background.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/dice-and-fixed-and-level.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/dice-and-fixed-and-level.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/classes/dice-and-fixed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/dice-and-fixed.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/perk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/perk.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" afterDir="false" />
     </list>
@@ -44,6 +58,9 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/Projects/rlp-online/src/app/classes",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "ts.external.directory.path": "D:\\Projects\\rlp-online\\node_modules\\typescript\\lib"
   }
 }]]></component>
@@ -66,7 +83,7 @@
       <updated>1661110613483</updated>
       <workItem from="1661110614677" duration="22000" />
       <workItem from="1661110776707" duration="55340000" />
-      <workItem from="1661168713344" duration="4712000" />
+      <workItem from="1661168713344" duration="21635000" />
     </task>
     <servers />
   </component>

@@ -38,13 +38,14 @@ export class DiceAndFixed {
             string = this.fixedNumber.toString();
         }
 
-        if(this.dices.length > 0) {
+        if(this.dices.filter(dice => dice.multiplier !== 0).length > 0) {
             string +=  " + "
-            this.dices.forEach(dice => string += dice.toString() + " + ");
+            this.dices
+                .filter(dice => dice.multiplier !== 0)
+                .forEach(dice => string += dice.toString() + " + ");
             string = string.substring(0, string.length-3).trim();
+            string += ` (${this.average()})`;
         }
-
-        string += ` (${this.average()})`;
         return string;
     }
 }

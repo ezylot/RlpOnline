@@ -27,11 +27,17 @@ export class Character {
     public manaRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
 
     public dodgeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
+    public evadeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
     public noticeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
     public willpowerModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
 
+    public statcap: Stats = new Stats(12, 12, 12, 12, 12,12, 12);
+
     public stats: Stats = STANDARD_ARRAY;
     public perks: PerkAndLevel[] = [];
+
+    public equipment: [] | null = null;
+    public languages: [] | null = null;
 
     combatXP: number = 0;
     socialXP: number = 0;
@@ -80,17 +86,40 @@ export class Character {
     }
 
     getSocialLevel() : number {
-        return 1;
+        return this.getLevel(this.socialXP);
     }
 
     getCombatLevel() : number {
-        return 1;
+        return this.getLevel(this.combatXP);
     }
 
     getAdventuringLevel() : number {
-        return 1;
+        return this.getLevel(this.adventuringXP);
     }
 
+    getLevel(xp : number) : number {
+        if(xp > 761) return 21;
+        if(xp > 685) return 20;
+        if(xp > 613) return 19;
+        if(xp > 545) return 18;
+        if(xp > 481) return 17;
+        if(xp > 421) return 16;
+        if(xp > 365) return 15;
+        if(xp > 313) return 14;
+        if(xp > 365) return 13;
+        if(xp > 221) return 12;
+        if(xp > 181) return 11;
+        if(xp > 145) return 10;
+        if(xp > 113) return 9;
+        if(xp > 85) return 8;
+        if(xp > 61) return 7;
+        if(xp > 41) return 6;
+        if(xp > 25) return 5;
+        if(xp > 13) return 4;
+        if(xp > 5) return 3;
+        if(xp > 1) return 2;
+        return 1;
+    }
 
     getFinalCharacter() {
         let finalChar: Character = this;

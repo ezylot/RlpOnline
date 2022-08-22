@@ -2,13 +2,17 @@
     <header>
         <h1>RLP Online</h1>
     </header>
-    <div id="main">
+    <div id="main" *ngIf="character$ | async as character;">
         <nav>
             <span class="new-character" (click)="createNewChar()">Create New Character</span>
 
+            <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
+            <span class="material-icons-outlined" (click)="fileInput.click()">upload_file</span>
+            <br />
+
             Available characters:
             <div *ngFor="let char of availableCharacters | async; index as i">
-                <span class="char-link" [class.current]="char.id == (currentChar | async)?.id" (click)="loadChar(char.id)"> {{ char.name }}</span>
+                <span class="char-link" [class.current]="char.id == character.id" (click)="loadChar(char.id)"> {{ char.name }}</span>
             </div>
         </nav>
         <div id="main-content">

@@ -1,0 +1,86 @@
+#charactersheet {
+    padding: 40px;
+}
+
+.title {
+    margin-bottom: 20px;
+    h1 {
+        display: inline;
+        margin-right: 20px;
+    }
+}
+.main {
+    display: flex;
+
+    .attributes {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #b26d27;
+        width: 200px;
+        text-align: center;
+        padding: 20px;
+
+        span {
+            display: block;
+        }
+
+        span.attribute-title {
+            font-size: 1.2em;
+        }
+
+        span.attribute-value {
+            font-size: 1.5em;
+            margin: 12px 10px 30px;
+
+        }
+    }
+
+    .main-right {
+        flex: 4;
+        padding: 0 20px;
+
+        .combatstats {
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 50px;
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+
+        .combatstat-block {
+            flex: 1;
+            padding: 10px 30px;
+            height: 60px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .combatstat-title {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+    }
+
+    .race-benefits, .zodiacsign-benefits, .perks, .combatstats, .equipment, .languages {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #b26d27;
+        position: relative;
+
+    }
+
+    .border-overlapping-title {
+        position: absolute;
+        top: -10px;
+        background: #F4A460FF;
+        padding: 0 5px;
+    }
+}
+

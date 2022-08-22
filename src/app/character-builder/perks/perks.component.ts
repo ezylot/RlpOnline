@@ -1,11 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CharacterStorageService} from "../../services/character-storage.service";
-import {Observable, Subject, take, takeUntil} from "rxjs";
+import {Component} from '@angular/core';
+import {take, takeUntil} from "rxjs";
 import {Character} from "../../classes/character";
 import {PERKS} from "../../data/perks";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {PerkAndLevel} from "../../classes/perk-and-level";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
+import {PerkCategory} from "../../classes/perk";
 
 @Component({
     selector: 'app-perks',
@@ -27,6 +26,11 @@ export class PerksComponent extends CharacterInjectingComponent {
     override ngOnInit(): void {
         super.ngOnInit();
 
+        let filter = PerkCategory.BASE;
+        if(this.router.url.endsWith("martial-perks")) filter = PerkCategory.MARTIAL;
+        if(this.router.url.endsWith("magical-perks")) filter = PerkCategory.MAGIC;
+        if(this.router.url.endsWith("skill-perks")) filter = PerkCategory.SKILL;
+
         this.character$.pipe(takeUntil(this.destroy$)).subscribe(char => {
             let remainingCP = this.totalCharacterPoints = char.getTotalCP();
             for (let pal of char.perks) {
@@ -36,16 +40,20 @@ export class PerksComponent extends CharacterInjectingComponent {
             }
 
             this.openCharacterPoints = remainingCP;
-            this.ownedPerks = char.perks;
+            this.ownedPerks = char.perks.filter(p => p.perk.internalCategory === filter);
 
-            this.availablePerks = PERKS.map(p => {
-                let found = this.ownedPerks.find(x => x.perk.name == p.name);
-                return new PerkAndLevel((found?.level ?? 0) + 1, p)
-            })
+            this.availablePerks = PERKS
+                .filter(p => p.internalCategory === filter)
+                .map(p => {
+                    let found = this.ownedPerks.find(x => x.perk.name == p.name);
+                    return new PerkAndLevel((found?.level ?? 0) + 1, p)
+                })
 
             if(char.combatXP == 0 && char.adventuringXP == 0 && char.socialXP == 0) {
                 // At the start we can only upgrade skills for the first level, not any others
-                this.availablePerks = this.availablePerks.filter(p => p.level === 1 &&  p.perk.startingLevel === 0);
+                this.availablePerks = this.availablePerks
+                    .filter(p => this.ownedPerks.findIndex(owned => owned.perk.groupName == p.perk.groupName) === -1)
+                    .filter(p => p.level === 1 &&  p.perk.startingLevel === 0);
             }
         });
     }
@@ -61,6 +69,7 @@ export class PerksComponent extends CharacterInjectingComponent {
     }
 
     selectPerk(selectedPal: PerkAndLevel) {
+        // TODO: check requirements, maybe also filter them out
         this.character$.pipe(take(1)).subscribe(char => {
             let perks = Array.from(char.perks);
 

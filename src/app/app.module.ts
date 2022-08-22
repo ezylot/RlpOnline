@@ -22,6 +22,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { QuickOverviewBarComponent } from './character-builder/quick-overview-bar/quick-overview-bar.component';
 import {AttributesComponent} from "./character-builder/attributes/attributes.component";
 import { LanguagesComponent } from './character-builder/languages/languages.component';
+import { BackgroundsComponent } from './character-builder/backgrounds/backgrounds.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { LanguagesComponent } from './character-builder/languages/languages.comp
         OverviewComponent,
         QuickOverviewBarComponent,
         LanguagesComponent,
+        BackgroundsComponent,
     ],
     imports: [
         BrowserModule,
