@@ -3,6 +3,7 @@ import {Character} from "../classes/character";
 import {PerkAndLevel} from "../classes/perk-and-level";
 import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {Stats} from "../classes/stats";
+import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 
 /*
 
@@ -226,12 +227,38 @@ export const PERKS: Perk[] = [
         startingLevel: 0,
         priority: 100,
         additionalData: null,
-        getCpCostForLevel: level => summTo(level) * 50,
+        getCpCostForLevel: level => [200, 800, 4500, 12500][level-1],
         applyEffect(character: Readonly<Character>, level) {
-            let charToEdit = { ...character } as Character;
-            Object.setPrototypeOf(charToEdit, Character.prototype)
-            // TODO: add somehwere
-            return charToEdit;
+
+            let newModifier = new DiceAndFixedAndLevel(
+                character.noticeModifier.baseModifier,
+                character.noticeModifier.socialModifier.increaseFixed((level - 1) * 2 + character.getSocialLevel()),
+                character.noticeModifier.combatModifier.increaseFixed((level - 1) * 2 + character.getCombatLevel()),
+                character.noticeModifier.adventuringModifier.increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+            )
+
+            return Object.setPrototypeOf({ ...character, noticeModifier: newModifier  }, Character.prototype);;
+        }
+    },
+    {
+        name: "Resilient",
+        requirements: "",
+        tags: ["Passive", "Repeatable"],
+        description: "You have become strong-willed and aren’t as easily swayed anymore. You add your level to Willpower",
+        startingLevel: 0,
+        priority: 100,
+        additionalData: null,
+        getCpCostForLevel: level => [200, 800, 4500, 12500][level-1],
+        applyEffect(character: Readonly<Character>, level) {
+
+            let newModifier = new DiceAndFixedAndLevel(
+                character.willpowerModifier.baseModifier,
+                character.willpowerModifier.socialModifier.increaseFixed((level - 1) * 2 + character.getSocialLevel()),
+                character.willpowerModifier.combatModifier.increaseFixed((level - 1) * 2 + character.getCombatLevel()),
+                character.willpowerModifier.adventuringModifier.increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+            )
+
+            return Object.setPrototypeOf({ ...character, noticeModifier: newModifier  }, Character.prototype);;
         }
     },
 ];

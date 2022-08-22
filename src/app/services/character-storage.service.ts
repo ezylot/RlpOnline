@@ -6,6 +6,7 @@ import {PERKS} from "../data/perks";
 import {PerkAndLevel} from "../classes/perk-and-level";
 import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {RACES} from "../data/races";
+import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +77,14 @@ export class CharacterStorageService {
     }
 
     private loadDataInitially() {
-        let parsed = JSON.parse(window.localStorage.getItem("characters") || "[]") as Character[];
+        let parsed = JSON.parse(window.localStorage.getItem("characters") || "[]", function(key, value) {
+            if(key == "baseModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+            if(key == "combatModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+            if(key == "adventuringModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+            if(key == "socialModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+
+            return value;
+        }) as Character[];
 
         for (let character of parsed) {
             Object.setPrototypeOf(character, Character.prototype);
@@ -88,9 +96,9 @@ export class CharacterStorageService {
             Object.setPrototypeOf(character.staminaRegenBonus, DiceAndFixed.prototype);
             Object.setPrototypeOf(character.maxMana, DiceAndFixed.prototype);
             Object.setPrototypeOf(character.manaRegenBonus, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.dodgeModifier, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.noticeModifier, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.willpowerModifier, DiceAndFixed.prototype);
+            Object.setPrototypeOf(character.dodgeModifier, DiceAndFixedAndLevel.prototype);
+            Object.setPrototypeOf(character.noticeModifier, DiceAndFixedAndLevel.prototype);
+            Object.setPrototypeOf(character.willpowerModifier, DiceAndFixedAndLevel.prototype);
 
             if(character.race !== null) {
                 let foundRace = RACES.find(r => r.name === character.race!.name)

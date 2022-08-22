@@ -6,6 +6,7 @@ import {Background} from "./background";
 import {Culture} from "./culture";
 import {DiceAndFixed} from "./dice-and-fixed";
 import {PerkAndLevel} from "./perk-and-level";
+import {DiceAndFixedAndLevel} from "./dice-and-fixed-and-level";
 
 
 export class Character {
@@ -18,16 +19,16 @@ export class Character {
     public background: Background | null = null;
     public zodiacSign: ZodiacSign | null = null;
 
-    public maxHealth: DiceAndFixed = new DiceAndFixed(0, []);
-    public healthRegenBonus: DiceAndFixed = new DiceAndFixed(0, []);
-    public maxStamina: DiceAndFixed = new DiceAndFixed(0, []);
-    public staminaRegenBonus: DiceAndFixed = new DiceAndFixed(0, []);
-    public maxMana: DiceAndFixed = new DiceAndFixed(0, []);
-    public manaRegenBonus: DiceAndFixed = new DiceAndFixed(0, []);
+    public maxHealth: DiceAndFixed = DiceAndFixed.EMPTY;
+    public healthRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
+    public maxStamina: DiceAndFixed = DiceAndFixed.EMPTY;
+    public staminaRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
+    public maxMana: DiceAndFixed = DiceAndFixed.EMPTY;
+    public manaRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
 
-    public dodgeModifier: DiceAndFixed = new DiceAndFixed(0, []);
-    public noticeModifier: DiceAndFixed = new DiceAndFixed(0, []);
-    public willpowerModifier: DiceAndFixed = new DiceAndFixed(0, []);
+    public dodgeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
+    public noticeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
+    public willpowerModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
 
     public stats: Stats = STANDARD_ARRAY;
     public perks: PerkAndLevel[] = [];
@@ -65,6 +66,7 @@ export class Character {
             maxMana: finalChar.maxMana
                 .increaseFixed(finalChar.race?.startingMana || 0)
                 .increaseFixed(finalChar.stats.intellect),
+
             dodgeModifier: finalChar.dodgeModifier
                 .increaseFixed(finalChar.stats.agility)
                 .increaseFixed(8),
@@ -75,6 +77,18 @@ export class Character {
                 .increaseFixed(finalChar.stats.empathy)
                 .increaseFixed(8),
         });
+    }
+
+    getSocialLevel() : number {
+        return 1;
+    }
+
+    getCombatLevel() : number {
+        return 1;
+    }
+
+    getAdventuringLevel() : number {
+        return 1;
     }
 
 

@@ -5,9 +5,9 @@
         <div>Health <br /> &nbsp; {{ fcs.maxHealth }}</div>
         <div>Stamina <br /> &nbsp; {{ fcs.maxStamina }}</div>
         <div>Mana <br /> &nbsp; {{ fcs.maxMana }}</div>
-        <div>Dodge <br /> &nbsp; {{ fcs.dodgeModifier }}</div>
-        <div>Notice <br /> &nbsp; {{ fcs.noticeModifier }}</div>
-        <div>Willpower <br /> &nbsp; {{ fcs.willpowerModifier }}</div>
+        <div [matTooltip]="fcs.dodgeModifier.hasLevelSpecificValues() ? 'Values is different than shown in Combat/Adventure/Social. More details on overview screen' : ''">Dodge <br /> &nbsp; {{ fcs.dodgeModifier }}</div>
+        <div [matTooltip]="fcs.noticeModifier.hasLevelSpecificValues() ? 'Values is different than shown in Combat/Adventure/Social. More details on overview screen' : ''">Notice <br /> &nbsp; {{ fcs.noticeModifier }}</div>
+        <div [matTooltip]="fcs.willpowerModifier.hasLevelSpecificValues() ? 'Values is different than shown in Combat/Adventure/Social. More details on overview screen' : ''">Willpower <br /> &nbsp; {{ fcs.willpowerModifier }}</div>
     </div>
 </ng-container>
 

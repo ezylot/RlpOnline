@@ -21,6 +21,7 @@ import { OverviewComponent } from './character-builder/overview/overview.compone
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { QuickOverviewBarComponent } from './character-builder/quick-overview-bar/quick-overview-bar.component';
 import {AttributesComponent} from "./character-builder/attributes/attributes.component";
+import { LanguagesComponent } from './character-builder/languages/languages.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {AttributesComponent} from "./character-builder/attributes/attributes.com
         NavigationComponent,
         OverviewComponent,
         QuickOverviewBarComponent,
+        LanguagesComponent,
     ],
     imports: [
         BrowserModule,
