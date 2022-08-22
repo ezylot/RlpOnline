@@ -1,0 +1,57 @@
+:host {
+    height: 100%;
+    display: block;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 80px;
+        background: #171717;
+        color: #EFEFEF;
+
+        h1 {
+            margin: 10px 50px;
+        }
+    }
+
+    #main {
+        display: flex;
+        background: #F4A460FF;
+        flex: 1;
+
+        nav {
+            padding: 20px;
+            background: grey;
+            min-width: 100px;
+            flex: 1;
+            font-size: 1.2em;
+        }
+
+        #main-content {
+            min-width: 600px;
+            flex: 5;
+        }
+    }
+}
+
+.new-character {
+    margin-bottom: 40px;
+    display: block;
+    cursor: pointer;
+}
+
+.char-link {
+    margin: 2px 20px;
+    cursor: pointer;
+}
+
+.char-link.current {
+    text-decoration: underline;
+}

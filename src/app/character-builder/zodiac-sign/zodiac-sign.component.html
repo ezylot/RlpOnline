@@ -1,0 +1,23 @@
+<character-builder-navigation></character-builder-navigation>
+<quick-overview-bar></quick-overview-bar>
+
+<div id="zodiacsign-list" *ngIf="character$ | async as character;">
+
+    Available Zodiac Signs:<br /><br />
+
+    <div class="zodiacsign-row" *ngFor="let zodiacSign of availableZodiacSigns; index as i">
+
+        <div class="select-box" (click)="changeZodiacSign(zodiacSign)">
+            <span class="material-icons-outlined" *ngIf="zodiacSign.name === character.zodiacSign?.name">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="zodiacSign.name !== character.zodiacSign?.name">circle_outline</span>
+        </div>
+
+        <mat-expansion-panel class="zodiacsign-expandable">
+            <mat-expansion-panel-header>{{ zodiacSign.name }}</mat-expansion-panel-header>
+            <b class="zodiacsign-description">{{ zodiacSign.startDate }} - {{ zodiacSign.endDate }}</b>
+            <blockquote class="zodiacsign-description" [innerHTML]="zodiacSign.description"></blockquote>
+        </mat-expansion-panel>
+    </div>
+
+</div>
+

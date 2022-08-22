@@ -1,0 +1,75 @@
+<character-builder-navigation></character-builder-navigation>
+<quick-overview-bar></quick-overview-bar>
+
+<div class="attributes-builder" *ngIf="character$ | async as character;">
+    <div class="title-column">
+        <h2>Description</h2>
+        <p class="stat">Strengh:</p>
+        <p class="stat">Vitaly:</p>
+        <p class="stat">Dexterity:</p>
+        <p class="stat">Agility:</p>
+        <p class="stat">Intellect:</p>
+        <p class="stat">Perception:</p>
+        <p class="stat">Empathy:</p>
+    </div>
+
+
+    <div cdkDropList class="statlist" (cdkDropListDropped)="drop($event)">
+        <div>
+            <h2>Base Stats </h2>
+            <span class="material-icons-outlined" [matTooltip]="'Drag the boxes to reorder them'">help_outline</span>
+        </div>
+        <div class="stat boxed-stat stat-strength" cdkDrag>{{stats.strength}}</div>
+        <div class="stat boxed-stat stat-vitality" cdkDrag>{{stats.vitality}}</div>
+        <div class="stat boxed-stat stat-dexterity" cdkDrag>{{stats.dexterity}}</div>
+        <div class="stat boxed-stat stat-agility" cdkDrag>{{stats.agility}}</div>
+        <div class="stat boxed-stat stat-intellect" cdkDrag>{{stats.intellect}}</div>
+        <div class="stat boxed-stat stat-perception" cdkDrag>{{stats.perception}}</div>
+        <div class="stat boxed-stat stat-empathy" cdkDrag>{{stats.empathy}}</div>
+    </div>
+
+    <div class="fixed-column">
+        <h2>&nbsp;</h2>
+        <p class="stat">+</p>
+        <p class="stat">+</p>
+        <p class="stat">+</p>
+        <p class="stat">+</p>
+        <p class="stat">+</p>
+        <p class="stat">+</p>
+        <p class="stat">+</p>
+    </div>
+
+    <div class="statlist">
+        <h2>Race Bonis</h2>
+        <div class="stat boxed-stat stat-strength">{{character.race?.statboni?.strength}}</div>
+        <div class="stat boxed-stat stat-vitality">{{character.race?.statboni?.vitality}}</div>
+        <div class="stat boxed-stat stat-dexterity">{{character.race?.statboni?.dexterity}}</div>
+        <div class="stat boxed-stat stat-agility">{{character.race?.statboni?.agility}}</div>
+        <div class="stat boxed-stat stat-intellect">{{character.race?.statboni?.intellect}}</div>
+        <div class="stat boxed-stat stat-perception">{{character.race?.statboni?.perception}}</div>
+        <div class="stat boxed-stat stat-empathy">{{character.race?.statboni?.empathy}}</div>
+    </div>
+
+    <div class="fixed-column">
+        <h2>&nbsp;</h2>
+        <p class="stat">=</p>
+        <p class="stat">=</p>
+        <p class="stat">=</p>
+        <p class="stat">=</p>
+        <p class="stat">=</p>
+        <p class="stat">=</p>
+        <p class="stat">=</p>
+    </div>
+
+    <div class="statlist">
+        <h2>Final Stats</h2>
+        <div class="stat boxed-stat stat-strength">{{character.getFinalStats().strength}}</div>
+        <div class="stat boxed-stat stat-vitality">{{character.getFinalStats().vitality}}</div>
+        <div class="stat boxed-stat stat-dexterity">{{character.getFinalStats().dexterity}}</div>
+        <div class="stat boxed-stat stat-agility">{{character.getFinalStats().agility}}</div>
+        <div class="stat boxed-stat stat-intellect">{{character.getFinalStats().intellect}}</div>
+        <div class="stat boxed-stat stat-perception">{{character.getFinalStats().perception}}</div>
+        <div class="stat boxed-stat stat-empathy">{{character.getFinalStats().empathy}}</div>
+    </div>
+</div>
+

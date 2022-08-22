@@ -1,0 +1,35 @@
+<character-builder-navigation></character-builder-navigation>
+<quick-overview-bar></quick-overview-bar>
+
+
+<div id="race-list" *ngIf="character$ | async as character;">
+
+    Available Races:<br /><br />
+
+    <div class="race-row" *ngFor="let race of availableRaces; index as i">
+
+        <div class="select-box" (click)="changeRace(race)">
+            <span class="material-icons-outlined" *ngIf="race.name === character.race?.name">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="race.name !== character.race?.name">circle_outline</span>
+        </div>
+
+        <mat-expansion-panel class="race-expandable">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ race.name }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{ race.statboni.toString() }}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>Flavor Text</mat-expansion-panel-header>
+                <blockquote class="race-description" [innerHTML]="race.flavorText"></blockquote>
+            </mat-expansion-panel>
+
+            <blockquote class="race-description" [innerHTML]="race.textDescription"></blockquote>
+        </mat-expansion-panel>
+    </div>
+
+</div>

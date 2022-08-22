@@ -1,0 +1,29 @@
+#perks-builder {
+    padding: 20px;
+}
+
+.perk-expandable {
+    margin-bottom: 5px;
+    flex: 1;
+}
+
+.perk-row {
+    display: flex;
+    align-content: center;
+
+    .select-box {
+        width: 40px;
+        margin: 12px 0;
+        cursor: pointer;
+    }
+}
+
+.perks-resources {
+    margin-bottom: 20px;
+
+    span { font-weight: bold; }
+}
+
+h2 {
+    margin-top: 20px;
+}

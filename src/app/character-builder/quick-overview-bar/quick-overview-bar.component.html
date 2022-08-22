@@ -1,0 +1,14 @@
+
+
+<ng-container  *ngIf="character$ | async as character;">
+    <div id="quick-overview-bar" *ngIf="character.getFinalCombatStats() as fcs;" >
+        <div>Health <br /> &nbsp; {{ fcs.maxHealth }}</div>
+        <div>Stamina <br /> &nbsp; {{ fcs.maxStamina }}</div>
+        <div>Mana <br /> &nbsp; {{ fcs.maxMana }}</div>
+        <div>Dodge <br /> &nbsp; {{ fcs.dodgeModifier }}</div>
+        <div>Notice <br /> &nbsp; {{ fcs.noticeModifier }}</div>
+        <div>Willpower <br /> &nbsp; {{ fcs.willpowerModifier }}</div>
+    </div>
+</ng-container>
+
+

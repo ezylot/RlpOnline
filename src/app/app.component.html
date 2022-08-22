@@ -1,0 +1,18 @@
+<div id="content">
+    <header>
+        <h1>RLP Online</h1>
+    </header>
+    <div id="main">
+        <nav>
+            <span class="new-character" (click)="createNewChar()">Create New Character</span>
+
+            Available characters:
+            <div *ngFor="let char of availableCharacters | async; index as i">
+                <span class="char-link" [class.current]="char.id == (currentChar | async)?.id" (click)="loadChar(char.id)"> {{ char.name }}</span>
+            </div>
+        </nav>
+        <div id="main-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
