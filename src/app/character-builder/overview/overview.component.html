@@ -88,13 +88,13 @@
                     {{ raceTrait }}
                 </div>
             </div>
-            <div class="zodiacsign-benefits" *ngIf="character.zodiacSign?.description">
+            <div class="zodiacsign-benefits" *ngIf="character.zodiacSign">
                 <span class="border-overlapping-title">Zodiac Sign</span>
-                    <span [innerHTML]="character.zodiacSign?.description"></span>
+                <span [innerHTML]="character.zodiacSign.description"></span>
             </div>
             <div class="background-benefits" *ngIf="character.background">
                 <span class="border-overlapping-title">Background</span>
-
+                <span [innerHTML]="character.background.name"></span>
             </div>
             <div class="perks">
                 <span class="border-overlapping-title">Perks</span>

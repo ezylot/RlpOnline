@@ -12,7 +12,7 @@ import {LanguagesComponent} from "./character-builder/languages/languages.compon
 import {BackgroundsComponent} from "./character-builder/backgrounds/backgrounds.component";
 
 const routes: Routes = [
-    { path: "",                                   component: WelcomeComponent },
+    { path: "",                                   component: NameSelectorComponent },
     { path: "character-builder",                  component: NameSelectorComponent },
     { path: "character-builder/attributes",       component: AttributesComponent },
     { path: "character-builder/equipment",        component: EquipmentComponent },

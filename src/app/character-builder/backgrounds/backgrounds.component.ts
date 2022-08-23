@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {take} from "rxjs";
+import {Character} from "../../classes/character";
+import {ZodiacSign} from "../../classes/zodiacsign";
+import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
+import {Background} from "../../classes/background";
+import {BACKGROUNDS} from "../../data/backgrounds";
 
 @Component({
-  selector: 'app-backgrounds',
-  templateUrl: './backgrounds.component.html',
-  styleUrls: ['./backgrounds.component.scss']
+    selector: 'app-zodiac-sign',
+    templateUrl: './backgrounds.component.html',
+    styleUrls: ['./backgrounds.component.scss']
 })
-export class BackgroundsComponent implements OnInit {
+export class BackgroundsComponent extends CharacterInjectingComponent {
 
-  constructor() { }
+    availableBackgrounds: Background[] = BACKGROUNDS;
 
-  ngOnInit(): void {
-  }
-
+    changeBackground(background: Background) {
+        this.character$.pipe(take(1)).subscribe(char => {
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, background}, Character.prototype));
+        });
+    }
 }

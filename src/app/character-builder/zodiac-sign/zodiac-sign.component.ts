@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {CharacterStorageService} from "../../services/character-storage.service";
-import {Observable, take} from "rxjs";
+import {Component} from '@angular/core';
+import {take} from "rxjs";
 import {Character} from "../../classes/character";
 import {ZodiacSign} from "../../classes/zodiacsign";
 import {ZODIAC_SIGNS} from "../../data/zodiacsigns";

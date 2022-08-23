@@ -1,3 +1,22 @@
 <character-builder-navigation></character-builder-navigation>
 <quick-overview-bar></quick-overview-bar>
-<p>backgrounds works!</p>
+
+<div class="background-list padded" *ngIf="character$ | async as character;">
+
+    <h2>Available Backgrounds:</h2><br />
+
+    <div class="background-row" *ngFor="let background of availableBackgrounds; index as i">
+
+        <div class="select-box" (click)="changeBackground(background)">
+            <span class="material-icons-outlined" *ngIf="background.name === character.background?.name">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="background.name !== character.background?.name">circle_outline</span>
+        </div>
+
+        <mat-expansion-panel class="background-expandable">
+            <mat-expansion-panel-header>{{ background.name }}</mat-expansion-panel-header>
+            TBA
+        </mat-expansion-panel>
+    </div>
+
+</div>
+
