@@ -5,23 +5,33 @@
 
     <h2>Basic Attributes:</h2><br />
 
-    <div class="basic-input-block">
-        <span>Input name</span>
-        <input type="text" [(ngModel)]="name" (ngModelChange)="change()" />
+    <div class="main-row">
+        <div class="colum-left">
+
+            <div class="basic-input-block">
+                <span>Input name</span>
+                <input type="text" [(ngModel)]="name" (ngModelChange)="change()" />
+            </div>
+
+            <div class="basic-input-block">
+                <span [matTooltipPosition]="'above'" [matTooltip]="_COMBATLEVEL_TEXT">Input Combat XP - Level {{ character.getCombatLevel() }}</span>
+                <input #combatXpInput [class.inputerror]="!combatXpInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="combatXP" (ngModelChange)="change()" />
+            </div>
+
+            <div class="basic-input-block">
+                <span [matTooltipPosition]="'above'" [matTooltip]="_ADVENTURING_TEXT">Input Adventuring XP - Level {{ character.getAdventuringLevel() }}</span>
+                <input #adventuringXPInput [class.inputerror]="!adventuringXPInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
+            </div>
+
+            <div class="basic-input-block">
+                <span [matTooltipPosition]="'above'" [matTooltip]="_SOCIALLEVEL_TEXT">Input Social XP - Level {{ character.getSocialLevel() }}</span>
+                <input type="number" #socialXpInput [class.inputerror]="!socialXpInput.reportValidity()" inputmode="numeric" step="1" min="0" [(ngModel)]="socialXP" (ngModelChange)="change()" />
+            </div>
+        </div>
+
+        <div class="column-right">
+            <img class="level-table-image" src="/assets/level-table.png"  alt="Xp to Level Table"/>
+        </div>
     </div>
 
-    <div class="basic-input-block">
-        <span [matTooltipPosition]="'above'" [matTooltip]="_COMBATLEVEL_TEXT">Input Combat XP - Level {{ character.getCombatLevel() }}</span>
-        <input #combatXpInput [class.inputerror]="!combatXpInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="combatXP" (ngModelChange)="change()" />
-    </div>
-
-    <div class="basic-input-block">
-        <span [matTooltipPosition]="'above'" [matTooltip]="_ADVENTURING_TEXT">Input Adventuring XP - Level {{ character.getAdventuringLevel() }}</span>
-        <input #adventuringXPInput [class.inputerror]="!adventuringXPInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
-    </div>
-
-    <div class="basic-input-block">
-        <span [matTooltipPosition]="'above'" [matTooltip]="_SOCIALLEVEL_TEXT">Input Social XP - Level {{ character.getSocialLevel() }}</span>
-        <input type="number" #socialXpInput [class.inputerror]="!socialXpInput.reportValidity()" inputmode="numeric" step="1" min="0" [(ngModel)]="socialXP" (ngModelChange)="change()" />
-    </div>
 </div>

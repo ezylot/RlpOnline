@@ -7,3 +7,18 @@
     flex-direction: column;
     margin-bottom: 20px;
 }
+
+.main-row {
+    display: flex;
+}
+
+.level-table-image {
+    margin-left: 50px;
+    width: 300px;
+}
+
+.column-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
