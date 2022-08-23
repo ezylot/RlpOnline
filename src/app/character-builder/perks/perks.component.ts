@@ -64,11 +64,25 @@ export class PerksComponent extends CharacterInjectingComponent {
     }
 
     selectPerk(selectedPal: PerkAndLevel) {
-        // TODO: check requirements, maybe also filter them out
         this.character$.pipe(take(1)).subscribe(char => {
             let perks = Array.from(char.perks);
 
-            if(selectedPal.perk.getCpCostForLevel(selectedPal.level, perks) > this.openCharacterPoints) {
+            if(selectedPal.perk.requirements.length > 0) {
+
+                for (const neededPerk of selectedPal.perk.requirements) {
+                    let perk = perks.find(pal => pal.perk.name == neededPerk.perkname);
+                    if (perk === undefined) {
+                        this._snackBar.open(`You do not have the requirement: ${neededPerk.perkname} on level ${neededPerk.level}`);
+                        return;
+                    }
+                    if(perk.level < neededPerk.level) {
+                        this._snackBar.open(`Your perk ${neededPerk.perkname} needs to have level ${neededPerk.level}`);
+                        return;
+                    }
+                }
+            }
+
+                if(selectedPal.perk.getCpCostForLevel(selectedPal.level, perks) > this.openCharacterPoints) {
                 this._snackBar.open("Perk is too expensive", "Warning");
                 return;
             }
