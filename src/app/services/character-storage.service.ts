@@ -81,46 +81,58 @@ export class CharacterStorageService {
     }
 
     private loadDataInitially() {
-        let parsed = JSON.parse(window.localStorage.getItem("characters") || "[]", function(key, value) {
-            if(key == "baseModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
-            if(key == "combatModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
-            if(key == "adventuringModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
-            if(key == "socialModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+        let storedString = window.localStorage.getItem("characters");
+        try {
+            let parsed = JSON.parse(storedString || "[]", function(key, value) {
+                if(key == "baseModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+                if(key == "combatModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+                if(key == "adventuringModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+                if(key == "socialModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
 
-            return value;
-        }) as Character[];
+                return value;
+            }) as Character[];
 
-        for (let character of parsed) {
-            Object.setPrototypeOf(character, Character.prototype);
-            Object.setPrototypeOf(character.stats, Stats.prototype);
+            for (let character of parsed) {
+                Object.setPrototypeOf(character, Character.prototype);
+                Object.setPrototypeOf(character.stats, Stats.prototype);
 
-            Object.setPrototypeOf(character.maxHealth, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.healthRegenBonus, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.maxStamina, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.staminaRegenBonus, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.maxMana, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.manaRegenBonus, DiceAndFixed.prototype);
-            Object.setPrototypeOf(character.dodgeModifier, DiceAndFixedAndLevel.prototype);
-            Object.setPrototypeOf(character.noticeModifier, DiceAndFixedAndLevel.prototype);
-            Object.setPrototypeOf(character.willpowerModifier, DiceAndFixedAndLevel.prototype);
+                Object.setPrototypeOf(character.maxHealth, DiceAndFixed.prototype);
+                Object.setPrototypeOf(character.healthRegenBonus, DiceAndFixed.prototype);
+                Object.setPrototypeOf(character.maxStamina, DiceAndFixed.prototype);
+                Object.setPrototypeOf(character.staminaRegenBonus, DiceAndFixed.prototype);
+                Object.setPrototypeOf(character.maxMana, DiceAndFixed.prototype);
+                Object.setPrototypeOf(character.manaRegenBonus, DiceAndFixed.prototype);
+                Object.setPrototypeOf(character.dodgeModifier, DiceAndFixedAndLevel.prototype);
+                Object.setPrototypeOf(character.noticeModifier, DiceAndFixedAndLevel.prototype);
+                Object.setPrototypeOf(character.willpowerModifier, DiceAndFixedAndLevel.prototype);
 
-            if(character.race !== null) {
-                let foundRace = RACES.find(r => r.name === character.race!.name)
-                if(foundRace === undefined) throw new Error("wtf??");
-                character.race = foundRace;
+                if(character.race !== null) {
+                    let foundRace = RACES.find(r => r.name === character.race!.name)
+                    if(foundRace === undefined) throw new Error("wtf??");
+                    character.race = foundRace;
+                }
+
+                for (let i = 0; i < character.perks.length; i++){
+                    const perkAndLevel = character.perks[i];
+                    let foundPerk = PERKS.find(p => p.name === perkAndLevel.perk.name);
+                    if(foundPerk === undefined) throw new Error("wtf?");
+                    character.perks[i] = new PerkAndLevel(perkAndLevel.level, foundPerk);
+                }
+
+                character.languagesInLearnOrder.forEach(l => Object.setPrototypeOf(l, Language.prototype));
             }
 
-            for (let i = 0; i < character.perks.length; i++){
-                const perkAndLevel = character.perks[i];
-                let foundPerk = PERKS.find(p => p.name === perkAndLevel.perk.name);
-                if(foundPerk === undefined) throw new Error("wtf?");
-                character.perks[i] = new PerkAndLevel(perkAndLevel.level, foundPerk);
-            }
-
-            character.languagesInLearnOrder.forEach(l => Object.setPrototypeOf(l, Language.prototype));
+            this.allCharactersSubject.next(parsed);
+        } catch (error) {
+            console.error(error);
+            console.error(storedString);
+            alert("Stored saves were incompatible, probably because a new update of RLP online was released. " +
+                "Characters will be wiped. If you didnt backup your old character and you desperatly need it check " +
+                "the javascript dev console and copy the error and the savestring and send it to a RLP online " +
+                "developer. If you are done, press ok and then reload the website");
+            window.localStorage.setItem("characters", "");
+            throw error;
         }
-
-        this.allCharactersSubject.next(parsed);
     }
 
     importAndLoad(txt: string) {
