@@ -2,15 +2,23 @@
 <quick-overview-bar></quick-overview-bar>
 
 <div id="name-selector">
-    <p>Input name</p>
-    <input [(ngModel)]="name" (ngModelChange)="change()" />
+    <div class="basic-input-block">
+        <span>Input name</span>
+        <input [(ngModel)]="name" (ngModelChange)="change()" />
+    </div>
 
-    <p>Input Combat XP</p>
-    <input type="number" [(ngModel)]="combatXP" (ngModelChange)="change()" />
+    <div class="basic-input-block">
+        <span>Input Combat XP</span>
+        <input type="number" [(ngModel)]="combatXP" (ngModelChange)="change()" />
+    </div>
 
-    <p>Input Adventuring XP</p>
-    <input type="number" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
+    <div class="basic-input-block">
+        <span>Input Adventuring XP</span>
+        <input type="number" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
+    </div>
 
-    <p>Input Social XP</p>
-    <input type="number" [(ngModel)]="socialXP" (ngModelChange)="change()" />
+    <div class="basic-input-block">
+        <span>Input Social XP</span>
+        <input type="number" [(ngModel)]="socialXP" (ngModelChange)="change()" />
+    </div>
 </div>

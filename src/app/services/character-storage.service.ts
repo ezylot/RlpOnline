@@ -19,7 +19,15 @@ export class CharacterStorageService {
 
     constructor() {
         this.loadDataInitially();
+        this.loadLatest();
 
+        this.loadedCharacterSubject = this.loadedCharacterId.pipe(
+            filter(id => id !== null),
+            switchMap(id => this.getCharacter(id!!)),
+        );
+    }
+
+    private loadLatest() {
         this.getCharacters().pipe(take(1)).subscribe(chars => {
             if(chars.length === 0) {
                 this.generateAndLoadNewCharacter();
@@ -27,12 +35,7 @@ export class CharacterStorageService {
                 let latestUpdated = chars.sort((a, b) => b.updatedTime - a.updatedTime)[0]
                 this.loadCharacter(latestUpdated.id);
             }
-        })
-
-        this.loadedCharacterSubject = this.loadedCharacterId.pipe(
-            filter(id => id !== null),
-            switchMap(id => this.getCharacter(id!!)),
-        );
+        });
     }
 
     loadCharacter(id: string) {
@@ -125,5 +128,9 @@ export class CharacterStorageService {
         window.localStorage.setItem("characters", JSON.stringify(characters));
 
         this.loadDataInitially();
+    }
+
+    delete(id: string) {
+
     }
 }

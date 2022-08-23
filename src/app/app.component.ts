@@ -28,6 +28,13 @@ export class AppComponent extends CharacterInjectingComponent {
         this.router.navigate(["character-builder"]);
     }
 
+    deleteCharacter(character: Character) {
+        let result = confirm("You really want to delete this character?");
+        if(result) {
+            this.characterStorageService.delete(character.id);
+        }
+    }
+
     uploadFile(event$: any) {
         event$.target.files.item(0)?.text().then((txt: string) => this.characterStorageService.importAndLoad(txt));
     }

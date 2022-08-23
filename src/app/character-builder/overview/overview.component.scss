@@ -11,10 +11,9 @@
 }
 .main {
     display: flex;
+    align-items: flex-start;
 
     .attributes {
-        display: flex;
-        flex-direction: column;
         border: 1px solid #b26d27;
         width: 200px;
         text-align: center;
@@ -66,6 +65,12 @@
             margin-bottom: 8px;
         }
 
+    }
+
+    .overview-perk-line {
+        font-weight: bold;
+        margin-top: 3px;
+        display: inline-block;
     }
 
     .race-benefits, .zodiacsign-benefits, .perks, .combatstats, .equipment, .languages {

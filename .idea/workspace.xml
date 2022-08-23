@@ -3,26 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/CharacterInjectingComponent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/CharacterInjectingComponent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/equipment/equipment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/equipment/equipment.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/name-selector/name-selector.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/name-selector/name-selector.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/name-selector/name-selector.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/name-selector/name-selector.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/dice-and-fixed-and-level.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/dice-and-fixed-and-level.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/dice-and-fixed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/dice-and-fixed.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/perk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/perk.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,19 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Projects/rlp-online/src/app/classes",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "ts.external.directory.path": "D:\\Projects\\rlp-online\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/rlp-online/src/app/classes&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\rlp-online\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\rlp-online\src\app\classes" />
@@ -83,7 +76,9 @@
       <updated>1661110613483</updated>
       <workItem from="1661110614677" duration="22000" />
       <workItem from="1661110776707" duration="55340000" />
-      <workItem from="1661168713344" duration="21635000" />
+      <workItem from="1661168713344" duration="21849000" />
+      <workItem from="1661238871498" duration="1509000" />
+      <workItem from="1661240406024" duration="1908000" />
     </task>
     <servers />
   </component>

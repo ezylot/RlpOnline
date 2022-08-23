@@ -4,15 +4,15 @@
     </header>
     <div id="main" *ngIf="character$ | async as character;">
         <nav>
-            <span class="new-character" (click)="createNewChar()">Create New Character</span>
-
             <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
-            <span class="material-icons-outlined" (click)="fileInput.click()">upload_file</span>
+            <span class="material-icons-outlined new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">person_add</span>
+            <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
             <br />
 
             Available characters:
-            <div *ngFor="let char of availableCharacters | async; index as i">
+            <div *ngFor="let char of availableCharacters | async; index as i" class="char">
                 <span class="char-link" [class.current]="char.id == character.id" (click)="loadChar(char.id)"> {{ char.name }}</span>
+                <span class="material-icons-outlined" (click)="deleteCharacter(char)" [matTooltip]="'Delete ' + char.name">delete</span>
             </div>
         </nav>
         <div id="main-content">
