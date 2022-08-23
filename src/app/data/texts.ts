@@ -1,4 +1,16 @@
 
+export const COMBATLEVEL_TEXT = 'Whenever an encounter is solved by attacking someone and directly harming them, it\n' +
+    'should be considered combat. When a trap is laid, or the characters try to defeat enemies by\n' +
+    'pushing a boulder onto them, it is adventuring instead.';
+
+export const ADVENTURING_TEXT = 'Adventuring is the sum amount of exploration, navigation, and survival. Whenever characters\n' +
+    'try to sneak by enemies, find their way around a massive ravine or create a distraction for a group\n' +
+    'of enemies, they’re engaged in Adventuring.';
+
+export const SOCIALLEVEL_TEXT = 'Social is interacting with other (at least somewhat) intelligent creatures in non-violent ways. This\n' +
+    'includes diplomacy, haggling, perceiving information about others, subterfuge and threats, but  ́ıt\n' +
+    'doesn’t include stealth (but does include disguise) or illusion. Neither does it include a feint or\n' +
+    'trick during combat.';
 
 export const STRENGTH_TEXT = 'Strength (ST) describes a character’s muscle strength. ' +
     'It’s an important ability for melee combat, and determines carrying capacity';

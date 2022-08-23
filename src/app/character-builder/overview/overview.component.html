@@ -15,23 +15,44 @@
 
 
     <div class="main">
-        <div class="attributes">
-            <span class="attribute-title" [matTooltip]="_STRENGTH_TEXT">Strength (ST)</span>
-            <span class="attribute-value">{{ character.getFinalStats().strength }}</span>
-            <span class="attribute-title" [matTooltip]="_VITALITY_TEXT">Vitality (VI)</span>
-            <span class="attribute-value">{{ character.getFinalStats().vitality }}</span>
-            <span class="attribute-title" [matTooltip]="_DEXTERITY_TEXT">Dexterity (DE)</span>
-            <span class="attribute-value">{{ character.getFinalStats().dexterity }}</span>
-            <span class="attribute-title" [matTooltip]="_AGILITY_TEXT">Agility (AG)</span>
-            <span class="attribute-value">{{ character.getFinalStats().agility }}</span>
-            <span class="attribute-title" [matTooltip]="_INTELLECT_TEXT">Intellect (IN)</span>
-            <span class="attribute-value">{{ character.getFinalStats().intellect }}</span>
-            <span class="attribute-title" [matTooltip]="_PERCEPTION_TEXT">Perception (PE)</span>
-            <span class="attribute-value">{{ character.getFinalStats().perception }}</span>
-            <span class="attribute-title" [matTooltip]="_EMPATHY_TEXT">Empathy (EM)</span>
-            <span class="attribute-value">{{ character.getFinalStats().empathy }}</span>
-
+        <div class="left-column">
+            <div class="attributes">
+                <span class="border-overlapping-title">Stats</span>
+                <span class="attribute-title" [matTooltip]="_STRENGTH_TEXT">Strength (ST)</span>
+                <span class="attribute-value">{{ character.getFinalStats().strength }}</span>
+                <span class="attribute-title" [matTooltip]="_VITALITY_TEXT">Vitality (VI)</span>
+                <span class="attribute-value">{{ character.getFinalStats().vitality }}</span>
+                <span class="attribute-title" [matTooltip]="_DEXTERITY_TEXT">Dexterity (DE)</span>
+                <span class="attribute-value">{{ character.getFinalStats().dexterity }}</span>
+                <span class="attribute-title" [matTooltip]="_AGILITY_TEXT">Agility (AG)</span>
+                <span class="attribute-value">{{ character.getFinalStats().agility }}</span>
+                <span class="attribute-title" [matTooltip]="_INTELLECT_TEXT">Intellect (IN)</span>
+                <span class="attribute-value">{{ character.getFinalStats().intellect }}</span>
+                <span class="attribute-title" [matTooltip]="_PERCEPTION_TEXT">Perception (PE)</span>
+                <span class="attribute-value">{{ character.getFinalStats().perception }}</span>
+                <span class="attribute-title" [matTooltip]="_EMPATHY_TEXT">Empathy (EM)</span>
+                <span class="attribute-value">{{ character.getFinalStats().empathy }}</span>
+            </div>
+            <div class="levels">
+                <span class="border-overlapping-title">Levels</span>
+                <div class="levels-block levels-combat">
+                    <b class="level-title" [matTooltipPosition]="'above'" [matTooltip]="_COMBATLEVEL_TEXT">Combat</b>
+                    <span class="level-level">Level {{ character.getCombatLevel() }}</span>
+                    <span class="level-xp">{{ character.combatXP}} XP</span>
+                </div>
+                <div class="levels-block levels-adventuring">
+                    <b class="level-title" [matTooltipPosition]="'above'" [matTooltip]="_ADVENTURING_TEXT">Adv.</b>
+                    <span class="level-level">Level {{ character.getAdventuringLevel() }}</span>
+                    <span class="level-xp">{{ character.adventuringXP}} XP</span>
+                </div>
+                <div class="levels-block levels-social">
+                    <b class="level-title" [matTooltipPosition]="'above'" [matTooltip]="_SOCIALLEVEL_TEXT">Social</b>
+                    <span class="level-level">Level {{ character.getSocialLevel() }}</span>
+                    <span class="level-xp">{{ character.socialXP}} XP</span>
+                </div>
+            </div>
         </div>
+
         <div class="main-right">
             <div class="combatstats">
                 <span class="border-overlapping-title">Combatstats</span>

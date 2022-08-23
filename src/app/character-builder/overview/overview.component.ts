@@ -1,18 +1,30 @@
 import {Component} from '@angular/core';
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
-import {Character} from "../../classes/character";
 import {DomSanitizer} from "@angular/platform-browser";
 import {CharacterStorageService} from "../../services/character-storage.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {takeUntil} from "rxjs";
 import {
+    ADVENTURING_TEXT,
     AGILITY_TEXT,
-    DEXTERITY_TEXT, DODGE_TEXT, EMPATHY_TEXT, HEALTH_RECOVER_TEXT, HEALTH_TEXT,
-    INTELLECT_TEXT, MANA_RECOVER_TEXT, MANA_TEXT, NOTICE_TEXT,
-    PERCEPTION_TEXT, STAMINA_RECOVER_TEXT, STAMINA_TEXT,
+    COMBATLEVEL_TEXT,
+    DEXTERITY_TEXT,
+    DODGE_TEXT,
+    EMPATHY_TEXT,
+    HEALTH_RECOVER_TEXT,
+    HEALTH_TEXT,
+    INTELLECT_TEXT,
+    MANA_RECOVER_TEXT,
+    MANA_TEXT,
+    NOTICE_TEXT,
+    PERCEPTION_TEXT,
+    SOCIALLEVEL_TEXT,
+    STAMINA_RECOVER_TEXT,
+    STAMINA_TEXT,
     STRENGTH_TEXT,
-    VITALITY_TEXT, WILLPOWER_TEXT
+    VITALITY_TEXT,
+    WILLPOWER_TEXT
 } from "../../data/texts";
 
 @Component({
@@ -21,6 +33,10 @@ import {
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent extends CharacterInjectingComponent {
+
+    _COMBATLEVEL_TEXT = COMBATLEVEL_TEXT;
+    _ADVENTURING_TEXT = ADVENTURING_TEXT;
+    _SOCIALLEVEL_TEXT = SOCIALLEVEL_TEXT;
 
     _STRENGTH_TEXT = STRENGTH_TEXT;
     _VITALITY_TEXT = VITALITY_TEXT;

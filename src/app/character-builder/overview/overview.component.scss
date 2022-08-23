@@ -11,11 +11,23 @@
     display: flex;
     align-items: flex-start;
 
+    .levels {
+        display: flex;
+        padding: 20px 7px !important;
+
+        .levels-block {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            text-align: center;
+        }
+    }
+
     .attributes {
-        border: 1px solid #b26d27;
         width: 200px;
         text-align: center;
-        padding: 20px;
+        padding: 20px !important;
+        margin: 0 !important;
 
         span {
             display: block;
@@ -80,7 +92,9 @@
     .languages,
     .recovering-values,
     .culture-benefits,
-    .background-benefits {
+    .background-benefits,
+    .attributes,
+    .levels {
         margin-top: 20px;
         padding: 20px 20px 20px 50px;
         border: 1px solid #b26d27;

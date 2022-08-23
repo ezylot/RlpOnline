@@ -6,10 +6,11 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {take, takeUntil} from "rxjs";
 import {
-    AGILITY_TEXT,
+    ADVENTURING_TEXT,
+    AGILITY_TEXT, COMBATLEVEL_TEXT,
     DEXTERITY_TEXT, EMPATHY_TEXT,
     INTELLECT_TEXT,
-    PERCEPTION_TEXT,
+    PERCEPTION_TEXT, SOCIALLEVEL_TEXT,
     STRENGTH_TEXT,
     VITALITY_TEXT
 } from "../../data/texts";

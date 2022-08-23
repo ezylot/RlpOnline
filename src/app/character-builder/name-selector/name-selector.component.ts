@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Character} from "../../classes/character";
 import {take, takeUntil} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
+import {ADVENTURING_TEXT, COMBATLEVEL_TEXT, SOCIALLEVEL_TEXT} from "../../data/texts";
 
 @Component({
     selector: 'app-name-selector',
@@ -9,6 +10,10 @@ import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
     styleUrls: ['./name-selector.component.scss']
 })
 export class NameSelectorComponent extends CharacterInjectingComponent{
+
+    _COMBATLEVEL_TEXT = COMBATLEVEL_TEXT;
+    _ADVENTURING_TEXT = ADVENTURING_TEXT;
+    _SOCIALLEVEL_TEXT = SOCIALLEVEL_TEXT;
 
     name: string = "";
     combatXP: number = 0;

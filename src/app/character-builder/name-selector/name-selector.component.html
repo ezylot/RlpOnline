@@ -11,17 +11,17 @@
     </div>
 
     <div class="basic-input-block">
-        <span>Input Combat XP - Level {{ character.getCombatLevel() }}</span>
+        <span [matTooltipPosition]="'above'" [matTooltip]="_COMBATLEVEL_TEXT">Input Combat XP - Level {{ character.getCombatLevel() }}</span>
         <input #combatXpInput [class.inputerror]="!combatXpInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="combatXP" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
-        <span>Input Adventuring XP - Level {{ character.getAdventuringLevel() }}</span>
+        <span [matTooltipPosition]="'above'" [matTooltip]="_ADVENTURING_TEXT">Input Adventuring XP - Level {{ character.getAdventuringLevel() }}</span>
         <input #adventuringXPInput [class.inputerror]="!adventuringXPInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
-        <span>Input Social XP - Level {{ character.getSocialLevel() }}</span>
+        <span [matTooltipPosition]="'above'" [matTooltip]="_SOCIALLEVEL_TEXT">Input Social XP - Level {{ character.getSocialLevel() }}</span>
         <input type="number" #socialXpInput [class.inputerror]="!socialXpInput.reportValidity()" inputmode="numeric" step="1" min="0" [(ngModel)]="socialXP" (ngModelChange)="change()" />
     </div>
 </div>
