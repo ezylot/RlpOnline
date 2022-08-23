@@ -10,6 +10,7 @@ import {OverviewComponent} from "./character-builder/overview/overview.component
 import {AttributesComponent} from "./character-builder/attributes/attributes.component";
 import {LanguagesComponent} from "./character-builder/languages/languages.component";
 import {BackgroundsComponent} from "./character-builder/backgrounds/backgrounds.component";
+import {CultureComponent} from "./character-builder/culture/culture.component";
 
 const routes: Routes = [
     { path: "",                                   component: NameSelectorComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: "character-builder/race-selector",    component: RaceSelectorComponent },
     { path: "character-builder/zodiac-sign",      component: ZodiacSignComponent },
     { path: "character-builder/background",       component: BackgroundsComponent },
+    { path: "character-builder/culture",          component: CultureComponent },
     { path: "character-builder/languages",        component: LanguagesComponent },
     { path: "character-builder/overview",         component: OverviewComponent },
 ];

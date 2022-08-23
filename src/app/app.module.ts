@@ -23,6 +23,7 @@ import { QuickOverviewBarComponent } from './character-builder/quick-overview-ba
 import {AttributesComponent} from "./character-builder/attributes/attributes.component";
 import { LanguagesComponent } from './character-builder/languages/languages.component';
 import { BackgroundsComponent } from './character-builder/backgrounds/backgrounds.component';
+import { CultureComponent } from './character-builder/culture/culture.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { BackgroundsComponent } from './character-builder/backgrounds/background
         QuickOverviewBarComponent,
         LanguagesComponent,
         BackgroundsComponent,
+        CultureComponent,
     ],
     imports: [
         BrowserModule,

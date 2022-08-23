@@ -96,6 +96,10 @@
                 <span class="border-overlapping-title">Background</span>
                 <span [innerHTML]="character.background.name"></span>
             </div>
+            <div class="culture-benefits" *ngIf="character.culture">
+                <span class="border-overlapping-title">Culture</span>
+                <span [innerHTML]="character.culture.name"></span>
+            </div>
             <div class="perks">
                 <span class="border-overlapping-title">Perks</span>
                 <div *ngFor="let pal of character.perks">

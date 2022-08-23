@@ -1,13 +1,12 @@
 import {Component} from '@angular/core';
 import {take} from "rxjs";
 import {Character} from "../../classes/character";
-import {ZodiacSign} from "../../classes/zodiacsign";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Background} from "../../classes/background";
 import {BACKGROUNDS} from "../../data/backgrounds";
 
 @Component({
-    selector: 'app-zodiac-sign',
+    selector: 'app-background',
     templateUrl: './backgrounds.component.html',
     styleUrls: ['./backgrounds.component.scss']
 })

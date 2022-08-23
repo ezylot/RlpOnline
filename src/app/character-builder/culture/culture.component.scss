@@ -1,0 +1,15 @@
+.culture-expandable {
+    margin-bottom: 5px;
+    flex: 1;
+}
+
+.culture-row {
+    display: flex;
+    align-content: center;
+
+    .select-box {
+        width: 40px;
+        margin: 12px 0;
+        cursor: pointer;
+    }
+}
