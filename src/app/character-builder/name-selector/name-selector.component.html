@@ -7,21 +7,21 @@
 
     <div class="basic-input-block">
         <span>Input name</span>
-        <input [(ngModel)]="name" (ngModelChange)="change()" />
+        <input type="text" [(ngModel)]="name" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
         <span>Input Combat XP - Level {{ character.getCombatLevel() }}</span>
-        <input type="number" [(ngModel)]="combatXP" (ngModelChange)="change()" />
+        <input #combatXpInput [class.inputerror]="!combatXpInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="combatXP" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
         <span>Input Adventuring XP - Level {{ character.getAdventuringLevel() }}</span>
-        <input type="number" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
+        <input #adventuringXPInput [class.inputerror]="!adventuringXPInput.reportValidity()" type="number" inputmode="numeric" step="1" min="0" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
         <span>Input Social XP - Level {{ character.getSocialLevel() }}</span>
-        <input type="number" [(ngModel)]="socialXP" (ngModelChange)="change()" />
+        <input type="number" #socialXpInput [class.inputerror]="!socialXpInput.reportValidity()" inputmode="numeric" step="1" min="0" [(ngModel)]="socialXP" (ngModelChange)="change()" />
     </div>
 </div>

@@ -19,9 +19,9 @@ export class NameSelectorComponent extends CharacterInjectingComponent{
         super.ngOnInit();
         this.character$.pipe(takeUntil(this.destroy$)).subscribe(char => {
             this.name = char.name;
-            this.combatXP = char.combatXP;
-            this.adventuringXP = char.adventuringXP;
-            this.socialXP = char.socialXP;
+            this.combatXP = char.combatXP || 0;
+            this.adventuringXP = char.adventuringXP || 0;
+            this.socialXP = char.socialXP || 0;
         });
     }
 
