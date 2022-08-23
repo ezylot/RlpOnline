@@ -4,6 +4,15 @@
 
 <div class="perks-builder padded" *ngIf="character$ | async as character;">
 
+    <div class="perk-category-selector">
+        <div><a routerLink="/character-builder/perks" routerLinkActive="active">Base Perks</a></div>
+        <div><a routerLink="/character-builder/martial-perks" routerLinkActive="active">Martial Perks</a></div>
+        <div><a routerLink="/character-builder/odem-perks" routerLinkActive="active">Odem Perks</a></div>
+        <div><a routerLink="/character-builder/magical-perks" routerLinkActive="active">Magic Perks</a></div>
+        <div><a routerLink="/character-builder/divine-perks" routerLinkActive="active">Divine Perks</a></div>
+        <div><a routerLink="/character-builder/skill-perks" routerLinkActive="active">Skill Perks</a></div>
+    </div>
+
     <div class="perks-resources">
         Your character has <b>{{ openCharacterPoints }} / {{ totalCharacterPoints }}</b> CP still available.
     </div>

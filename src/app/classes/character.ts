@@ -14,7 +14,12 @@ import {PerkCategory} from "./perk";
 
 export class Character {
 
+    // TODO: inventory
+    // TODO: list of actions in combat
+    // TODO: point buy
+
     startingCP = 1500;
+    startingGold = 500;
 
     public name: string = "New Character";
     public race: Race | null = null;
