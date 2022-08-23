@@ -108,6 +108,9 @@
 
             <div class="languages" *ngIf="character.languagesInLearnOrder">
                 <span class="border-overlapping-title">Languages</span>
+                <div *ngFor="let lang of character.languagesInLearnOrder">
+                    <span class="overview-language-line"><b>{{ lang.name }}</b> ({{ lang.family }} - {{ lang.alphabet }})</span>
+                </div>
             </div>
 
         </div>
