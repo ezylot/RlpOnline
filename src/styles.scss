@@ -51,7 +51,8 @@ mat-panel-title {
 }
 
 .mat-tooltip {
-    font-size: 1em;
+    font-size: 16px;
+    line-height: 18px;
     max-width: 500px !important;
 }
 
@@ -77,6 +78,7 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 16px;
+    line-height: 20px;
 }
 
 .inputerror {

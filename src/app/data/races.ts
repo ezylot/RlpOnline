@@ -32,8 +32,18 @@ import {ANIMALS} from "./languages";
 export const RACES: Race[] = [
     {
         name: "Daevana",
-        flavorText: "Daevana are a very tall and muscular race of lesser giant-kin that live in small clans and call the <br />savage wilderness of Northern Knorkalith, but especially the island of Lonereach, their home. <br />Daevana mature at the age of 10, and live to be around 60. <br />At their best, Daevana are loyal, helpful and friendly. <br />At their worst, Daevana are temperamental, boastful and unpredictable.",
-        textDescription: "Every Daevana starts with a Strength increased by 2. <br/> Also, their Vitality is increased by 1 <br/> However, their Intellect is reduced by 2 <br/> Additionally, their Daevana’s Empathy is reduced by 1 <br/> Daevana are especially brutish. When they make a strength-based melee attack roll, they <br/> add 1d6 to the damage. Also, their survival in savage lands has made them especially resilient. <br/> When they gain a level in ”Increase Health”, they can roll twice and take the higher <br/> result. <br/> Lastly, Daevana have an increased Damage reduction against cutting, piercing and blunt <br/> by +1. <br/> Daevana start the game with 25 Health, 30 Stamina and 15 Mana",
+        flavorText: "Daevana are a very tall and muscular race of lesser giant-kin that live in small clans and call the " +
+            " savage wilderness of Northern Knorkalith, but especially the island of Lonereach, their home. <br /><br />" +
+            "Daevana mature at the age of 10, and live to be around 60. <br /> At their best, Daevana are loyal, helpful and friendly." +
+            "<br />At their worst, Daevana are temperamental, boastful and unpredictable.",
+        textDescription: "Every Daevana starts with a Strength increased by 2. <br/> " +
+            "Also, their Vitality is increased by 1 <br/> " +
+            "However, their Intellect is reduced by 2 <br/> " +
+            "Additionally, their Daevana’s Empathy is reduced by 1 <br/> " +
+            "Daevana are especially brutish. When they make a strength-based melee attack roll, they add 1d6 to the damage. <br/>" +
+            "Also, their survival in savage lands has made them especially resilient. When they gain a level in ”Increase Health”, " +
+            "they can roll twice and take the higher result. Lastly, Daevana have an increased Damage reduction against " +
+            "cutting, piercing and blunt by +1. <br/><br/> Daevana start the game with 25 Health, 30 Stamina and 15 Mana",
         statboni: new Stats(2, 1, 0, 0, -2, 0, -1),
         traitsAsStrings: [
             "When they make a strength-based melee attack roll, they add 1d6 to the damage",
@@ -56,8 +66,16 @@ export const RACES: Race[] = [
     },
     {
         name: "Rock Elf",
-        flavorText: "Elves are a short-growing people of mountain- and forest dwellers that like to avoid human contact .<br /> Elves mature at an age of 30, and can live to be 200 .<br /> At their best, elves are cautious, reliable and loyal .<br /> At their worst, elves are removed, mistrusting and superstitious .<br /> Rock Elves have skin alike to marble and granite. It is extremely difficult to spot them in rocky <br /> terrain.",
-        textDescription: "Every Elve starts with an Agility increased by 2. <br /> Also, every Elve’s Dexterity increases by 1 <br /> Also, every Elve’s Intellect is reduced by 1. <br /> Elves start the game with 20 Health, 25 Stamina and 25 Mana <br /> In rocky terrain, they can attempt to hide in plain sight and when doing so, <br /> they can add +1d4 on their stealth check",
+        flavorText: "Elves are a short-growing people of mountain- and forest dwellers that like to avoid human contact.<br /><br />" +
+            "Elves mature at an age of 30, and can live to be 200.<br /> " +
+            "At their best, elves are cautious, reliable and loyal.<br /> " +
+            "At their worst, elves are removed, mistrusting and superstitious.<br /> " +
+            "Rock Elves have skin alike to marble and granite. It is extremely difficult to spot them in rocky terrain.",
+        textDescription: "Every Elve starts with an Agility increased by 2. <br /> " +
+            "Also, every Elve’s Dexterity increases by 1 <br /> " +
+            "Also, every Elve’s Intellect is reduced by 1. <br /> " +
+            "In rocky terrain, they can attempt to hide in plain sight and when doing so, they can add +1d4 on their stealth check.<br /><br /> " +
+            "Elves start the game with 20 Health, 25 Stamina and 25 Mana <br /> ",
         statboni: new Stats(0, 0, 1, 2, -1, 0, 0),
         traitsAsStrings: [
             "In rocky terrain, they can attempt to hide in plain sight and when doing so, they can add +1d4 on their stealth check",

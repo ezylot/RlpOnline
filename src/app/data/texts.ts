@@ -46,7 +46,7 @@ export const HEALTH_TEXT = 'Health describes a character’s ability to withstan
 
 export const STAMINA_TEXT = 'Stamina describes a character’s ability to act out tasks that are bodily challenging. When a character climbs ' +
     'or swims fast, or if a character uses special maneuvers in combat, he loses stamina. Stamina can ' +
-    'be restored by resting (See below). It usually doesn’t take much longer than an hour to completely ' +
+    'be restored by resting. It usually doesn’t take much longer than an hour to completely ' +
     'restore Stamina, so outside of a stressful situation, a character usually has full Stamina. A character ' +
     'with less than one fourth of their Stamina becomes ”Exhausted”. A character with less than ' +
     'one tenth of their Stamina becomes ”Heavily Exhausted”.k If a character reaches a Stamina of 0, ' +
