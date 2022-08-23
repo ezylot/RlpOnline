@@ -57,7 +57,7 @@ export class Character {
     }
 
     getTotalCP() {
-        return this.startingCP + (this.race?.cpBonus || 0);
+        return this.startingCP + this.getCPFromLevel() + (this.race?.cpBonus || 0);
     }
 
     getFinalCombatStats() {
@@ -97,27 +97,53 @@ export class Character {
         return this.getLevel(this.adventuringXP);
     }
 
+    getCPFromLevel() : number {
+        let totalCpAdded = 0;
+
+        for (let i = 1; i <= this.combatXP; i++) {
+            totalCpAdded += 100 * this.getLevel(i);
+        }
+        for (let i = 1; i <= this.adventuringXP; i++) {
+            totalCpAdded += 100 * this.getLevel(i);
+        }
+        for (let i = 1; i <= this.socialXP; i++) {
+            totalCpAdded += 100 * this.getLevel(i);
+        }
+
+        return totalCpAdded;
+    }
+
+    getRemainingCP() : number {
+        let remainingCP = this.getTotalCP();
+        for (let pal of this.perks) {
+            for (let i = 1; i <= pal.level; i++) {
+                remainingCP -= pal.perk.getCpCostForLevel(i, this.perks);
+            }
+        }
+        return remainingCP;
+    }
+
     getLevel(xp : number) : number {
-        if(xp > 761) return 21;
-        if(xp > 685) return 20;
-        if(xp > 613) return 19;
-        if(xp > 545) return 18;
-        if(xp > 481) return 17;
-        if(xp > 421) return 16;
-        if(xp > 365) return 15;
-        if(xp > 313) return 14;
-        if(xp > 365) return 13;
-        if(xp > 221) return 12;
-        if(xp > 181) return 11;
-        if(xp > 145) return 10;
-        if(xp > 113) return 9;
-        if(xp > 85) return 8;
-        if(xp > 61) return 7;
-        if(xp > 41) return 6;
-        if(xp > 25) return 5;
-        if(xp > 13) return 4;
-        if(xp > 5) return 3;
-        if(xp > 1) return 2;
+        if(xp >= 761) return 21;
+        if(xp >= 685) return 20;
+        if(xp >= 613) return 19;
+        if(xp >= 545) return 18;
+        if(xp >= 481) return 17;
+        if(xp >= 421) return 16;
+        if(xp >= 365) return 15;
+        if(xp >= 313) return 14;
+        if(xp >= 365) return 13;
+        if(xp >= 221) return 12;
+        if(xp >= 181) return 11;
+        if(xp >= 145) return 10;
+        if(xp >= 113) return 9;
+        if(xp >= 85) return 8;
+        if(xp >= 61) return 7;
+        if(xp >= 41) return 6;
+        if(xp >= 25) return 5;
+        if(xp >= 13) return 4;
+        if(xp >= 5) return 3;
+        if(xp >= 1) return 2;
         return 1;
     }
 

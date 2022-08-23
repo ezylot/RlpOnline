@@ -32,14 +32,8 @@ export class PerksComponent extends CharacterInjectingComponent {
         if(this.router.url.endsWith("skill-perks")) filter = PerkCategory.SKILL;
 
         this.character$.pipe(takeUntil(this.destroy$)).subscribe(char => {
-            let remainingCP = this.totalCharacterPoints = char.getTotalCP();
-            for (let pal of char.perks) {
-                for (let i = 1; i <= pal.level; i++) {
-                    remainingCP -= pal.perk.getCpCostForLevel(i, char.perks);
-                }
-            }
-
-            this.openCharacterPoints = remainingCP;
+            this.totalCharacterPoints = char.getTotalCP();
+            this.openCharacterPoints = char.getRemainingCP();
             this.ownedPerks = char.perks.filter(p => p.perk.internalCategory === filter);
 
             this.availablePerks = PERKS
@@ -48,6 +42,7 @@ export class PerksComponent extends CharacterInjectingComponent {
                     let found = this.ownedPerks.find(x => x.perk.name == p.name);
                     return new PerkAndLevel((found?.level ?? 0) + 1, p)
                 })
+               .filter(pal => pal.perk.getCpCostForLevel(pal.level, this.ownedPerks) > 0);
 
             if(char.combatXP == 0 && char.adventuringXP == 0 && char.socialXP == 0) {
                 // At the start we can only upgrade skills for the first level, not any others

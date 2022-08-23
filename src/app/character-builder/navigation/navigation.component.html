@@ -1,13 +1,25 @@
 
-<div id="character-builder-navigation">
+<div id="character-builder-navigation" *ngIf="character$ | async as character;">
     <a routerLink="/character-builder/name-selector" routerLinkActive="active">Basics</a>
     <a routerLink="/character-builder/race-selector" routerLinkActive="active">Race</a>
     <a routerLink="/character-builder/attributes" routerLinkActive="active">Attributes</a>
     <a routerLink="/character-builder/zodiac-sign" routerLinkActive="active">Zodiac Sign</a>
-    <a routerLink="/character-builder/perks" routerLinkActive="active">Perks</a>
-    <a routerLink="/character-builder/martial-perks" routerLinkActive="active">Martial Perks</a>
-    <a routerLink="/character-builder/magical-perks" routerLinkActive="active">Magical Perks</a>
-    <a routerLink="/character-builder/skill-perks" routerLinkActive="active">Skill Perks</a>
+    <a routerLink="/character-builder/perks" routerLinkActive="active">
+        <span class="material-icons-outlined cp-warning" *ngIf="character.getRemainingCP() < 0" [matTooltip]="'Spent more CP than available.'">warning</span>
+        Perks
+    </a>
+    <a routerLink="/character-builder/martial-perks" routerLinkActive="active">
+        <span class="material-icons-outlined cp-warning" *ngIf="character.getRemainingCP() < 0" [matTooltip]="'Spent more CP than available.'">warning</span>
+        Martial Perks
+    </a>
+    <a routerLink="/character-builder/magical-perks" routerLinkActive="active">
+        <span class="material-icons-outlined cp-warning" *ngIf="character.getRemainingCP() < 0" [matTooltip]="'Spent more CP than available.'">warning</span>
+        Magical Perks
+    </a>
+    <a routerLink="/character-builder/skill-perks" routerLinkActive="active">
+        <span class="material-icons-outlined cp-warning" *ngIf="character.getRemainingCP() < 0" [matTooltip]="'Spent more CP than available.'">warning</span>
+        Skill Perks
+    </a>
     <a routerLink="/character-builder/background" routerLinkActive="active">Background</a>
     <a routerLink="/character-builder/languages" routerLinkActive="active">Languages</a>
     <a routerLink="/character-builder/equipment" routerLinkActive="active">Equipment</a>

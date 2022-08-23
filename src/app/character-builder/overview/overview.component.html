@@ -5,9 +5,9 @@
 
     <div class="title">
         <h1>
-            <span [matTooltip]="'Name'">{{ character.name }}</span>,
-            <span [matTooltip]="'Race'"> the {{ character.race?.name ?? 'raceless' }}</span>
-            <span [matTooltip]="'Background'"> {{ character.background?.name ?? 'adventurer without a job' }}</span>
+            <span [matTooltipPosition]="'above'" [matTooltip]="'Name'">{{ character.name }}</span>,
+            <span [matTooltipPosition]="'above'" [matTooltip]="'Race'"> the {{ character.race?.name ?? 'raceless' }}</span>
+            <span [matTooltipPosition]="'above'" [matTooltip]="'Background'"> {{ character.background?.name ?? 'adventurer without a job' }}</span>
         </h1>
 
         <a class="material-icons-outlined" [href]="downloadJsonHref" download="{{character.name}}">save</a>
@@ -16,19 +16,19 @@
 
     <div class="main">
         <div class="attributes">
-            <span class="attribute-title">Strength (ST)</span>
+            <span class="attribute-title" [matTooltip]="_STRENGTH_TEXT">Strength (ST)</span>
             <span class="attribute-value">{{ character.getFinalStats().strength }}</span>
-            <span class="attribute-title">Vitality (VI)</span>
+            <span class="attribute-title" [matTooltip]="_VITALITY_TEXT">Vitality (VI)</span>
             <span class="attribute-value">{{ character.getFinalStats().vitality }}</span>
-            <span class="attribute-title">Dexterity (DE)</span>
+            <span class="attribute-title" [matTooltip]="_DEXTERITY_TEXT">Dexterity (DE)</span>
             <span class="attribute-value">{{ character.getFinalStats().dexterity }}</span>
-            <span class="attribute-title">Agility (AG)</span>
+            <span class="attribute-title" [matTooltip]="_AGILITY_TEXT">Agility (AG)</span>
             <span class="attribute-value">{{ character.getFinalStats().agility }}</span>
-            <span class="attribute-title">Intellect (IN)</span>
+            <span class="attribute-title" [matTooltip]="_INTELLECT_TEXT">Intellect (IN)</span>
             <span class="attribute-value">{{ character.getFinalStats().intellect }}</span>
-            <span class="attribute-title">Perception (PE)</span>
+            <span class="attribute-title" [matTooltip]="_PERCEPTION_TEXT">Perception (PE)</span>
             <span class="attribute-value">{{ character.getFinalStats().perception }}</span>
-            <span class="attribute-title">Empathy (EM)</span>
+            <span class="attribute-title" [matTooltip]="_EMPATHY_TEXT">Empathy (EM)</span>
             <span class="attribute-value">{{ character.getFinalStats().empathy }}</span>
 
         </div>
@@ -37,29 +37,29 @@
                 <span class="border-overlapping-title">Combatstats</span>
                 <div class="row">
                     <div class="combatstat-block">
-                        <div class="combatstat-title">Health</div>
+                        <div class="combatstat-title" [matTooltip]="_HEALTH_TEXT">Health</div>
                         <div>{{ character.getFinalCombatStats().maxHealth }}</div>
                     </div>
                     <div class="combatstat-block">
-                        <div class="combatstat-title">Stamina</div>
+                        <div class="combatstat-title" [matTooltip]="_STAMINA_TEXT">Stamina</div>
                         <div>{{ character.getFinalCombatStats().maxStamina }}</div>
                     </div>
                     <div class="combatstat-block">
-                        <div class="combatstat-title">Mana</div>
+                        <div class="combatstat-title" [matTooltip]="_MANA_TEXT">Mana</div>
                         <div>{{ character.getFinalCombatStats().maxMana }}</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="combatstat-block">
-                        <div class="combatstat-title">Dodge</div>
+                        <div class="combatstat-title" [matTooltip]="_DODGE_TEXT">Dodge</div>
                         <div>{{ character.getFinalCombatStats().dodgeModifier.toExactString() }}</div>
                     </div>
                     <div class="combatstat-block">
-                        <div class="combatstat-title">Notice</div>
+                        <div class="combatstat-title" [matTooltip]="_NOTICE_TEXT">Notice</div>
                         <div>{{ character.getFinalCombatStats().noticeModifier.toExactString() }}</div>
                     </div>
                     <div class="combatstat-block">
-                        <div class="combatstat-title">Willpower</div>
+                        <div class="combatstat-title" [matTooltip]="_WILLPOWER_TEXT">Willpower</div>
                         <div>{{ character.getFinalCombatStats().willpowerModifier.toExactString() }}</div>
                     </div>
                 </div>

@@ -1,24 +1,27 @@
 <character-builder-navigation></character-builder-navigation>
 <quick-overview-bar></quick-overview-bar>
 
-<div id="name-selector">
+<div id="name-selector" *ngIf="character$ | async as character;">
+
+    <h2>Basic Attributes:</h2><br />
+
     <div class="basic-input-block">
         <span>Input name</span>
         <input [(ngModel)]="name" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
-        <span>Input Combat XP</span>
+        <span>Input Combat XP - Level {{ character.getCombatLevel() }}</span>
         <input type="number" [(ngModel)]="combatXP" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
-        <span>Input Adventuring XP</span>
+        <span>Input Adventuring XP - Level {{ character.getAdventuringLevel() }}</span>
         <input type="number" [(ngModel)]="adventuringXP" (ngModelChange)="change()" />
     </div>
 
     <div class="basic-input-block">
-        <span>Input Social XP</span>
+        <span>Input Social XP - Level {{ character.getSocialLevel() }}</span>
         <input type="number" [(ngModel)]="socialXP" (ngModelChange)="change()" />
     </div>
 </div>

@@ -6,6 +6,14 @@ import {CharacterStorageService} from "../../services/character-storage.service"
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {takeUntil} from "rxjs";
+import {
+    AGILITY_TEXT,
+    DEXTERITY_TEXT, DODGE_TEXT, EMPATHY_TEXT, HEALTH_TEXT,
+    INTELLECT_TEXT, MANA_TEXT, NOTICE_TEXT,
+    PERCEPTION_TEXT, STAMINA_TEXT,
+    STRENGTH_TEXT,
+    VITALITY_TEXT, WILLPOWER_TEXT
+} from "../../data/texts";
 
 @Component({
   selector: 'app-overview',
@@ -13,6 +21,20 @@ import {takeUntil} from "rxjs";
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent extends CharacterInjectingComponent {
+
+    _STRENGTH_TEXT = STRENGTH_TEXT;
+    _VITALITY_TEXT = VITALITY_TEXT;
+    _DEXTERITY_TEXT = DEXTERITY_TEXT;
+    _AGILITY_TEXT = AGILITY_TEXT;
+    _INTELLECT_TEXT = INTELLECT_TEXT;
+    _PERCEPTION_TEXT = PERCEPTION_TEXT;
+    _EMPATHY_TEXT = EMPATHY_TEXT;
+    _HEALTH_TEXT = HEALTH_TEXT;
+    _STAMINA_TEXT = STAMINA_TEXT;
+    _MANA_TEXT = MANA_TEXT;
+    _DODGE_TEXT = DODGE_TEXT;
+    _NOTICE_TEXT = NOTICE_TEXT;
+    _WILLPOWER_TEXT = WILLPOWER_TEXT;
 
     constructor(characterStorageService: CharacterStorageService,
                 _snackBar: MatSnackBar,
