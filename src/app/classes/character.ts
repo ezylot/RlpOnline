@@ -9,6 +9,7 @@ import {PerkAndLevel} from "./perk-and-level";
 import {DiceAndFixedAndLevel} from "./dice-and-fixed-and-level";
 import {Dice} from "./dice";
 import {Language} from "./language";
+import {PerkCategory} from "./perk";
 
 
 export class Character {
@@ -131,9 +132,17 @@ export class Character {
     getRemainingCP() : number {
         let remainingCP = this.getTotalCP();
 
-        for (let pal of this.perks) {
+        for (let pal of this.perks.filter(pal => pal.perk.internalCategory !== PerkCategory.SKILL)) {
             for (let i = 1; i <= pal.level; i++) {
                 remainingCP -= pal.perk.getCpCostForLevel(i, this.perks);
+            }
+        }
+
+        let skillsAlreadyCalculated: PerkAndLevel[] = []
+        for (let pal of this.perks.filter(pal => pal.perk.internalCategory == PerkCategory.SKILL)) {
+            for (let i = 1; i <= pal.level; i++) {
+                remainingCP -= pal.perk.getCpCostForLevel(i, skillsAlreadyCalculated);
+                skillsAlreadyCalculated.push(new PerkAndLevel(1, pal.perk));
             }
         }
 
@@ -172,7 +181,7 @@ export class Character {
 
     getFinalCharacter() {
         let finalChar: Character = this;
-        for (let pal of this.perks) {
+        for (let pal of this.perks.sort((a,b) => a.perk.priority - b.perk.priority)) {
             finalChar = Object.freeze(finalChar);
             if(this.race) {
                 pal = this.race?.modifyPerkWhenLearning(pal);
