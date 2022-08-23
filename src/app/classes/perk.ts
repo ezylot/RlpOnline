@@ -16,9 +16,9 @@ export interface Perk {
     description: string;
     startingLevel: number;
     additionalData: any;
-    priority: number,
-    internalCategory: PerkCategory,
+    priority: number;
+    internalCategory: PerkCategory;
     getCpCostForLevel(level: number, allPerks: Readonly<PerkAndLevel[]>): number;
-    getGoldCostForLevel(level: number, allPerks: Readonly<PerkAndLevel[]>): number,
+    getGoldCostForLevel(level: number, allPerks: Readonly<PerkAndLevel[]>): number;
     applyEffect(character: Readonly<Character>, level: number): Character;
 }
