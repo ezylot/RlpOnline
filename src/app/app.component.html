@@ -1,25 +1,27 @@
-<div id="content">
+<div id="content" *ngIf="character$ | async as character;">
     <header>
         <h1>RLP Online</h1>
-    </header>
-    <div id="main" *ngIf="character$ | async as character;">
-        <nav>
-            <div class="nav-circles">
-                <div class="circled-outline">
-                    <span class="material-icons-outlined new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">person_add</span>
-                </div>
-                <div class="circled-outline">
-                    <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
-                    <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
-                </div>
+        <div class="nav-circles">
+            <div class="circled-outline">
+                <span class="material-icons-outlined new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">person_add</span>
             </div>
+            <div class="circled-outline">
+                <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
+                <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
+            </div>
+            <div class="circled-outline">
+                <a class="material-icons-outlined" [href]="downloadJsonHref" download="{{character.name}}">save</a>
+            </div>
+        </div>
 
-            Available characters:
+        <div class="character-selection">
             <div *ngFor="let char of availableCharacters | async; index as i" class="char">
                 <span class="char-link" [class.current]="char.id == character.id" (click)="loadChar(char.id)"> {{ char.name }}</span>
                 <span class="material-icons-outlined" (click)="deleteCharacter(char)" [matTooltip]="'Delete ' + char.name">delete</span>
             </div>
-        </nav>
+        </div>
+    </header>
+    <div id="main" *ngIf="character$ | async as character;">
         <div id="main-content">
             <router-outlet></router-outlet>
         </div>

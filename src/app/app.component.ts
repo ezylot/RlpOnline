@@ -1,9 +1,12 @@
 import {Component} from '@angular/core';
-import {CharacterStorageService} from "./services/character-storage.service";
 import {Character} from "./classes/character";
-import {Observable} from "rxjs";
+import {Observable, takeUntil} from "rxjs";
 import {CharacterInjectingComponent} from "./character-builder/CharacterInjectingComponent";
 import {TooltipComponent} from "@angular/material/tooltip";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {CharacterStorageService} from "./services/character-storage.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -13,10 +16,25 @@ import {TooltipComponent} from "@angular/material/tooltip";
 export class AppComponent extends CharacterInjectingComponent {
 
     availableCharacters!: Observable<Character[]>;
+    downloadJsonHref!: SafeUrl;
+
+    constructor(characterStorageService: CharacterStorageService,
+                _snackBar: MatSnackBar,
+                router: Router,
+                private sanitizer: DomSanitizer) {
+        super(characterStorageService, _snackBar, router);
+    }
+
 
     override ngOnInit(): void {
         super.ngOnInit();
         this.availableCharacters = this.characterStorageService.getCharacters();
+
+        this.character$.pipe(takeUntil(this.destroy$)).subscribe(char => {
+            let theJSON = JSON.stringify(char);
+            let uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+            this.downloadJsonHref = uri;
+        });
 
         Object.defineProperty(TooltipComponent.prototype, 'message', {
             set(v: any) {

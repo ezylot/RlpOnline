@@ -1,3 +1,5 @@
+@import "src/colors";
+
 .title {
     margin-bottom: 20px;
     h1 {
@@ -88,7 +90,7 @@
         position: absolute;
         top: -10px;
         left: 20px;
-        background: #F4A460FF;
+        background: $main-background-color;
         padding: 0 5px;
     }
 }
