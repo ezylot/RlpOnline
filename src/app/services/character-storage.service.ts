@@ -146,6 +146,12 @@ export class CharacterStorageService {
     }
 
     delete(id: string) {
+        let characters : Character[] = JSON.parse(window.localStorage.getItem("characters") || "[]");
+        characters = characters.filter(char => char.id !== id);
 
+        window.localStorage.setItem("characters", JSON.stringify(characters));
+
+        this.loadDataInitially();
+        this.loadLatest();
     }
 }
