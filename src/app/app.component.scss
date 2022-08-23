@@ -2,6 +2,22 @@
     height: 100%;
     display: block;
 }
+.nav-circles {
+    display: flex;
+    margin: 30px 0;
+}
+
+.circled-outline {
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 15px;
+}
 
 #content {
     display: flex;
@@ -45,11 +61,6 @@
             flex: 6;
         }
     }
-}
-
-.new-character {
-    margin: 20px 20px 20px 0;
-    cursor: pointer;
 }
 
 .char {

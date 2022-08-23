@@ -4,10 +4,15 @@
     </header>
     <div id="main" *ngIf="character$ | async as character;">
         <nav>
-            <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
-            <span class="material-icons-outlined new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">person_add</span>
-            <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
-            <br />
+            <div class="nav-circles">
+                <div class="circled-outline">
+                    <span class="material-icons-outlined new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">person_add</span>
+                </div>
+                <div class="circled-outline">
+                    <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
+                    <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
+                </div>
+            </div>
 
             Available characters:
             <div *ngFor="let char of availableCharacters | async; index as i" class="char">
