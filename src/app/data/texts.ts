@@ -28,15 +28,15 @@ export const EMPATHY_TEXT = 'Empathy (EM) describes a character’s ability to u
 export const HEALTH_TEXT = 'Health describes a character’s ability to withstand any type of damage. Health can be seen as a combination ' +
     'of resilience, bodily health and luck. If a character reaches 0 Health, he is dead. A ' +
     'character with less than one fourth of their Health becomes ”Wounded”. A character with less ' +
-    'than one tenth of their Health becomes ”Heavily Wounded”. Health can be restored by resting ' +
-    '(See Recovering Pool values, below), by alchemy and by magic. A character that is dead can not ' +
+    'than one tenth of their Health becomes ”Heavily Wounded”. Health can be restored by resting, ' +
+    'by alchemy and by magic. A character that is dead can not ' +
     'be healed. Reviving magic doesn’t exist in the Ragged Lands.';
 
 export const STAMINA_TEXT = 'Stamina describes a character’s ability to act out tasks that are bodily challenging. When a character climbs ' +
     'or swims fast, or if a character uses special maneuvers in combat, he loses stamina. Stamina can ' +
     'be restored by resting (See below). It usually doesn’t take much longer than an hour to completely ' +
-    'restore Stamina, so outside of a stressful situation, a character usually has full Stamina. A char- ' +
-    'acter with less than one fourth of their Stamina becomes ”Exhausted”. A character with less than ' +
+    'restore Stamina, so outside of a stressful situation, a character usually has full Stamina. A character ' +
+    'with less than one fourth of their Stamina becomes ”Exhausted”. A character with less than ' +
     'one tenth of their Stamina becomes ”Heavily Exhausted”.k If a character reaches a Stamina of 0, ' +
     'they become unconscious.';
 
@@ -45,6 +45,20 @@ export const MANA_TEXT = 'Mana is usually tracked for every character, but only 
     'character with less than one fourth of their Mana becomes ”Drained”. A character with less than ' +
     'one tenth of their Mana becomes ”Heavily Drained”. A character that reaches 0 Mana becomes ' +
     'paralyzed.';
+
+export const HEALTH_RECOVER_TEXT = 'Aside from using special tools or magic for healing, each character has the ability to recover health ' +
+    'in a natural way. A character’s natural healing ability allows them to heal 1 points of health, ' +
+    'per 1 hour. While resting, this healing effect is doubled. A priest or healer may further improve ' +
+    'someone’s natural healing ability';
+
+export const STAMINA_RECOVER_TEXT = 'Stamina can be recovered by taking a break, regaining breath, not moving too much around, sitting ' +
+    'down for a minute or two or drinking a bit of water. For every 2 seconds a character rests like that ' +
+    '(or every AP in combat they spend just resting), they gain back 1 Stamina.';
+
+export const MANA_RECOVER_TEXT = 'Mana is recovered over time, but the rate at which it recovers can be influenced by the food that ' +
+    'the character eats. A meal usually lasts for 8 hours. A usual ration provides a recovery of 1d6 ' +
+    'points per hour';
+
 
 export const DODGE_TEXT = 'Dodge is a character’s ability to dodge an incoming attack. If an attack is below this value, it ' +
     'automatically misses. If it is above the target’s Dodge value, the defender might still be able to ' +

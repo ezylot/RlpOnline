@@ -7,6 +7,7 @@ import {Culture} from "./culture";
 import {DiceAndFixed} from "./dice-and-fixed";
 import {PerkAndLevel} from "./perk-and-level";
 import {DiceAndFixedAndLevel} from "./dice-and-fixed-and-level";
+import {Dice} from "./dice";
 
 
 export class Character {
@@ -83,6 +84,19 @@ export class Character {
                 .increaseFixed(finalChar.stats.empathy)
                 .increaseFixed(8),
         });
+    }
+
+    getHealthRecovery() : DiceAndFixed {
+        let enhancePool = this.perks.find(pal => pal.perk.name == "Enhance Pool: Health");
+        return new DiceAndFixed( 1 + (enhancePool?.level || 0), []);
+    }
+    getStaminaRecovery() : DiceAndFixed {
+        let enhancePool = this.perks.find(pal => pal.perk.name == "Enhance Pool: Stamina");
+        return new DiceAndFixed(1 + (enhancePool?.level || 0), []);
+    }
+    getManaRecovery() : DiceAndFixed {
+        let enhancePool = this.perks.find(pal => pal.perk.name == "Enhance Pool: Mana");
+        return new DiceAndFixed(0, [ new Dice(1 + (enhancePool?.level || 0), 6) ]);
     }
 
     getSocialLevel() : number {

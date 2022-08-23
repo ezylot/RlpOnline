@@ -2,12 +2,12 @@
 
 <ng-container  *ngIf="character$ | async as character;">
     <div id="quick-overview-bar" *ngIf="character.getFinalCombatStats() as fcs;" >
-        <div>Health <br /> &nbsp; {{ fcs.maxHealth }}</div>
-        <div>Stamina <br /> &nbsp; {{ fcs.maxStamina }}</div>
-        <div>Mana <br /> &nbsp; {{ fcs.maxMana }}</div>
-        <div [matTooltip]="fcs.dodgeModifier.hasLevelSpecificValues() ? 'Values is different than shown in Combat/Adventure/Social. More details on overview screen' : ''">Dodge <br /> &nbsp; {{ fcs.dodgeModifier }}</div>
-        <div [matTooltip]="fcs.noticeModifier.hasLevelSpecificValues() ? 'Values is different than shown in Combat/Adventure/Social. More details on overview screen' : ''">Notice <br /> &nbsp; {{ fcs.noticeModifier }}</div>
-        <div [matTooltip]="fcs.willpowerModifier.hasLevelSpecificValues() ? 'Values is different than shown in Combat/Adventure/Social. More details on overview screen' : ''">Willpower <br /> &nbsp; {{ fcs.willpowerModifier }}</div>
+        <div [matTooltip]="_HEALTH_TEXT">Health <br /> &nbsp; {{ fcs.maxHealth }}</div>
+        <div [matTooltip]="_STAMINA_TEXT">Stamina <br /> &nbsp; {{ fcs.maxStamina }}</div>
+        <div [matTooltip]="_MANA_TEXT">Mana <br /> &nbsp; {{ fcs.maxMana }}</div>
+        <div [matTooltip]="_DODGE_TEXT + (fcs.dodgeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">Dodge <br /> &nbsp; {{ fcs.dodgeModifier }}</div>
+        <div [matTooltip]="_NOTICE_TEXT + (fcs.noticeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">Notice <br /> &nbsp; {{ fcs.noticeModifier }}</div>
+        <div [matTooltip]="_WILLPOWER_TEXT + (fcs.willpowerModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">Willpower <br /> &nbsp; {{ fcs.willpowerModifier }}</div>
     </div>
 </ng-container>
 

@@ -64,6 +64,24 @@
                     </div>
                 </div>
             </div>
+            <div class="recovering-values">
+                <span class="border-overlapping-title">Recovering</span>
+                <div class="row">
+                    <div class="combatstat-block">
+                        <div class="combatstat-title" [matTooltip]="_HEALTH_RECOVER_TEXT">Health recovery</div>
+                        <div>{{ character.getHealthRecovery() }} / hour</div>
+                    </div>
+                    <div class="combatstat-block">
+                        <div class="combatstat-title" [matTooltip]="_STAMINA_RECOVER_TEXT">Stamina recovery</div>
+                        <div>{{ character.getStaminaRecovery() }} / 2 seconds</div>
+                        <div>{{ character.getStaminaRecovery() }} / AP spent resting</div>
+                    </div>
+                    <div class="combatstat-block">
+                        <div class="combatstat-title" [matTooltip]="_MANA_RECOVER_TEXT">Mana recovery</div>
+                        <div>{{ character.getManaRecovery() }} / per hour if food consumed</div>
+                    </div>
+                </div>
+            </div>
             <div class="race-benefits">
                 <span class="border-overlapping-title">Race</span>
                 <div class="race-row" *ngFor="let raceTrait of character.race?.traitsAsStrings; index as i">
