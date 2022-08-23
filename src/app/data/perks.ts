@@ -28,9 +28,7 @@ export const PERKS: Perk[] = [
         name: "Increase Health",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You increase your Health by 1D6 + Vitality. Each time you gain a higher Rank for this perk, your\n" +
-            "Health is increased again.\n" +
-            "Rank Progression: Cost = Current Perk Rank * 50 + Cost of previous Rank",
+        description: "You increase your Health by 1D6 + Vitality. Each time you gain a higher Rank for this perk, your Health is increased again.",
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -64,9 +62,7 @@ export const PERKS: Perk[] = [
         name: "Increase Stamina",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You increase your Stamina by 1D6 + Strength. Each time you gain a higher Rank for this perk, your\n" +
-            "Stamina is increased again.\n" +
-            "Rank Progression: Cost = Current Perk Rank * 50 + Cost of previous Rank",
+        description: "You increase your Stamina by 1D6 + Strength. Each time you gain a higher Rank for this perk, your Stamina is increased again.",
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -99,9 +95,7 @@ export const PERKS: Perk[] = [
         name: "Increase Mana",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You increase your Mana by 1D6 + Intellect. Each time you gain a higher Rank for this perk, your\n" +
-            "Mana is increased again.\n" +
-            "Rank Progression: Cost = Current Perk Rank * 50 + Cost of previous Rank",
+        description: "You increase your Mana by 1D6 + Intellect. Each time you gain a higher Rank for this perk, your Mana is increased again.",
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,

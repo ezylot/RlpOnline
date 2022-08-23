@@ -76,7 +76,7 @@
 
     .race-benefits, .zodiacsign-benefits, .perks, .combatstats, .equipment, .languages, .recovering-values {
         margin-top: 20px;
-        padding: 20px;
+        padding: 20px 20px 20px 50px;
         border: 1px solid #b26d27;
         position: relative;
 
@@ -85,6 +85,7 @@
     .border-overlapping-title {
         position: absolute;
         top: -10px;
+        left: 20px;
         background: #F4A460FF;
         padding: 0 5px;
     }

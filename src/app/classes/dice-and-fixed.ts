@@ -32,20 +32,19 @@ export class DiceAndFixed {
     }
 
     public toString() : string {
-        let string = "";
+        let fixedString = "";
+        let diceString = "";
 
-        if(this.fixedNumber != 0) {
-            string = this.fixedNumber.toString();
-        }
+        if(this.fixedNumber != 0) fixedString = this.fixedNumber.toString();
+
+        diceString = this.dices
+            .filter(dice => dice.multiplier !== 0)
+            .map(dice => dice.toString())
+            .join(" + ");
 
         if(this.dices.filter(dice => dice.multiplier !== 0).length > 0) {
-            string +=  " + "
-            this.dices
-                .filter(dice => dice.multiplier !== 0)
-                .forEach(dice => string += dice.toString() + " + ");
-            string = string.substring(0, string.length-3).trim();
-            string += ` (${this.average()})`;
+            diceString += ` (${this.average()})`;
         }
-        return string;
+        return [fixedString, diceString].filter(s => s.length > 0).join(" + ");
     }
 }

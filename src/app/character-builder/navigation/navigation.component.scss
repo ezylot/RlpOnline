@@ -1,6 +1,6 @@
 #character-builder-navigation {
     display: flex;
-    height: 50px;
+    height: 60px;
     align-items: center;
 
     background: #df8c42;
@@ -16,6 +16,7 @@ a {
 
 a.active {
     font-weight: bold;
+    letter-spacing: 0.3px;
 }
 
 .cp-warning {
