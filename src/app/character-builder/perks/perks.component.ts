@@ -18,6 +18,7 @@ export class PerksComponent extends CharacterInjectingComponent {
     ownedPerks!: PerkAndLevel[];
     availablePerks!: PerkAndLevel[];
     searchString = "";
+    hideTooExpensive: boolean = false;
 
     perkByName(index: number, pal: PerkAndLevel) {
         return pal.perk.name;
@@ -53,14 +54,21 @@ export class PerksComponent extends CharacterInjectingComponent {
         });
     }
 
-    filtered(list: PerkAndLevel[]) {
+    filtered(list: PerkAndLevel[], hideTooExpensive: boolean) {
+        let returnList = list;
+
         if (!!this.searchString) {
-            return list.filter(p => {
+            returnList =  returnList.filter(p => {
                 return p.perk.name.toLowerCase().indexOf(this.searchString.toLowerCase()) !== -1
                     || p.perk.description.toLowerCase().indexOf(this.searchString.toLowerCase()) !== -1;
             })
         }
-        return list;
+
+        if(hideTooExpensive) {
+            returnList = returnList.filter(pal => pal.perk.getCpCostForLevel(pal.level, this.ownedPerks) < this.openCharacterPoints);
+        }
+
+        return returnList;
     }
 
     selectPerk(selectedPal: PerkAndLevel) {

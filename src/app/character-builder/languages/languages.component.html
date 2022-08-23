@@ -1,7 +1,7 @@
 <character-builder-navigation></character-builder-navigation>
 <quick-overview-bar></quick-overview-bar>
 
-<div id="languages-builder" *ngIf="character$ | async as character;">
+<div class="languages-builder padded" *ngIf="character$ | async as character;">
 
     <div>
         You are able to communicate in a specific language. This includes reading, writing, understanding and speaking said language. <br />
@@ -15,13 +15,15 @@
         Your character has <b>{{ openCharacterPoints }} / {{ totalCharacterPoints }}</b> CP still available.
     </div>
 
-    <div class="searchbar">
-        Search: <input (input)="search($event)">
+    <div>
+        <span class="searchbar"> Search: <input (input)="search($event)"></span>
+        Hide unaffordable <input type="checkbox" [(ngModel)]="hideTooExpensive" />
     </div>
 
 
+
     <h2>Owned Languages</h2>
-    <div class="language-row" *ngFor="let language of filtered(ownedLanguages); trackBy:languageByName">
+    <div class="language-row" *ngFor="let language of filtered(ownedLanguages, false); trackBy:languageByName">
 
         <div class="select-box" (click)="deselectLanguage(language)">
             <span class="material-icons-outlined">check_circle_outline</span>
@@ -49,7 +51,7 @@
 
     <h2>Available Languages</h2>
     <div class="available-languages">
-        <div class="language-row" *ngFor="let language of filtered(availableLanguages); trackBy:languageByName">
+        <div class="language-row" *ngFor="let language of filtered(availableLanguages, hideTooExpensive); trackBy:languageByName">
 
             <div class="select-box" (click)="selectLanguage(language)">
                 <span class="material-icons-outlined">circle_outline</span>

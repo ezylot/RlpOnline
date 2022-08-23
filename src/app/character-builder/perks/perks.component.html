@@ -2,18 +2,20 @@
 <quick-overview-bar></quick-overview-bar>
 
 
-<div id="perks-builder" *ngIf="character$ | async as character;">
+<div class="perks-builder padded" *ngIf="character$ | async as character;">
 
     <div class="perks-resources">
         Your character has <b>{{ openCharacterPoints }} / {{ totalCharacterPoints }}</b> CP still available.
     </div>
 
-    <div class="searchbar">
-        Search: <input (input)="search($event)">
+    <div>
+        <span class="searchbar"> Search: <input (input)="search($event)"></span>
+        Hide unaffordable <input type="checkbox" [(ngModel)]="hideTooExpensive" />
     </div>
 
+
     <h2>Owned Perks</h2>
-    <div class="perk-row" *ngFor="let pal of filtered(ownedPerks); trackBy:perkByName">
+    <div class="perk-row" *ngFor="let pal of filtered(ownedPerks, false); trackBy:perkByName">
 
         <div class="select-box" (click)="deselectPerk(pal)">
             <span class="material-icons-outlined">check_circle_outline</span>
@@ -35,7 +37,7 @@
 
     <h2>Available Perks</h2>
     <div class="available-perks">
-        <div class="perk-row" *ngFor="let pal of filtered(availablePerks); trackBy:perkByName">
+        <div class="perk-row" *ngFor="let pal of filtered(availablePerks, hideTooExpensive); trackBy:perkByName">
 
             <div class="select-box" (click)="selectPerk(pal)">
                 <span class="material-icons-outlined">circle_outline</span>
