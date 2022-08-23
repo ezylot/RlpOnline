@@ -98,7 +98,7 @@ export class PerksComponent extends CharacterInjectingComponent {
         });
     }
 
-    deSelectPerk(selectedPal: PerkAndLevel) {
+    deselectPerk(selectedPal: PerkAndLevel) {
         this.character$.pipe(take(1)).subscribe(char => {
             let perks = Array.from(char.perks);
             let existingIndex = perks.findIndex(pal => pal.perk.name == selectedPal.perk.name)

@@ -7,6 +7,7 @@ import {PerkAndLevel} from "../classes/perk-and-level";
 import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {RACES} from "../data/races";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
+import {Language} from "../classes/language";
 
 @Injectable({
   providedIn: 'root'
@@ -115,6 +116,8 @@ export class CharacterStorageService {
                 if(foundPerk === undefined) throw new Error("wtf?");
                 character.perks[i] = new PerkAndLevel(perkAndLevel.level, foundPerk);
             }
+
+            character.languagesInLearnOrder.forEach(l => Object.setPrototypeOf(l, Language.prototype));
         }
 
         this.allCharactersSubject.next(parsed);

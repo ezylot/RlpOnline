@@ -1,3 +1,79 @@
 <character-builder-navigation></character-builder-navigation>
 <quick-overview-bar></quick-overview-bar>
-<p>languages works!</p>
+
+<div id="languages-builder" *ngIf="character$ | async as character;">
+
+    <div>
+        You are able to communicate in a specific language. This includes reading, writing, understanding and speaking said language. <br />
+        The difficulty of a language is based on the family that this language belongs to.<br /><br />
+
+        The CP costs of learning a new language of the same family or alphabet is <b>reduced by 25%</b> if it is the second language in the  <br />
+        same family or alphabet that a character learns, <b>and by 50%</b> for the third and further languages.
+    </div>
+
+    <div class="language-resources">
+        Your character has <span>{{ openCharacterPoints }} / {{ totalCharacterPoints }}</span> CP still available.
+    </div>
+
+    <div class="searchbar">
+        Search: <input (input)="search($event)">
+    </div>
+
+
+    <h2>Owned Languages</h2>
+    <div class="language-row" *ngFor="let language of filtered(ownedLanguages); trackBy:languageByName">
+
+        <div class="select-box" (click)="deselectLanguage(language)">
+            <span class="material-icons-outlined">check_circle_outline</span>
+        </div>
+
+        <mat-expansion-panel class="language-expandable">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ language.name }} ({{ language.getCpCost(ownedLanguages) }}CP)
+                </mat-panel-title>
+                <mat-panel-description>
+                    <span class="language-description-family">{{ language.family }}</span>
+                    {{ language.alphabet }}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="language-details">
+                <div class="language-description"><b>Name</b> <br /> {{ language.name }}</div>
+                <div class="language-description"><b>Alphabet</b> <br /> {{ language.alphabet }}</div>
+                <div class="language-description"><b>Family</b> <br /> {{ language.family }}</div>
+                <div class="language-description"><b>Gold Cost</b> <br /> {{ language.gpCost }}</div>
+            </div>
+        </mat-expansion-panel>
+    </div>
+
+
+    <h2>Available Languages</h2>
+    <div class="available-languages">
+        <div class="language-row" *ngFor="let language of filtered(availableLanguages); trackBy:languageByName">
+
+            <div class="select-box" (click)="selectLanguage(language)">
+                <span class="material-icons-outlined">circle_outline</span>
+            </div>
+
+            <mat-expansion-panel class="language-expandable">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ language.name }} ({{ language.getCpCost(ownedLanguages) }}CP)
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <span class="language-description-family">{{ language.family }}</span>
+                        {{ language.alphabet }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="language-details">
+                    <div class="language-description"><b>Name</b> <br /> {{ language.name }}</div>
+                    <div class="language-description"><b>Alphabet</b> <br /> {{ language.alphabet }}</div>
+                    <div class="language-description"><b>Family</b> <br /> {{ language.family }}</div>
+                    <div class="language-description"><b>Gold Cost</b> <br /> {{ language.gpCost }}</div>
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+</div>
+

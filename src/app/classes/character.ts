@@ -8,6 +8,7 @@ import {DiceAndFixed} from "./dice-and-fixed";
 import {PerkAndLevel} from "./perk-and-level";
 import {DiceAndFixedAndLevel} from "./dice-and-fixed-and-level";
 import {Dice} from "./dice";
+import {Language} from "./language";
 
 
 export class Character {
@@ -38,7 +39,7 @@ export class Character {
     public perks: PerkAndLevel[] = [];
 
     public equipment: [] | null = null;
-    public languages: [] | null = null;
+    public languagesInLearnOrder: Language[] = [];
 
     combatXP: number = 0;
     socialXP: number = 0;
@@ -129,11 +130,19 @@ export class Character {
 
     getRemainingCP() : number {
         let remainingCP = this.getTotalCP();
+
         for (let pal of this.perks) {
             for (let i = 1; i <= pal.level; i++) {
                 remainingCP -= pal.perk.getCpCostForLevel(i, this.perks);
             }
         }
+
+        for (let i = 0; i < this.languagesInLearnOrder.length || 0; i++){
+            let lang = this.languagesInLearnOrder[i];
+            let knownLanguagesWhenLearning = this.languagesInLearnOrder.slice(0, i);
+            remainingCP -= lang.getCpCost(knownLanguagesWhenLearning);
+        }
+
         return remainingCP;
     }
 

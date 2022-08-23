@@ -1,0 +1,42 @@
+#languages-builder {
+    padding: 40px;
+}
+
+.language-expandable {
+    margin-bottom: 5px;
+    flex: 1;
+}
+
+.language-description {
+    width: 200px;
+}
+
+.language-description-family {
+    width: 160px;
+    margin-right: 20px;
+}
+
+.language-details {
+    display: flex;
+}
+
+.language-row {
+    display: flex;
+    align-content: center;
+
+    .select-box {
+        width: 40px;
+        margin: 12px 0;
+        cursor: pointer;
+    }
+}
+
+.language-resources {
+    margin: 40px 0;
+
+    span { font-weight: bold; }
+}
+
+h2 {
+    margin-top: 20px;
+}

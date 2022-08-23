@@ -15,19 +15,19 @@
     <h2>Owned Perks</h2>
     <div class="perk-row" *ngFor="let pal of filtered(ownedPerks); trackBy:perkByName">
 
-        <div class="select-box" (click)="deSelectPerk(pal)">
+        <div class="select-box" (click)="deselectPerk(pal)">
             <span class="material-icons-outlined">check_circle_outline</span>
         </div>
 
         <mat-expansion-panel class="perk-expandable">
             <mat-expansion-panel-header>{{ pal.perk.name }} ({{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP)</mat-expansion-panel-header>
-            <b class="zodiacsign-description">Cost: {{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP</b><br />
-            <b class="zodiacsign-description">
+            <b class="perk-description">Cost: {{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP</b><br />
+            <b class="perk-description">
                 Requirements: <span *ngFor="let req of pal.perk.requirements"> {{req.perkname}} : {{req.level}}</span>
             </b><br />
-            <b class="zodiacsign-description">Tags: {{ pal.perk.tags }}</b><br />
+            <b class="perk-description">Tags: {{ pal.perk.tags }}</b><br />
 
-            <blockquote class="zodiacsign-description" [innerHTML]="pal.perk.description"></blockquote>
+            <blockquote class="perk-description" [innerHTML]="pal.perk.description"></blockquote>
         </mat-expansion-panel>
     </div>
 
@@ -43,13 +43,13 @@
 
             <mat-expansion-panel class="perk-expandable">
                 <mat-expansion-panel-header>{{ pal.perk.name }} ({{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP)</mat-expansion-panel-header>
-                <b class="zodiacsign-description">Cost: {{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP</b><br />
-                <b class="zodiacsign-description">
+                <b class="perk-description">Cost: {{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP</b><br />
+                <b class="perk-description">
                     Requirements: <span *ngFor="let req of pal.perk.requirements"> {{req.perkname}} : {{req.level}}</span>
                 </b><br />
-                <b class="zodiacsign-description">Tags: {{ pal.perk.tags }}</b><br />
+                <b class="perk-description">Tags: {{ pal.perk.tags }}</b><br />
 
-                <blockquote class="zodiacsign-description" [innerHTML]="pal.perk.description"></blockquote>
+                <blockquote class="perk-description" [innerHTML]="pal.perk.description"></blockquote>
             </mat-expansion-panel>
         </div>
     </div>

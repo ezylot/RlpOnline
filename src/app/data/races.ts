@@ -1,7 +1,7 @@
 import {Race} from "../classes/race";
 import {LevelUpBonus} from "../classes/levelupbonus";
 import {Stats} from "../classes/stats";
-import {Language} from "../classes/language";
+import {ANIMALS} from "./languages";
 
 /*
 
@@ -238,7 +238,7 @@ export const RACES: Race[] = [
         startingHealth: 20,
         startingStamina: 20,
         startingMana: 30,
-        languages: [ Language.ANIMALS ],
+        languages: [ ANIMALS ],
         cpBonus: 0,
         freeAttributePoints: 0,
         modifyAbilityCheck: function(abilityRoll) { return abilityRoll; },

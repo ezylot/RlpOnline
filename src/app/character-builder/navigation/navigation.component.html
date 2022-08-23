@@ -21,7 +21,10 @@
         Skill Perks
     </a>
     <a routerLink="/character-builder/background" routerLinkActive="active">Background</a>
-    <a routerLink="/character-builder/languages" routerLinkActive="active">Languages</a>
+    <a routerLink="/character-builder/languages" routerLinkActive="active">
+        <span class="material-icons-outlined cp-warning" *ngIf="character.getRemainingCP() < 0" [matTooltip]="'Spent more CP than available.'">warning</span>
+        Languages
+    </a>
     <a routerLink="/character-builder/equipment" routerLinkActive="active">Equipment</a>
 
     <a routerLink="/character-builder/overview" routerLinkActive="active">Overview</a>
