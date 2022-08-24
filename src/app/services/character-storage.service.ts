@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Character} from '../classes/character';
+import {Character, CharacterCaches} from '../classes/character';
 import {BehaviorSubject, filter, map, Observable, ReplaySubject, switchMap, take} from "rxjs";
 import {Stats} from "../classes/stats";
-import {PERKS} from "../data/perks";
+import {getAllPerks} from "../data/perks";
 import {PerkAndLevel} from "../classes/perk-and-level";
 import {DiceAndFixed} from "../classes/dice-and-fixed";
-import {RACES} from "../data/races";
+import {getAllRaces} from "../data/races";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 import {Language} from "../classes/language";
 
@@ -106,15 +106,18 @@ export class CharacterStorageService {
                 Object.setPrototypeOf(character.noticeModifier, DiceAndFixedAndLevel.prototype);
                 Object.setPrototypeOf(character.willpowerModifier, DiceAndFixedAndLevel.prototype);
 
-                if(character.race !== null) {
-                    let foundRace = RACES.find(r => r.name === character.race!.name)
+                character.caches = new CharacterCaches();
+
+                let race = character.getRace();
+                if(race !== null) {
+                    let foundRace = getAllRaces().find(r => r.name === race!.name)
                     if(foundRace === undefined) throw new Error("wtf??");
-                    character.race = foundRace;
+                    race = foundRace;
                 }
 
                 for (let i = 0; i < character.perks.length; i++){
                     const perkAndLevel = character.perks[i];
-                    let foundPerk = PERKS.find(p => p.name === perkAndLevel.perk.name);
+                    let foundPerk = getAllPerks().find(p => p.name === perkAndLevel.perk.name);
                     if(foundPerk === undefined) throw new Error("wtf?");
                     character.perks[i] = new PerkAndLevel(perkAndLevel.level, foundPerk);
                 }

@@ -3,7 +3,7 @@ import {take} from "rxjs";
 import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Background} from "../../classes/background";
-import {BACKGROUNDS} from "../../data/backgrounds";
+import {getAllBackgrounds} from "../../data/backgrounds";
 
 @Component({
     selector: 'app-background',
@@ -12,11 +12,11 @@ import {BACKGROUNDS} from "../../data/backgrounds";
 })
 export class BackgroundsComponent extends CharacterInjectingComponent {
 
-    availableBackgrounds: Background[] = BACKGROUNDS;
+    availableBackgrounds: Background[] = getAllBackgrounds();
 
     changeBackground(background: Background) {
         this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, background}, Character.prototype));
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, backgroundName: background.name}, Character.prototype));
         });
     }
 }

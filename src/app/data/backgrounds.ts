@@ -1,8 +1,7 @@
-import {Race} from "../classes/race";
 import {Background} from "../classes/background";
 
-
-export const BACKGROUNDS: Background[] = [
+export function getAllBackgrounds() : Background[] { return BACKGROUNDS; }
+const BACKGROUNDS: Background[] = [
      { name: "Travelling Merchant" },
      { name: "Sailor" },
      { name: "Noble" },

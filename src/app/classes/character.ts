@@ -10,7 +10,18 @@ import {DiceAndFixedAndLevel} from "./dice-and-fixed-and-level";
 import {Dice} from "./dice";
 import {Language} from "./language";
 import {PerkCategory} from "./perk";
+import {getAllZodiacSigns} from "../data/zodiacsigns";
+import {getAllRaces} from "../data/races";
+import {getAllCultures} from "../data/cultures";
+import {getAllBackgrounds} from "../data/backgrounds";
 
+// TODO: add perk cache
+export class CharacterCaches {
+    raceCache: Race | null = null;
+    cultureCache: Culture | null = null;
+    backgroundCache: Background | null = null;
+    zodiacSignCache: ZodiacSign | null = null;
+}
 
 export class Character {
 
@@ -21,11 +32,14 @@ export class Character {
     startingCP = 1500;
     startingGold = 500;
 
+
     public name: string = "New Character";
-    public race: Race | null = null;
-    public culture: Culture | null = null;
-    public background: Background | null = null;
-    public zodiacSign: ZodiacSign | null = null;
+    public raceName: string | null = null;
+    public cultureName: string | null = null;
+    public backgroundName: string | null = null;
+    public zodiacSignName: string | null = null;
+
+    caches = new CharacterCaches();
 
     public maxHealth: DiceAndFixed = DiceAndFixed.EMPTY;
     public healthRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
@@ -54,10 +68,53 @@ export class Character {
     constructor(readonly id: string, public readonly createdTime: number, public updatedTime: number) {
     }
 
+    getRace() : Race | null {
+        if(this.raceName == null) return null;
+        if(this.caches.raceCache != null && this.caches.raceCache.name == this.raceName) {
+            return this.caches.raceCache;
+        }
+
+        let o = getAllRaces().find(r => r.name === this.raceName) || null;
+        this.caches.raceCache = o;
+        return o;
+    }
+
+    getCulture(): Culture | null {
+        if(this.cultureName == null) return null;
+        if(this.caches.cultureCache != null && this.caches.cultureCache.name == this.cultureName) {
+            return this.caches.cultureCache;
+        }
+
+        let o = getAllCultures().find(r => r.name === this.cultureName) || null;
+        this.caches.cultureCache = o;
+        return o;
+    }
+
+    getBackground(): Background | null {
+        if(this.backgroundName == null) return null;
+        if(this.caches.backgroundCache != null && this.caches.backgroundCache.name == this.backgroundName) {
+            return this.caches.backgroundCache;
+        }
+
+        let o = getAllBackgrounds().find(r => r.name === this.backgroundName) || null;
+        this.caches.backgroundCache = o;
+        return o;
+    }
+
+    getZodiacSign(): ZodiacSign | null {
+        if(this.zodiacSignName == null) return null;
+        if(this.caches.zodiacSignCache != null && this.caches.zodiacSignCache.name == this.zodiacSignName) {
+            return this.caches.zodiacSignCache;
+        }
+
+        let o = getAllZodiacSigns().find(r => r.name === this.zodiacSignName) || null;
+        this.caches.zodiacSignCache = o;
+        return o;
+    }
 
     getFinalStats() : Stats {
         let chosenStats = this.stats.toStatNumberArray();
-        let raceStatBonis = this.race?.statboni?.toStatNumberArray() || new Array(7).fill(0)
+        let raceStatBonis = this.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0)
 
         return Stats.fromArray(chosenStats.map(function(stat, i) {
             return stat + raceStatBonis[i];
@@ -65,20 +122,22 @@ export class Character {
     }
 
     getTotalCP() {
-        return this.startingCP + this.getCPFromLevel() + (this.race?.cpBonus || 0);
+        return this.startingCP + this.getCPFromLevel() + (this.getRace()?.cpBonus || 0);
     }
 
     getFinalCombatStats() {
         let finalChar = this.getFinalCharacter();
+        let race = finalChar.getRace();
+
         return Object.freeze({
             maxHealth: finalChar.maxHealth
-                .increaseFixed(finalChar.race?.startingHealth || 0)
+                .increaseFixed(race?.startingHealth || 0)
                 .increaseFixed(finalChar.stats.vitality),
             maxStamina: finalChar.maxStamina
-                .increaseFixed(finalChar.race?.startingStamina || 0)
+                .increaseFixed(race?.startingStamina || 0)
                 .increaseFixed(finalChar.stats.strength),
             maxMana: finalChar.maxMana
-                .increaseFixed(finalChar.race?.startingMana || 0)
+                .increaseFixed(race?.startingMana || 0)
                 .increaseFixed(finalChar.stats.intellect),
 
             dodgeModifier: finalChar.dodgeModifier
@@ -188,13 +247,22 @@ export class Character {
         let finalChar: Character = this;
         for (let pal of this.perks.sort((a,b) => a.perk.priority - b.perk.priority)) {
             finalChar = Object.freeze(finalChar);
-            if(this.race) {
-                pal = this.race?.modifyPerkWhenLearning(pal);
+            let race = this.getRace();
+            if(race !== null) {
+                pal = race.modifyPerkWhenLearning(pal);
             }
             finalChar = pal.perk.applyEffect(finalChar, pal.level);
         }
 
-        // TODO: background? culture? zodiac sign?
         return Object.freeze(finalChar);
+    }
+
+    toJSON()  {
+        let {
+            caches,
+            ...objectWithoutCaches
+        } = this;
+
+        return objectWithoutCaches;
     }
 }

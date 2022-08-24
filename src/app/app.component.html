@@ -11,7 +11,7 @@
                 <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
             </div>
             <div class="circled-outline">
-                <a class="material-icons-outlined" [href]="downloadJsonHref" download="{{character.name}}">save</a>
+                <a class="material-icons-outlined" [href]="downloadJsonHref" [matTooltip]="'Save current character as file'" download="{{character.name}}">save</a>
             </div>
         </div>
 

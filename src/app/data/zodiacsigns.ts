@@ -1,7 +1,9 @@
 import {ZodiacSign} from "../classes/zodiacsign";
+import {Background} from "../classes/background";
 
 
-export const ZODIAC_SIGNS: ZodiacSign[] = [
+export function getAllZodiacSigns() : ZodiacSign[] { return ZODIAC_SIGNS; }
+const ZODIAC_SIGNS: ZodiacSign[] = [
     {
         name: "The Horseman",
         startDate: "1. Deepwinter",

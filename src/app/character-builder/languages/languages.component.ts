@@ -3,7 +3,7 @@ import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {take, takeUntil} from "rxjs";
 import {Character} from "../../classes/character";
 import {Language} from "../../classes/language";
-import {LANGUAGES} from "../../data/languages";
+import {getAllLanguages} from "../../data/languages";
 
 @Component({
   selector: 'app-languages',
@@ -30,7 +30,7 @@ export class LanguagesComponent extends CharacterInjectingComponent {
             this.openCharacterPoints = char.getRemainingCP();
             this.ownedLanguages = char.languagesInLearnOrder;
             let ownedLanguageNames = this.ownedLanguages.map(l => l.name);
-            this.availableLanguages = LANGUAGES.filter(x => !ownedLanguageNames.includes(x.name));
+            this.availableLanguages = getAllLanguages().filter(x => !ownedLanguageNames.includes(x.name));
         });
     }
 

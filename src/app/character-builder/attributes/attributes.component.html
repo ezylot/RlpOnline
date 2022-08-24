@@ -60,15 +60,15 @@
         <p class="stat">+</p>
     </div>
 
-    <div class="statlist">
+    <div class="statlist" *ngIf="character.getRace() as race;">
         <h2>Race Bonis</h2>
-        <div class="stat boxed-stat stat-strength">{{character.race?.statboni?.strength}}</div>
-        <div class="stat boxed-stat stat-vitality">{{character.race?.statboni?.vitality}}</div>
-        <div class="stat boxed-stat stat-dexterity">{{character.race?.statboni?.dexterity}}</div>
-        <div class="stat boxed-stat stat-agility">{{character.race?.statboni?.agility}}</div>
-        <div class="stat boxed-stat stat-intellect">{{character.race?.statboni?.intellect}}</div>
-        <div class="stat boxed-stat stat-perception">{{character.race?.statboni?.perception}}</div>
-        <div class="stat boxed-stat stat-empathy">{{character.race?.statboni?.empathy}}</div>
+        <div class="stat boxed-stat stat-strength">{{race?.statboni?.strength}}</div>
+        <div class="stat boxed-stat stat-vitality">{{race?.statboni?.vitality}}</div>
+        <div class="stat boxed-stat stat-dexterity">{{race?.statboni?.dexterity}}</div>
+        <div class="stat boxed-stat stat-agility">{{race?.statboni?.agility}}</div>
+        <div class="stat boxed-stat stat-intellect">{{race?.statboni?.intellect}}</div>
+        <div class="stat boxed-stat stat-perception">{{race?.statboni?.perception}}</div>
+        <div class="stat boxed-stat stat-empathy">{{race?.statboni?.empathy}}</div>
     </div>
 
     <div class="fixed-column">

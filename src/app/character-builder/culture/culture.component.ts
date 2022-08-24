@@ -3,7 +3,7 @@ import {take} from "rxjs";
 import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Culture} from "../../classes/culture";
-import {CULTURES} from "../../data/cultures";
+import {getAllCultures} from "../../data/cultures";
 
 @Component({
     selector: 'app-culture',
@@ -12,11 +12,11 @@ import {CULTURES} from "../../data/cultures";
 })
 export class CultureComponent extends CharacterInjectingComponent {
 
-    availableCultures: Culture[] = CULTURES;
+    availableCultures: Culture[] = getAllCultures();
 
     changeCulture(culture: Culture) {
         this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, culture}, Character.prototype));
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, cultureName: culture.name }, Character.prototype));
         });
     }
 }

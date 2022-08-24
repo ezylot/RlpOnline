@@ -6,8 +6,8 @@
     <div class="title">
         <h1>
             <span [matTooltipPosition]="'above'" [matTooltip]="'Name'">{{ character.name }}</span>,
-            <span [matTooltipPosition]="'above'" [matTooltip]="'Race'"> the {{ character.race?.name ?? 'raceless' }}</span>
-            <span [matTooltipPosition]="'above'" [matTooltip]="'Background'"> {{ character.background?.name ?? 'adventurer without a job' }}</span>
+            <span [matTooltipPosition]="'above'" [matTooltip]="'Race'"> the {{ character.getRace()?.name ?? 'raceless' }}</span>
+            <span [matTooltipPosition]="'above'" [matTooltip]="'Background'"> {{ character.getBackground()?.name ?? 'adventurer without a job' }}</span>
         </h1>
 
         <a class="material-icons-outlined" [href]="downloadJsonHref" download="{{character.name}}">save</a>
@@ -105,21 +105,21 @@
             </div>
             <div class="race-benefits">
                 <span class="border-overlapping-title">Race</span>
-                <div class="race-row" *ngFor="let raceTrait of character.race?.traitsAsStrings; index as i">
+                <div class="race-row" *ngFor="let raceTrait of character.getRace()?.traitsAsStrings; index as i">
                     {{ raceTrait }}
                 </div>
             </div>
-            <div class="zodiacsign-benefits" *ngIf="character.zodiacSign">
+            <div class="zodiacsign-benefits" *ngIf="character.getZodiacSign()">
                 <span class="border-overlapping-title">Zodiac Sign</span>
-                <span [innerHTML]="character.zodiacSign.description"></span>
+                <span [innerHTML]="character.getZodiacSign()?.description"></span>
             </div>
-            <div class="background-benefits" *ngIf="character.background">
+            <div class="background-benefits" *ngIf="character.getBackground()">
                 <span class="border-overlapping-title">Background</span>
-                <span [innerHTML]="character.background.name"></span>
+                <span [innerHTML]="character.getBackground()?.name"></span>
             </div>
-            <div class="culture-benefits" *ngIf="character.culture">
+            <div class="culture-benefits" *ngIf="character.getCulture()">
                 <span class="border-overlapping-title">Culture</span>
-                <span [innerHTML]="character.culture.name"></span>
+                <span [innerHTML]="character.getCulture()?.name"></span>
             </div>
             <div class="perks">
                 <span class="border-overlapping-title">Perks</span>

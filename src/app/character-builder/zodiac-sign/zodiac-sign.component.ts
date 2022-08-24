@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {take} from "rxjs";
 import {Character} from "../../classes/character";
 import {ZodiacSign} from "../../classes/zodiacsign";
-import {ZODIAC_SIGNS} from "../../data/zodiacsigns";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
+import {getAllZodiacSigns} from "../../data/zodiacsigns";
 
 @Component({
   selector: 'app-zodiac-sign',
@@ -12,11 +12,11 @@ import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 })
 export class ZodiacSignComponent extends CharacterInjectingComponent {
 
-    availableZodiacSigns: ZodiacSign[] = ZODIAC_SIGNS;
+    availableZodiacSigns: ZodiacSign[] = getAllZodiacSigns();
 
     changeZodiacSign(zodiacSign: ZodiacSign) {
         this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, zodiacSign}, Character.prototype));
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, zodiacSignName: zodiacSign.name }, Character.prototype));
         });
     }
 }

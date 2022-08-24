@@ -3,33 +3,8 @@ import {LevelUpBonus} from "../classes/levelupbonus";
 import {Stats} from "../classes/stats";
 import {ANIMALS} from "./languages";
 
-/*
-
-{
-    name: "",
-    flavorText: "",
-    textDescription: "",
-    statboni: new Stats(0, 0, 0, 0, 0, 0, 0),
-    traitsAsStrings: [],
-    statingHealth: 0,
-    startingStamina: 0,
-    startingMana: 0,
-    languages: [],
-    cpBonus: 0,
-    freeAttributePoints: 0,
-    modifyAbilityCheck: function(abilityRoll) { return abilityRoll; },
-    modifyAttack: function(attackRoll) { return attackRoll; },
-    modifyDamage: function(attackRoll, damageRoll) { return damageRoll; },
-    modifyIncomingAttack: function(damageRoll) { return damageRoll; },
-    modifyIncomingDamage: function(damageRoll) { return damageRoll; },
-    modifyPerkWhenLearning: function(perk) { return perk; },
-    levelUpBonus: function() { return new LevelUpBonus() },
-},
-
-
- */
-
-export const RACES: Race[] = [
+export function getAllRaces() : Race[] { return RACES; }
+const RACES: Race[] = [
     {
         name: "Daevana",
         flavorText: "Daevana are a very tall and muscular race of lesser giant-kin that live in small clans and call the " +

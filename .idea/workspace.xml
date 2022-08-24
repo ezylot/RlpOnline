@@ -4,16 +4,26 @@
     <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/character-builder/backgrounds/backgrounds.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/backgrounds/backgrounds.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/backgrounds/backgrounds.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/backgrounds/backgrounds.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/character-builder/culture/culture.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/culture/culture.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/culture/culture.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/culture/culture.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/overview/overview.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/backgrounds.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/backgrounds.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/cultures.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/cultures.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/languages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/languages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/data/races.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/races.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/data/zodiacsigns.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/zodiacsigns.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +64,11 @@
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "advanced.settings",
     "ts.external.directory.path": "D:\\Projects\\rlp-online\\node_modules\\typescript\\lib"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -79,7 +94,7 @@
       <workItem from="1661110776707" duration="55340000" />
       <workItem from="1661168713344" duration="21849000" />
       <workItem from="1661238871498" duration="1509000" />
-      <workItem from="1661240406024" duration="46232000" />
+      <workItem from="1661240406024" duration="49725000" />
     </task>
     <servers />
   </component>

@@ -8,8 +8,8 @@
     <div class="culture-row" *ngFor="let culture of availableCultures; index as i">
 
         <div class="select-box" (click)="changeCulture(culture)">
-            <span class="material-icons-outlined" *ngIf="culture.name === character.culture?.name">check_circle_outline</span>
-            <span class="material-icons-outlined" *ngIf="culture.name !== character.culture?.name">circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="culture.name === character.getCulture()?.name">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="culture.name !== character.getCulture()?.name">circle_outline</span>
         </div>
 
         <mat-expansion-panel class="culture-expandable">

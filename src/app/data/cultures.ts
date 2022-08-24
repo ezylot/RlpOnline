@@ -1,7 +1,9 @@
 import {Culture} from "../classes/culture";
+import {Background} from "../classes/background";
 
 
-export const CULTURES: Culture[] = [
+export function getAllCultures() : Culture[] { return CULTURES; }
+const CULTURES: Culture[] = [
     { name: "Laetharnian Countryside" },
     { name: "Laetharnian Town" },
     { name: "Laetharnian Metropolis" },

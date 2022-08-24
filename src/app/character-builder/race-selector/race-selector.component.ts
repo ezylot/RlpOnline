@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import {CharacterStorageService} from "../../services/character-storage.service";
+import {Component} from '@angular/core';
 import {Character} from "../../classes/character";
 import {Race} from "../../classes/race";
-import { RACES } from 'src/app/data/races';
-import {Observable, take, takeUntil} from "rxjs";
+import {take} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
+import {getAllRaces} from "../../data/races";
 
 @Component({
-  selector: 'app-race-selector',
-  templateUrl: './race-selector.component.html',
-  styleUrls: ['./race-selector.component.scss']
+    selector: 'app-race-selector',
+    templateUrl: './race-selector.component.html',
+    styleUrls: ['./race-selector.component.scss']
 })
 export class RaceSelectorComponent extends CharacterInjectingComponent {
 
-    availableRaces: Race[] = RACES;
+    availableRaces: Race[] = getAllRaces();
 
     changeRace(race: Race) {
         this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, race}, Character.prototype));
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({
+                ...char,
+                raceName: race.name
+            }, Character.prototype));
         })
     }
 }

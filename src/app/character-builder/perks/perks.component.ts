@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {take, takeUntil} from "rxjs";
 import {Character} from "../../classes/character";
-import {PERKS} from "../../data/perks";
+import {getAllPerks} from "../../data/perks";
 import {PerkAndLevel} from "../../classes/perk-and-level";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {PerkCategory} from "../../classes/perk";
@@ -37,7 +37,7 @@ export class PerksComponent extends CharacterInjectingComponent {
             this.openCharacterPoints = char.getRemainingCP();
             this.ownedPerks = char.perks.filter(p => p.perk.internalCategory === filter);
 
-            this.availablePerks = PERKS
+            this.availablePerks = getAllPerks()
                 .filter(p => p.internalCategory === filter)
                 .map(p => {
                     let found = this.ownedPerks.find(x => x.perk.name == p.name);
@@ -102,11 +102,12 @@ export class PerksComponent extends CharacterInjectingComponent {
                 perks[existingIndex] = new PerkAndLevel(selectedPal.level, perks[existingIndex].perk);
             }
 
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, perks}, Character.prototype));
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, perks }, Character.prototype));
         });
     }
 
     deselectPerk(selectedPal: PerkAndLevel) {
+        // TODO: remove all where this is requirement for
         this.character$.pipe(take(1)).subscribe(char => {
             let perks = Array.from(char.perks);
             let existingIndex = perks.findIndex(pal => pal.perk.name == selectedPal.perk.name)
@@ -118,7 +119,7 @@ export class PerksComponent extends CharacterInjectingComponent {
                 perks[existingIndex] = new PerkAndLevel(selectedPal.level - 1, perks[existingIndex].perk);
             }
 
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, perks}, Character.prototype));
+            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, perks }, Character.prototype));
         });
     }
 

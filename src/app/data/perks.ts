@@ -4,22 +4,10 @@ import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {Stats} from "../classes/stats";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 import {PerkAndLevel} from "../classes/perk-and-level";
+import {Background} from "../classes/background";
 
-/*
-
-{
-    name: "",
-    requirements: "",
-    tags: [""],
-    description: "",
-    startingLevel: 0,
-    internalCategory: PerkCategory.BASE,
-    additionalData: null,
-    getCpCostForLevel: function (level: number) : number { return 0; },
-}
- */
-
-export const PERKS: Perk[] = [
+export function getAllPerks() : Perk[] { return PERKS; }
+const PERKS: Perk[] = [
 
     // BASE PERKS
     //<editor-fold defaultstate="collapsed" desc="Increase Health">
@@ -36,9 +24,7 @@ export const PERKS: Perk[] = [
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
         applyEffect(character: Readonly<Character>, level) {
-
-            let charToEdit = { ...character } as Character;
-            Object.setPrototypeOf(charToEdit, Character.prototype)
+            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
 
             let maxHealth = charToEdit.maxHealth;
             let vitality = charToEdit.getFinalStats().vitality;
@@ -70,8 +56,7 @@ export const PERKS: Perk[] = [
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
         applyEffect(character: Readonly<Character>, level) {
-            let charToEdit = { ...character } as Character;
-            Object.setPrototypeOf(charToEdit, Character.prototype)
+            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
 
             let maxStamina = charToEdit.maxStamina;
             let strength = charToEdit.getFinalStats().strength;
@@ -103,8 +88,7 @@ export const PERKS: Perk[] = [
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
         applyEffect(character: Readonly<Character>, level) {
-            let charToEdit = { ...character } as Character;
-            Object.setPrototypeOf(charToEdit, Character.prototype)
+            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
 
             let maxMana = charToEdit.maxMana;
             let intellect = charToEdit.getFinalStats().intellect;
@@ -162,8 +146,7 @@ export const PERKS: Perk[] = [
         },
         getGoldCostForLevel: () => 0,
         applyEffect(character: Readonly<Character>, level) {
-            let charToEdit = { ...character } as Character;
-            Object.setPrototypeOf(charToEdit, Character.prototype)
+            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
 
             // Dice increase is done in the correct Increase Perk
             switch(stat) {
@@ -227,8 +210,7 @@ export const PERKS: Perk[] = [
         },
         getGoldCostForLevel: () => 0,
         applyEffect(character: Readonly<Character>, level) {
-            let charToEdit = { ...character } as Character;
-            Object.setPrototypeOf(charToEdit, Character.prototype);
+            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
 
 
             let newStats = { ...charToEdit.stats };
@@ -319,7 +301,7 @@ export const PERKS: Perk[] = [
     {
         groupName: "Light Armor Training",
         name: "Light Armor Training",
-        requirements: [ { perkname: "Light Armor Training", level: 1 }],
+        requirements: [ { perkname: "Cloth Armor Training", level: 1 }],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with light. You add your level to Dodge and Evade checks while equipped with armor with the ”Light” descriptor.",
         startingLevel: 0,
@@ -339,7 +321,7 @@ export const PERKS: Perk[] = [
     {
         groupName: "Medium Armor Training",
         name: "Medium Armor Training",
-        requirements: [ { perkname: "Light Armor Training", level: 1 }],
+        requirements: [ { perkname: "Cloth Armor Training", level: 1 }],
         tags: ["Passive", "Repeatable", " Source"],
         description: "You are trained with medium armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Medium” descriptor.\n" +
                 "Additionally, your Agility can not exceed 9 while wearing this type of armor",
@@ -362,7 +344,7 @@ export const PERKS: Perk[] = [
     {
         groupName: "Heavy Armor Training",
         name: "Heavy Armor Training",
-        requirements: [ { perkname: "Light Armor Training", level: 1 }],
+        requirements: [ { perkname: "Cloth Armor Training", level: 1 }],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with heavy armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Heavy” descriptor.\n" +
                 "Additionally, the resistance you gain from such armor against blunt, cutting and piercing is increased by 1.",

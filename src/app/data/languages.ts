@@ -1,10 +1,12 @@
 import {Language} from "../classes/language";
+import {Background} from "../classes/background";
 
 
 // Special Language for Gnomes
 export const ANIMALS = new Language("", "Animals", "", 0, 0);
 
-export const LANGUAGES = [
+export function getAllLanguages() : Language[] { return LANGUAGES; }
+const LANGUAGES = [
     new Language("Common", "Common", "Halkaren", 0, 0),
     new Language("Common", "Halkaren", "Halkaren", 200, 200),
     new Language("Common", "Whitlan", "Whitlan", 300, 300),

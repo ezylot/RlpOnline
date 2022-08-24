@@ -16,8 +16,8 @@
     <div class="zodiacsign-row" *ngFor="let zodiacSign of availableZodiacSigns; index as i">
 
         <div class="select-box" (click)="changeZodiacSign(zodiacSign)">
-            <span class="material-icons-outlined" *ngIf="zodiacSign.name === character.zodiacSign?.name">check_circle_outline</span>
-            <span class="material-icons-outlined" *ngIf="zodiacSign.name !== character.zodiacSign?.name">circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="zodiacSign.name === character.getZodiacSign()?.name">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="zodiacSign.name !== character.getZodiacSign()?.name">circle_outline</span>
         </div>
 
         <mat-expansion-panel class="zodiacsign-expandable">

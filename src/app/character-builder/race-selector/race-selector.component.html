@@ -9,8 +9,8 @@
     <div class="race-row" *ngFor="let race of availableRaces; index as i">
 
         <div class="select-box" (click)="changeRace(race)">
-            <span class="material-icons-outlined" *ngIf="race.name === character.race?.name">check_circle_outline</span>
-            <span class="material-icons-outlined" *ngIf="race.name !== character.race?.name">circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="race.name === character.getRace()?.name">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="race.name !== character.getRace()?.name">circle_outline</span>
         </div>
 
         <mat-expansion-panel class="race-expandable">
