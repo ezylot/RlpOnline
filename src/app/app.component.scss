@@ -1,5 +1,5 @@
 @import "../colors";
-
+@import "native-styles.css";
 
 :host {
     height: 100%;
@@ -55,7 +55,6 @@
         display: flex;
         flex: 1;
 
-        background: url('assets/seamless_paper_texture.webp') repeat;
         background-size: 200px;
 
         nav {
