@@ -34,63 +34,111 @@
         </p>
     </div>
 
-
-    <div cdkDropList class="statlist" (cdkDropListDropped)="drop($event)">
-        <div>
-            <h2>Base Stats </h2>
-            <span class="material-icons-outlined" [matTooltip]="'Drag the boxes to reorder them'">help_outline</span>
+    <div class="stat-columns">
+        <div cdkDropList class="statlist" (cdkDropListDropped)="drop($event)">
+            <div>
+                <h2>Base Stats </h2>
+                <span class="material-icons-outlined" [matTooltip]="'Drag the boxes to reorder them'">help_outline</span>
+            </div>
+            <div class="stat boxed-stat stat-strength" cdkDrag>{{stats.strength}}</div>
+            <div class="stat boxed-stat stat-vitality" cdkDrag>{{stats.vitality}}</div>
+            <div class="stat boxed-stat stat-dexterity" cdkDrag>{{stats.dexterity}}</div>
+            <div class="stat boxed-stat stat-agility" cdkDrag>{{stats.agility}}</div>
+            <div class="stat boxed-stat stat-intellect" cdkDrag>{{stats.intellect}}</div>
+            <div class="stat boxed-stat stat-perception" cdkDrag>{{stats.perception}}</div>
+            <div class="stat boxed-stat stat-empathy" cdkDrag>{{stats.empathy}}</div>
         </div>
-        <div class="stat boxed-stat stat-strength" cdkDrag>{{stats.strength}}</div>
-        <div class="stat boxed-stat stat-vitality" cdkDrag>{{stats.vitality}}</div>
-        <div class="stat boxed-stat stat-dexterity" cdkDrag>{{stats.dexterity}}</div>
-        <div class="stat boxed-stat stat-agility" cdkDrag>{{stats.agility}}</div>
-        <div class="stat boxed-stat stat-intellect" cdkDrag>{{stats.intellect}}</div>
-        <div class="stat boxed-stat stat-perception" cdkDrag>{{stats.perception}}</div>
-        <div class="stat boxed-stat stat-empathy" cdkDrag>{{stats.empathy}}</div>
+
+        <div class="fixed-column">
+            <h2>&nbsp;</h2>
+            <p class="stat">+</p>
+            <p class="stat">+</p>
+            <p class="stat">+</p>
+            <p class="stat">+</p>
+            <p class="stat">+</p>
+            <p class="stat">+</p>
+            <p class="stat">+</p>
+        </div>
+
+        <div class="statlist" *ngIf="character.getRace() as race;">
+            <h2>Race Bonis</h2>
+            <div class="stat boxed-stat stat-strength">{{race?.statboni?.strength}}</div>
+            <div class="stat boxed-stat stat-vitality">{{race?.statboni?.vitality}}</div>
+            <div class="stat boxed-stat stat-dexterity">{{race?.statboni?.dexterity}}</div>
+            <div class="stat boxed-stat stat-agility">{{race?.statboni?.agility}}</div>
+            <div class="stat boxed-stat stat-intellect">{{race?.statboni?.intellect}}</div>
+            <div class="stat boxed-stat stat-perception">{{race?.statboni?.perception}}</div>
+            <div class="stat boxed-stat stat-empathy">{{race?.statboni?.empathy}}</div>
+        </div>
+
+        <div class="fixed-column">
+            <h2>&nbsp;</h2>
+            <p class="stat">=</p>
+            <p class="stat">=</p>
+            <p class="stat">=</p>
+            <p class="stat">=</p>
+            <p class="stat">=</p>
+            <p class="stat">=</p>
+            <p class="stat">=</p>
+        </div>
+
+        <div class="statlist">
+            <h2>Final Stats</h2>
+            <div class="stat boxed-stat stat-strength">{{character.getFinalStats().strength}}</div>
+            <div class="stat boxed-stat stat-vitality">{{character.getFinalStats().vitality}}</div>
+            <div class="stat boxed-stat stat-dexterity">{{character.getFinalStats().dexterity}}</div>
+            <div class="stat boxed-stat stat-agility">{{character.getFinalStats().agility}}</div>
+            <div class="stat boxed-stat stat-intellect">{{character.getFinalStats().intellect}}</div>
+            <div class="stat boxed-stat stat-perception">{{character.getFinalStats().perception}}</div>
+            <div class="stat boxed-stat stat-empathy">{{character.getFinalStats().empathy}}</div>
+        </div>
+
+        <ng-container *ngFor="let conditionalStat of character.getRace()?.conditionalStatbonis">
+            <div class="fixed-column">
+                <h2>&nbsp;</h2>
+                <p class="stat">=</p>
+                <p class="stat">=</p>
+                <p class="stat">=</p>
+                <p class="stat">=</p>
+                <p class="stat">=</p>
+                <p class="stat">=</p>
+                <p class="stat">=</p>
+            </div>
+
+            <div class="statlist" [attr.data-tippy-content]="conditionalStatsWarning">
+                <h2>{{ conditionalStat.condition }}</h2>
+                <div [class.bold]="conditionalStat.statboni.strength !== 0" class="stat boxed-stat stat-strength">
+                    {{character.getFinalStats().strength + conditionalStat.statboni.strength}}
+                    {{conditionalStat.statboni.strength !== 0 ? '*' : '' }}
+                </div>
+                <div [class.bold]="conditionalStat.statboni.vitality !== 0" class="stat boxed-stat stat-vitality">
+                    {{character.getFinalStats().vitality + conditionalStat.statboni.vitality}}
+                    {{conditionalStat.statboni.vitality !== 0 ? '*' : '' }}
+                </div>
+                <div [class.bold]="conditionalStat.statboni.dexterity !== 0" class="stat boxed-stat stat-dexterity">
+                    {{character.getFinalStats().dexterity + conditionalStat.statboni.dexterity}}
+                    {{conditionalStat.statboni.dexterity !== 0 ? '*' : '' }}
+                </div>
+                <div [class.bold]="conditionalStat.statboni.agility !== 0" class="stat boxed-stat stat-agility">
+                    {{character.getFinalStats().agility + conditionalStat.statboni.agility}}
+                    {{conditionalStat.statboni.agility !== 0 ? '*' : '' }}
+                </div>
+                <div [class.bold]="conditionalStat.statboni.intellect !== 0" class="stat boxed-stat stat-intellect">
+                    {{character.getFinalStats().intellect + conditionalStat.statboni.intellect}}
+                    {{conditionalStat.statboni.intellect !== 0 ? '*' : '' }}
+                </div>
+                <div [class.bold]="conditionalStat.statboni.perception !== 0" class="stat boxed-stat stat-perception">
+                    {{character.getFinalStats().perception + conditionalStat.statboni.perception}}
+                    {{conditionalStat.statboni.perception !== 0 ? '*' : '' }}
+                </div>
+                <div [class.bold]="conditionalStat.statboni.empathy !== 0" class="stat boxed-stat stat-empathy">
+                    {{character.getFinalStats().empathy + conditionalStat.statboni.empathy}}
+                    {{conditionalStat.statboni.empathy !== 0 ? '*' : '' }}
+                </div>
+            </div>
+        </ng-container>
     </div>
 
-    <div class="fixed-column">
-        <h2>&nbsp;</h2>
-        <p class="stat">+</p>
-        <p class="stat">+</p>
-        <p class="stat">+</p>
-        <p class="stat">+</p>
-        <p class="stat">+</p>
-        <p class="stat">+</p>
-        <p class="stat">+</p>
-    </div>
 
-    <div class="statlist" *ngIf="character.getRace() as race;">
-        <h2>Race Bonis</h2>
-        <div class="stat boxed-stat stat-strength">{{race?.statboni?.strength}}</div>
-        <div class="stat boxed-stat stat-vitality">{{race?.statboni?.vitality}}</div>
-        <div class="stat boxed-stat stat-dexterity">{{race?.statboni?.dexterity}}</div>
-        <div class="stat boxed-stat stat-agility">{{race?.statboni?.agility}}</div>
-        <div class="stat boxed-stat stat-intellect">{{race?.statboni?.intellect}}</div>
-        <div class="stat boxed-stat stat-perception">{{race?.statboni?.perception}}</div>
-        <div class="stat boxed-stat stat-empathy">{{race?.statboni?.empathy}}</div>
-    </div>
-
-    <div class="fixed-column">
-        <h2>&nbsp;</h2>
-        <p class="stat">=</p>
-        <p class="stat">=</p>
-        <p class="stat">=</p>
-        <p class="stat">=</p>
-        <p class="stat">=</p>
-        <p class="stat">=</p>
-        <p class="stat">=</p>
-    </div>
-
-    <div class="statlist">
-        <h2>Final Stats</h2>
-        <div class="stat boxed-stat stat-strength">{{character.getFinalStats().strength}}</div>
-        <div class="stat boxed-stat stat-vitality">{{character.getFinalStats().vitality}}</div>
-        <div class="stat boxed-stat stat-dexterity">{{character.getFinalStats().dexterity}}</div>
-        <div class="stat boxed-stat stat-agility">{{character.getFinalStats().agility}}</div>
-        <div class="stat boxed-stat stat-intellect">{{character.getFinalStats().intellect}}</div>
-        <div class="stat boxed-stat stat-perception">{{character.getFinalStats().perception}}</div>
-        <div class="stat boxed-stat stat-empathy">{{character.getFinalStats().empathy}}</div>
-    </div>
 </div>
 

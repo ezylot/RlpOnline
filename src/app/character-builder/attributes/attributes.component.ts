@@ -6,13 +6,14 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {take, takeUntil} from "rxjs";
 import {
-    ADVENTURING_TEXT,
-    AGILITY_TEXT, COMBATLEVEL_TEXT,
-    DEXTERITY_TEXT, EMPATHY_TEXT,
+    AGILITY_TEXT,
+    DEXTERITY_TEXT,
+    EMPATHY_TEXT,
     INTELLECT_TEXT,
-    PERCEPTION_TEXT, SOCIALLEVEL_TEXT,
+    PERCEPTION_TEXT,
     STRENGTH_TEXT,
-    VITALITY_TEXT
+    VITALITY_TEXT,
+    CONDITIONAL_STAT_TEXT,
 } from "../../data/texts";
 
 @Component({
@@ -29,6 +30,7 @@ export class AttributesComponent extends CharacterInjectingComponent{
     _INTELLECT_TEXT = INTELLECT_TEXT;
     _PERCEPTION_TEXT = PERCEPTION_TEXT;
     _EMPATHY_TEXT = EMPATHY_TEXT;
+    conditionalStatsWarning = CONDITIONAL_STAT_TEXT;
 
     //TODO: add human column to distribute attributes
     stats: Stats = STANDARD_ARRAY;

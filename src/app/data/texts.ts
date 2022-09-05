@@ -88,3 +88,6 @@ export const WILLPOWER_TEXT = 'Willpower is a    character’s ability to withst
     'resist the effect outright and don’t have to roll competing checks. ' +
     '<br><br>It is equal to 8 + EM';
 
+export const CONDITIONAL_STAT_TEXT: string = 'There are conditional stat bonis connected to that race. They show up only ' +
+    'on this page, and will not be used in any further calculation. You need to check yourself if the modifications have any impact' +
+    ' on, for example, your pool values or combat stats.';

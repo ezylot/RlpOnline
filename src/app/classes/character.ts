@@ -114,7 +114,7 @@ export class Character {
 
     getFinalStats() : Stats {
         let chosenStats = this.stats.toStatNumberArray();
-        let raceStatBonis = this.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0)
+        let raceStatBonis = this.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0);
 
         return Stats.fromArray(chosenStats.map(function(stat, i) {
             return stat + raceStatBonis[i];

@@ -5,9 +5,18 @@
         <div [matTooltip]="_HEALTH_TEXT">Health <br /> {{ fcs.maxHealth }}</div>
         <div [matTooltip]="_STAMINA_TEXT">Stamina <br /> {{ fcs.maxStamina }}</div>
         <div [matTooltip]="_MANA_TEXT">Mana <br /> {{ fcs.maxMana }}</div>
-        <div [matTooltip]="_DODGE_TEXT + (fcs.dodgeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">Dodge <br /> {{ fcs.dodgeModifier }}</div>
-        <div [matTooltip]="_NOTICE_TEXT + (fcs.noticeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">Notice <br /> {{ fcs.noticeModifier }}</div>
-        <div [matTooltip]="_WILLPOWER_TEXT + (fcs.willpowerModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">Willpower <br /> {{ fcs.willpowerModifier }}</div>
+        <div [matTooltip]="_DODGE_TEXT + (fcs.dodgeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">
+            Dodge <br />
+            {{ fcs.dodgeModifier }}
+        </div>
+        <div [matTooltip]="_NOTICE_TEXT + (fcs.noticeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">
+            Notice <br />
+            {{ fcs.noticeModifier }}
+        </div>
+        <div [matTooltip]="_WILLPOWER_TEXT + (fcs.willpowerModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">
+            Willpower <br />
+            {{ fcs.willpowerModifier }}
+        </div>
     </div>
 </ng-container>
 

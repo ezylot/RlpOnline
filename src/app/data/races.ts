@@ -350,7 +350,7 @@ const RACES: Race[] = [
             "Orobans start the game with 30 Health, 20 Stamina and 20 Mana.",
         statboni: new Stats(0, 2, 0, 0, 1, 0, 0),
         conditionalStatbonis: [
-            { condition: "When in daylight", statboni: new Stats(0, 0, 0, -2, 0, 0, 0) }
+            { condition: "In daylight", statboni: new Stats(0, 0, 0, -2, 0, 0, 0) }
         ],
         traitsAsStrings: [
             "They gain +2 on checks against poison effects",
