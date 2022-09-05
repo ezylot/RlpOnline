@@ -1,4 +1,4 @@
-import {Perk, PerkCategory} from "../classes/perk";
+import {Perk, PerkCategory, PerkRequirement} from "../classes/perk";
 import {Character} from "../classes/character";
 import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {Stats} from "../classes/stats";
@@ -302,7 +302,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Light Armor Training",
         name: "Light Armor Training",
-        requirements: [ { perkname: "Cloth Armor Training", level: 1 }],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Cloth Armor Training")],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with light. You add your level to Dodge and Evade checks while equipped with armor with the ”Light” descriptor.",
         startingLevel: 0,
@@ -322,7 +322,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Medium Armor Training",
         name: "Medium Armor Training",
-        requirements: [ { perkname: "Cloth Armor Training", level: 1 }],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Cloth Armor Training")],
         tags: ["Passive", "Repeatable", " Source"],
         description: "You are trained with medium armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Medium” descriptor.\n" +
                 "Additionally, your Agility can not exceed 9 while wearing this type of armor",
@@ -345,7 +345,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Heavy Armor Training",
         name: "Heavy Armor Training",
-        requirements: [ { perkname: "Cloth Armor Training", level: 1 }],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Cloth Armor Training")],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with heavy armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Heavy” descriptor.\n" +
                 "Additionally, the resistance you gain from such armor against blunt, cutting and piercing is increased by 1.",
@@ -388,7 +388,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Axe Training",
         name: "Axe Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with axes. This includes all weapons with the ”Axe” descriptor. You add your\n" +
             "level to attack and block rolls made with these weapons.",
@@ -408,7 +408,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Blunt Training",
         name: "Blunt Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with blunt weapons. This includes all weapons with the ”Blunt” descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
@@ -428,7 +428,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Bow Training",
         name: "Bow Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with bows. This includes all weapons with the ”Bow” descriptor. You add your\n" +
             "level to attack and block rolls made with these weapons.",
@@ -448,7 +448,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Crossbow Training",
         name: "Crossbow Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with crossbows. This includes all weapons with the ”Crossbow” descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
@@ -468,7 +468,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Polearm Training",
         name: "Polearm Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with polearms. This includes all weapons that have the ”Polearm” descriptor.\n" +
             "You add your level to attack and block rolls made with these weapons.",
@@ -488,7 +488,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Shield Training",
         name: "Shield Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with shields. This includes all weapons with the ”Shield” descriptor. You add\n" +
             "your level to attack and block rolls made with these weapons.",
@@ -508,7 +508,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Sword Training",
         name: "Sword Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with swords. This includes all weapons that have the ”Sword” descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
@@ -528,7 +528,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Throwing Training",
         name: "Throwing Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with throwing weapons. This includes all weapons that have the ”Throwing”\n" +
             "descriptor. You add your level to attack and block rolls made with these weapons.",
@@ -548,7 +548,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Weapon Training",
         name: "Weapon Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "This is a set of different perks. You are trained with a certain type of weapon that does not have\n" +
             "the ”Unusual” descriptor. You add your level to attack and block rolls made with that weapon.\n" +
@@ -570,7 +570,7 @@ const PERKS: Perk[] = [
     {
         groupName: "Unusual Weapon Training",
         name: "Unusual Weapon Training",
-        requirements: [ { perkname: "Simple Weapon Training", level: 1 } ],
+        requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "This is a set of different perks. You are trained with a certain type of weapon that has the ”Un-\n" +
             "usual” descriptor. You add your level to attack and block rolls made with that weapon.\n" +
@@ -590,6 +590,27 @@ const PERKS: Perk[] = [
     //</editor-fold>
 
     // TODO: Maneuvers
+    //<editor-fold defaultstate="collapsed" desc="Aimed Attack">
+    {
+        groupName: "Aimed Attack",
+        name: "Aimed Attack",
+        requirements: [
+            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "DE"),
+        ],
+        tags: [],
+        description: "",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 100, 500, 2500, 7500 ][level-1],
+        getGoldCostForLevel: () => 100,
+        applyEffect(character: Readonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
     // TODO: Odem Perks
     // TODO: Magic Perks
     // TODO: Divine Perks

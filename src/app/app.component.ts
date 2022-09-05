@@ -27,10 +27,9 @@ export class AppComponent extends CharacterInjectingComponent {
         super(characterStorageService, _snackBar, router);
     }
 
-
     override ngOnInit(): void {
         super.ngOnInit();
-        this.availableCharacters = this.characterStorageService.getCharacters();
+        this.availableCharacters = this.characterStorageService.getAllCharacters();
 
         this.character$.pipe(takeUntil(this.destroy$)).subscribe(char => {
             let theJSON = JSON.stringify(char);
@@ -62,12 +61,12 @@ export class AppComponent extends CharacterInjectingComponent {
     }
 
     loadChar(id: string) {
-        this.characterStorageService.loadCharacter(id);
+        this.characterStorageService.selectCharacterById(id);
         this.router.navigate(["character-builder"]);
     }
 
     createNewChar() {
-        this.characterStorageService.generateAndLoadNewCharacter();
+        this.characterStorageService.generateNewCharacter();
         this.router.navigate(["character-builder"]);
     }
 
@@ -79,6 +78,6 @@ export class AppComponent extends CharacterInjectingComponent {
     }
 
     uploadFile(event$: any) {
-        event$.target.files.item(0)?.text().then((txt: string) => this.characterStorageService.importAndLoad(txt));
+        event$.target.files.item(0)?.text().then((txt: string) => this.characterStorageService.import(txt));
     }
 }

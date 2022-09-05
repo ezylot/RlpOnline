@@ -5,6 +5,7 @@
     <a routerLink="/character-builder/attributes" routerLinkActive="active">Attributes</a>
     <a routerLink="/character-builder/zodiac-sign" routerLinkActive="active">Zodiac Sign</a>
     <a routerLink="/character-builder/perks" routerLinkActive="active">
+        <span class="material-icons-outlined cp-warning" *ngIf="character.getUnfulfilledPerkRequirements().length > 0" [matTooltip]="'Some perks are missing requirements.'">warning</span>
         <span class="material-icons-outlined cp-warning" *ngIf="character.getRemainingCP() < 0" [matTooltip]="'Spent more CP than available.'">warning</span>
         Perks
     </a>

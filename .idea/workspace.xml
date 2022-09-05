@@ -3,13 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/quick-overview-bar/quick-overview-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/quick-overview-bar/quick-overview-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rlp-online.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rlp-online.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/CharacterInjectingComponent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/CharacterInjectingComponent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/navigation/navigation.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/races.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/races.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/texts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/texts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/perk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/perk.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +64,8 @@
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "CSS",
-      "JSON"
+      "JSON",
+      "CSS"
     ]
   }
 }]]></component>
@@ -88,7 +97,7 @@
       <workItem from="1661342901562" duration="26000" />
       <workItem from="1661812767816" duration="1082000" />
       <workItem from="1661820539131" duration="8000" />
-      <workItem from="1662384962192" duration="12845000" />
+      <workItem from="1662384962192" duration="34071000" />
     </task>
     <servers />
   </component>
@@ -111,5 +120,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/app/data/perks.ts</url>
+          <line>227</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

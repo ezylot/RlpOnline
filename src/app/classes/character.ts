@@ -9,7 +9,7 @@ import {PerkAndLevel} from "./perk-and-level";
 import {DiceAndFixedAndLevel} from "./dice-and-fixed-and-level";
 import {Dice} from "./dice";
 import {Language} from "./language";
-import {PerkCategory} from "./perk";
+import {PerkCategory, PerkRequirement} from "./perk";
 import {getAllZodiacSigns} from "../data/zodiacsigns";
 import {getAllRaces} from "../data/races";
 import {getAllCultures} from "../data/cultures";
@@ -21,6 +21,8 @@ export class CharacterCaches {
     cultureCache: Culture | null = null;
     backgroundCache: Background | null = null;
     zodiacSignCache: ZodiacSign | null = null;
+    finalCharacterCache: Character | null = null;
+    unfulfilledPerkRequirements: { pal: PerkAndLevel; req: PerkRequirement[] }[] | null = null;
 }
 
 export class Character {
@@ -193,6 +195,25 @@ export class Character {
         return totalCpAdded;
     }
 
+    getUnfulfilledPerkRequirements(category: string | undefined = undefined) : PerkRequirement[] {
+        if(this.caches.unfulfilledPerkRequirements === null) {
+            let finalCharacter = this.getFinalCharacter();
+            this.caches.unfulfilledPerkRequirements = finalCharacter.perks
+                .flatMap(pal => ({ pal, req: pal.perk.requirements.filter(req => !req.hasRequirements(finalCharacter, pal.level)) }));
+        }
+
+        if(category !== undefined) {
+            let key = category as keyof typeof PerkCategory
+
+            return this.caches.unfulfilledPerkRequirements
+                .filter(r => r.pal.perk.internalCategory == PerkCategory[key])
+                .flatMap(value => value.req);
+        }
+
+        return this.caches.unfulfilledPerkRequirements
+            .flatMap(value => value.req);
+    }
+
     getRemainingCP() : number {
         let remainingCP = this.getTotalCP();
 
@@ -243,7 +264,9 @@ export class Character {
         return 1;
     }
 
-    getFinalCharacter() {
+    getFinalCharacter(): Readonly<Character> {
+        if(this.caches.finalCharacterCache !== null) return this.caches.finalCharacterCache;
+
         let finalChar: Character = this;
         for (let pal of this.perks.sort((a,b) => a.perk.priority - b.perk.priority)) {
             finalChar = Object.freeze(finalChar);
@@ -253,10 +276,11 @@ export class Character {
             }
             finalChar = pal.perk.applyEffect(finalChar, pal.level);
         }
-
-        return Object.freeze(finalChar);
+        this.caches.finalCharacterCache = Object.freeze(finalChar);
+        return this.caches.finalCharacterCache;
     }
 
+    // noinspection JSUnusedGlobalSymbols
     toJSON()  {
         let {
             caches,

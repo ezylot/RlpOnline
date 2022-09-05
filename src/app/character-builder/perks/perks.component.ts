@@ -28,8 +28,12 @@ export class PerksComponent extends CharacterInjectingComponent {
         super.ngOnInit();
 
         let filter = PerkCategory.BASE;
+        if(this.router.url.endsWith("perks")) filter = PerkCategory.BASE;
         if(this.router.url.endsWith("martial-perks")) filter = PerkCategory.MARTIAL;
+        if(this.router.url.endsWith("odem-perks")) filter = PerkCategory.ODEM;
+        if(this.router.url.endsWith("maneuvers")) filter = PerkCategory.MANEUVERS;
         if(this.router.url.endsWith("magical-perks")) filter = PerkCategory.MAGIC;
+        if(this.router.url.endsWith("divine-perks")) filter = PerkCategory.DIVINE;
         if(this.router.url.endsWith("skill-perks")) filter = PerkCategory.SKILL;
 
         this.character$.pipe(takeUntil(this.destroy$)).subscribe(char => {
@@ -75,22 +79,13 @@ export class PerksComponent extends CharacterInjectingComponent {
         this.character$.pipe(take(1)).subscribe(char => {
             let perks = Array.from(char.perks);
 
-            if(selectedPal.perk.requirements.length > 0) {
-
-                for (const neededPerk of selectedPal.perk.requirements) {
-                    let perk = perks.find(pal => pal.perk.name == neededPerk.perkname);
-                    if (perk === undefined) {
-                        this._snackBar.open(`You do not have the requirement: ${neededPerk.perkname} on level ${neededPerk.level}`);
-                        return;
-                    }
-                    if(perk.level < neededPerk.level) {
-                        this._snackBar.open(`Your perk ${neededPerk.perkname} needs to have level ${neededPerk.level}`);
-                        return;
-                    }
-                }
+            let missingRequirements = selectedPal.perk.requirements.filter(req => !req.hasRequirements(char, selectedPal.level));
+            if(missingRequirements.length > 0) {
+                this._snackBar.open(`You do not have the requirement: ${missingRequirements[0].toCustomString(selectedPal.level)}`);
+                return;
             }
 
-                if(selectedPal.perk.getCpCostForLevel(selectedPal.level, perks) > this.openCharacterPoints) {
+            if(selectedPal.perk.getCpCostForLevel(selectedPal.level, perks) > this.openCharacterPoints) {
                 this._snackBar.open("Perk is too expensive", "Warning");
                 return;
             }

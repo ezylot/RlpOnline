@@ -18,7 +18,7 @@ export abstract class CharacterInjectingComponent implements OnInit, OnDestroy {
     character$!: Observable<Readonly<Character>>;
 
     ngOnInit(): void {
-        this.character$ = this.characterStorageService.getLoadedCharacter();
+        this.character$ = this.characterStorageService.getCurrentCharacter();
     }
 
     ngOnDestroy(): void {

@@ -5,12 +5,34 @@
 <div class="perks-builder padded" *ngIf="character$ | async as character;">
 
     <div class="perk-category-selector">
-        <div><a routerLink="/character-builder/perks" routerLinkActive="active">Base Perks</a></div>
-        <div><a routerLink="/character-builder/martial-perks" routerLinkActive="active">Martial Perks</a></div>
-        <div><a routerLink="/character-builder/odem-perks" routerLinkActive="active">Odem Perks</a></div>
-        <div><a routerLink="/character-builder/magical-perks" routerLinkActive="active">Magic Perks</a></div>
-        <div><a routerLink="/character-builder/divine-perks" routerLinkActive="active">Divine Perks</a></div>
-        <div><a routerLink="/character-builder/skill-perks" routerLinkActive="active">Skill Perks</a></div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('BASE').length > 0">warning</i>
+            <a routerLink="/character-builder/perks" routerLinkActive="active">Base Perks</a>
+        </div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('MARTIAL').length > 0">warning_outline</i>
+            <a routerLink="/character-builder/martial-perks" routerLinkActive="active">Martial Perks</a>
+        </div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('ODEM').length > 0">warning</i>
+            <a routerLink="/character-builder/odem-perks" routerLinkActive="active">Odem Perks</a>
+        </div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('MANEUVERS').length > 0">warning</i>
+            <a routerLink="/character-builder/maneuvers" routerLinkActive="active">Maneuvers</a>
+        </div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('MAGIC').length > 0">warning</i>
+            <a routerLink="/character-builder/magical-perks" routerLinkActive="active">Magic Perks</a>
+        </div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('DIVINE').length > 0">warning</i>
+            <a routerLink="/character-builder/divine-perks" routerLinkActive="active">Divine Perks</a>
+        </div>
+        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
+                *ngIf="character.getUnfulfilledPerkRequirements('SKILL').length > 0">warning</i>
+            <a routerLink="/character-builder/skill-perks" routerLinkActive="active">Skill Perks</a>
+        </div>
     </div>
 
     <div class="perks-resources">
@@ -34,7 +56,7 @@
             <mat-expansion-panel-header>{{ pal.perk.name }} {{ pal.romanize() }} ({{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP)</mat-expansion-panel-header>
             <b class="perk-description">Cost: {{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP</b><br />
             <b class="perk-description">
-                Requirements: <span *ngFor="let req of pal.perk.requirements"> {{req.perkname}} : {{req.level}}</span>
+                Requirements: <span *ngFor="let req of pal.perk.requirements">{{ req.toCustomString(pal.level) }}</span>
             </b><br />
             <b class="perk-description">Tags: {{ pal.perk.tags }}</b><br />
 
@@ -56,7 +78,7 @@
                 <mat-expansion-panel-header>{{ pal.perk.name }} {{ pal.romanize() }} ({{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP)</mat-expansion-panel-header>
                 <b class="perk-description">Cost: {{ pal.perk.getCpCostForLevel(pal.level, character.perks) }}CP</b><br />
                 <b class="perk-description">
-                    Requirements: <span *ngFor="let req of pal.perk.requirements"> {{req.perkname}} : {{req.level}}</span>
+                    Requirements: <span *ngFor="let req of pal.perk.requirements">{{ req.toCustomString(pal.level) }}</span>
                 </b><br />
                 <b class="perk-description">Tags: {{ pal.perk.tags }}</b><br />
 
