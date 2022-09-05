@@ -24,6 +24,7 @@ import {AttributesComponent} from "./character-builder/attributes/attributes.com
 import { LanguagesComponent } from './character-builder/languages/languages.component';
 import { BackgroundsComponent } from './character-builder/backgrounds/backgrounds.component';
 import { CultureComponent } from './character-builder/culture/culture.component';
+import {SafeHtmlPipe} from "./services/SafeHtmlPipe";
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { CultureComponent } from './character-builder/culture/culture.component'
         LanguagesComponent,
         BackgroundsComponent,
         CultureComponent,
+        SafeHtmlPipe,
     ],
     imports: [
         BrowserModule,

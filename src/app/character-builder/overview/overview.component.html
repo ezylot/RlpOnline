@@ -106,7 +106,7 @@
             <div class="race-benefits">
                 <span class="border-overlapping-title">Race</span>
                 <div class="race-row" *ngFor="let raceTrait of character.getRace()?.traitsAsStrings; index as i">
-                    {{ raceTrait }}
+                    <span [innerHTML]="raceTrait | safeHtml"></span>
                 </div>
             </div>
             <div class="zodiacsign-benefits" *ngIf="character.getZodiacSign()">

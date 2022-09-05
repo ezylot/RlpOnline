@@ -7,6 +7,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {CharacterStorageService} from "./services/character-storage.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {delegate} from "tippy.js";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent extends CharacterInjectingComponent {
 
     availableCharacters!: Observable<Character[]>;
     downloadJsonHref!: SafeUrl;
+    tippyDelegateInstance: any | null = null;
 
     constructor(characterStorageService: CharacterStorageService,
                 _snackBar: MatSnackBar,
@@ -45,6 +47,18 @@ export class AppComponent extends CharacterInjectingComponent {
                 }
             },
         });
+
+        this.tippyDelegateInstance = delegate('body', {
+            target: '[data-tippy-content]',
+            allowHTML: true,
+            //theme: 'material',
+        });
+    }
+
+
+    override ngOnDestroy() {
+        super.ngOnDestroy();
+        if(this.tippyDelegateInstance) this.tippyDelegateInstance.destroy();
     }
 
     loadChar(id: string) {

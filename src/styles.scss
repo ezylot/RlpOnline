@@ -35,11 +35,17 @@ $rlp-playtest-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+@import "~tippy.js/dist/tippy.css";
+
 html, body {
     height: 100%;
     min-height: 100%;
     margin: 0;
 }
+
+#main {
+     background: url('assets/seamless_paper_texture.webp') repeat;
+ }
 
 a {
     text-decoration: none;

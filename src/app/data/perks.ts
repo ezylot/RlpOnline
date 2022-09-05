@@ -84,7 +84,7 @@ const PERKS: Perk[] = [
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
-        additionalData: null,
+        additionalData: { additionalFixedIncrease: 0 },
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
         applyEffect(character: Readonly<Character>, level) {
@@ -101,6 +101,7 @@ const PERKS: Perk[] = [
             }
 
             maxMana = maxMana.increaseFixed(intellect * level);
+            maxMana = maxMana.increaseFixed(this.additionalData.additionalFixedIncrease);
             charToEdit.maxMana = maxMana;
             return charToEdit;
         }

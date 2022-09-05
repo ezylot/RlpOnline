@@ -12,6 +12,7 @@ export interface Race {
     flavorText: string;
     textDescription: string;
     statboni: Stats;
+    conditionalStatbonis: { condition: string, statboni: Stats }[]
 
     traitsAsStrings: string[];
 
