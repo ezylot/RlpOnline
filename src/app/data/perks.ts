@@ -4,7 +4,8 @@ import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {Stats} from "../classes/stats";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 import {PerkAndLevel} from "../classes/perk-and-level";
-import {Background} from "../classes/background";
+import {cloneDeep} from "lodash";
+import {DeepReadonly} from "ts-essentials";
 
 export function getAllPerks() : Perk[] { return PERKS; }
 const PERKS: Perk[] = [
@@ -23,11 +24,11 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
+        applyEffect(character: DeepReadonly<Character>, level) {
+            let charToEdit = cloneDeep(character) as Character;
 
             let maxHealth = charToEdit.maxHealth;
-            let vitality = charToEdit.getFinalStats().vitality;
+            let vitality = charToEdit.stats.vitality;
 
             let enhancePoolPerk = charToEdit.perks.find(pal => pal.perk.name == "Enhance Pool: Health")
             if(enhancePoolPerk == undefined) {
@@ -55,11 +56,11 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
+        applyEffect(character: DeepReadonly<Character>, level) {
+            let charToEdit = cloneDeep(character) as Character;
 
             let maxStamina = charToEdit.maxStamina;
-            let strength = charToEdit.getFinalStats().strength;
+            let strength = character.stats.strength;
 
             let enhancePoolPerk = charToEdit.perks.find(pal => pal.perk.name == "Enhance Pool: Stamina")
             if(enhancePoolPerk == undefined) {
@@ -87,11 +88,11 @@ const PERKS: Perk[] = [
         additionalData: { additionalFixedIncrease: 0 },
         getCpCostForLevel: level => sumTo(level) * 50,
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
+        applyEffect(character: DeepReadonly<Character>, level) {
+            let charToEdit = cloneDeep(character) as Character;
 
             let maxMana = charToEdit.maxMana;
-            let intellect = charToEdit.getFinalStats().intellect;
+            let intellect = character.stats.intellect;
 
             let enhancePoolPerk = charToEdit.perks.find(pal => pal.perk.name == "Enhance Pool: Mana")
             if(enhancePoolPerk == undefined) {
@@ -146,8 +147,8 @@ const PERKS: Perk[] = [
             ][level + alreadyLevel - 1];
         },
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
+        applyEffect(character: DeepReadonly<Character>, level) {
+            let charToEdit = cloneDeep(character) as Character;
 
             // Dice increase is done in the correct Increase Perk
             switch(stat) {
@@ -210,17 +211,22 @@ const PERKS: Perk[] = [
             ][level + alreadyLevel - 1];
         },
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-            let charToEdit : Character = Object.setPrototypeOf({ ...character }, Character.prototype);
+        applyEffect(charToEdit: DeepReadonly<Character>, level) {
+            let clonedChar = cloneDeep(charToEdit) as Character;
+            let stats = charToEdit.stats.toStatNumberArray();
+            let indexToIncrease = [
+                "Strength",
+                "Vitality",
+                "Dexterity",
+                "Agility",
+                "Intellect",
+                "Perception",
+                "Empathy",
+            ].indexOf(stat);
+            stats[indexToIncrease] += level;
 
-
-            let newStats = { ...charToEdit.stats };
-            type statKey = keyof typeof newStats;
-
-            newStats[stat as statKey] = charToEdit.stats[stat as statKey] + level;
-
-            charToEdit.stats = Object.setPrototypeOf(newStats, Stats.prototype);
-            return charToEdit;
+            clonedChar.stats = Stats.fromArray(stats);
+            return clonedChar;
         }
     })),
     //</editor-fold>
@@ -237,16 +243,16 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [200, 800, 4500, 12500][level-1],
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-
-            let newModifier = new DiceAndFixedAndLevel(
+        applyEffect(character: DeepReadonly<Character>, level) {
+            let charToEdit = cloneDeep(character) as Character;
+            charToEdit.noticeModifier = new DiceAndFixedAndLevel(
                 character.noticeModifier.baseModifier,
                 character.noticeModifier.socialModifier.increaseFixed((level - 1) * 2 + character.getSocialLevel()),
                 character.noticeModifier.combatModifier.increaseFixed((level - 1) * 2 + character.getCombatLevel()),
                 character.noticeModifier.adventuringModifier.increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
-            )
+            );
 
-            return Object.setPrototypeOf({ ...character, noticeModifier: newModifier  }, Character.prototype);
+            return charToEdit;
         }
     },
     //</editor-fold>
@@ -263,16 +269,16 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [200, 800, 4500, 12500][level-1],
         getGoldCostForLevel: () => 0,
-        applyEffect(character: Readonly<Character>, level) {
-
-            let newModifier = new DiceAndFixedAndLevel(
+        applyEffect(character: DeepReadonly<Character>, level) {
+            let charToEdit = cloneDeep(character) as Character;
+            charToEdit.willpowerModifier = new DiceAndFixedAndLevel(
                 character.willpowerModifier.baseModifier,
                 character.willpowerModifier.socialModifier.increaseFixed((level - 1) * 2 + character.getSocialLevel()),
                 character.willpowerModifier.combatModifier.increaseFixed((level - 1) * 2 + character.getCombatLevel()),
                 character.willpowerModifier.adventuringModifier.increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
             )
 
-            return Object.setPrototypeOf({ ...character, noticeModifier: newModifier  }, Character.prototype);
+            return charToEdit;
         }
     },
     //</editor-fold>
@@ -291,7 +297,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [10, 100, 250, 500][level-1],
         getGoldCostForLevel: level => [0,100,250,600][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
 
             // TODO: check if current armor is none or cloth, or else return
             return getArmorModifiers(character, level);
@@ -311,7 +317,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [250, 550, 1200, 2500][level-1],
         getGoldCostForLevel: level => [250, 550, 1200, 2500][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
 
             // TODO: check if current armor is light, or else return
             return getArmorModifiers(character, level);
@@ -332,12 +338,14 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [500, 1000, 2500, 5000 ][level-1],
         getGoldCostForLevel: level => [500,1000,2500,5000][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
 
             // TODO: check if current armor is medium, or else return
-            let charToEdit = getArmorModifiers(character, level);
-            let newStatcap = Object.setPrototypeOf({ ...charToEdit.statcap, agility: 9, AG: 9 }, Stats.prototype);
-            return Object.setPrototypeOf({ ...charToEdit, statcap: newStatcap }, Character.prototype)
+            let charToEdit = cloneDeep(getArmorModifiers(character, level)) as Character;
+            let stats = charToEdit.statcap.toStatNumberArray();
+            stats[3] = 9;
+            charToEdit.statcap = Stats.fromArray(stats);
+            return charToEdit;
         }
     },
     //</editor-fold>
@@ -355,7 +363,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [2500,7500,10000,15000][level-1],
         getGoldCostForLevel: level => [2500,7500,10000,15000][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
 
             // TODO: check if current armor is heavy, or else return
             // TODO: all resistances
@@ -378,7 +386,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [10,200,700,1500][level-1],
         getGoldCostForLevel: level => [10,200,700,1500][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -398,7 +406,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
         getGoldCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -418,7 +426,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
         getGoldCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -438,7 +446,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 150, 550, 3000, 6000 ][level-1],
         getGoldCostForLevel: level => [ 150, 550, 3000, 6000 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -458,7 +466,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 100, 500, 2500, 7500 ][level-1],
         getGoldCostForLevel: level => [ 100, 500, 2500, 7500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -478,7 +486,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
         getGoldCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -498,7 +506,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
         getGoldCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -518,7 +526,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
         getGoldCostForLevel: level => [ 200, 800, 4500, 12500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -538,7 +546,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 80, 250, 1200, 4500 ][level-1],
         getGoldCostForLevel: level => [ 80, 250, 1200, 4500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -560,7 +568,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 50, 250, 750, 1500 ][level-1],
         getGoldCostForLevel: level => [ 50, 250, 750, 1500 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -582,7 +590,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 500, 1500, 5000, 10000 ][level-1],
         getGoldCostForLevel: level => [ 500, 1500, 5000, 10000 ][level-1],
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO: You add your level to attack and block rolls made with that weapon.
             return character;
         }
@@ -605,7 +613,7 @@ const PERKS: Perk[] = [
         additionalData: null,
         getCpCostForLevel: level => [ 100, 500, 2500, 7500 ][level-1],
         getGoldCostForLevel: () => 100,
-        applyEffect(character: Readonly<Character>, level) {
+        applyEffect(character: DeepReadonly<Character>, level) {
             // TODO:
             return character;
         }
@@ -1005,7 +1013,7 @@ const PERKS: Perk[] = [
     //</editor-fold>
 ];
 
-function skillCostCalculationFunction(level: number, allPerks: Readonly<PerkAndLevel[]>): number {
+function skillCostCalculationFunction(level: number, allPerks: DeepReadonly<PerkAndLevel[]>): number {
     let totalSkillLevels = allPerks
         .filter(p => p.perk.internalCategory == PerkCategory.SKILL)
         .reduce((adder, perk) => adder + perk.level, 0);
@@ -1017,7 +1025,7 @@ function recursiveSkillCostCalculator(current: number) : number {
     return current * 20 + recursiveSkillCostCalculator(current - 1);
 }
 
-function getArmorModifiers(character: Character, level: number) : Character {
+function getArmorModifiers(character: DeepReadonly<Character>, level: number) : DeepReadonly<Character> {
     let dodgeModifier = new DiceAndFixedAndLevel(
         character.dodgeModifier.baseModifier,
         character.dodgeModifier.socialModifier
@@ -1029,7 +1037,7 @@ function getArmorModifiers(character: Character, level: number) : Character {
         character.dodgeModifier.adventuringModifier
             .increaseDice(level - 1, 4)
             .increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
-    )
+    );
 
     let evadeModifier = new DiceAndFixedAndLevel(
         character.evadeModifier.baseModifier,
@@ -1042,9 +1050,12 @@ function getArmorModifiers(character: Character, level: number) : Character {
         character.evadeModifier.adventuringModifier
             .increaseDice(level - 1, 4)
             .increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
-    )
+    );
 
-    return Object.setPrototypeOf({ ...character, dodgeModifier: dodgeModifier, evadeModifier: evadeModifier  }, Character.prototype)
+    let charToEdit = cloneDeep(character) as Character;
+    charToEdit.dodgeModifier = dodgeModifier;
+    charToEdit.evadeModifier = evadeModifier;
+    return charToEdit;
 }
 
 function sumTo(val: number): number {

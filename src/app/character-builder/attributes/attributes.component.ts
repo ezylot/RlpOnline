@@ -15,6 +15,7 @@ import {
     VITALITY_TEXT,
     CONDITIONAL_STAT_TEXT,
 } from "../../data/texts";
+import {cloneDeep} from "lodash";
 
 @Component({
     selector: 'app-attributes',
@@ -42,20 +43,14 @@ export class AttributesComponent extends CharacterInjectingComponent{
 
     drop($event: CdkDragDrop<string[]>) {
         this.character$.pipe(take(1)).subscribe(char => {
+            let charToEdit = cloneDeep(char) as Character;
             let chosenOrder = this.stats.toStatNumberArray();
-
-            //let oldElement = chosenOrder[$event.previousIndex];
-            //let newElement = chosenOrder[$event.currentIndex];
-            //chosenOrder[$event.previousIndex] = newElement;
-            //chosenOrder[$event.currentIndex] = oldElement;
 
             moveItemInArray(chosenOrder, $event.previousIndex, $event.currentIndex);
 
             this.stats = Stats.fromArray(chosenOrder);
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({
-                ...char,
-                stats: this.stats
-            }, Character.prototype));
+            charToEdit.stats = this.stats;
+            this.characterStorageService.saveCharacter(charToEdit);
         });
 
     }

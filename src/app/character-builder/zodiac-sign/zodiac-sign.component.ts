@@ -4,6 +4,7 @@ import {Character} from "../../classes/character";
 import {ZodiacSign} from "../../classes/zodiacsign";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {getAllZodiacSigns} from "../../data/zodiacsigns";
+import {cloneDeep} from "lodash";
 
 @Component({
   selector: 'app-zodiac-sign',
@@ -16,7 +17,9 @@ export class ZodiacSignComponent extends CharacterInjectingComponent {
 
     changeZodiacSign(zodiacSign: ZodiacSign) {
         this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, zodiacSignName: zodiacSign.name }, Character.prototype));
+            let charToEdit = cloneDeep(char) as Character;
+            charToEdit.zodiacSignName = zodiacSign.name;
+            this.characterStorageService.saveCharacter(charToEdit);
         });
     }
 }

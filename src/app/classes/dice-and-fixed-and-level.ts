@@ -1,4 +1,7 @@
 import {DiceAndFixed} from "./dice-and-fixed";
+import {Mutable} from "../definitions";
+import {cloneDeep} from "lodash";
+import {DeepReadonly} from "ts-essentials";
 
 
 export class DiceAndFixedAndLevel {
@@ -6,18 +9,22 @@ export class DiceAndFixedAndLevel {
     public static EMPTY: DiceAndFixedAndLevel = new DiceAndFixedAndLevel(DiceAndFixed.EMPTY, DiceAndFixed.EMPTY, DiceAndFixed.EMPTY, DiceAndFixed.EMPTY);
 
     constructor(
-        public readonly baseModifier: DiceAndFixed,
-        public readonly combatModifier: DiceAndFixed,
-        public readonly adventuringModifier: DiceAndFixed,
-        public readonly socialModifier: DiceAndFixed,
+        public readonly baseModifier: DeepReadonly<DiceAndFixed>,
+        public readonly combatModifier: DeepReadonly<DiceAndFixed>,
+        public readonly adventuringModifier: DeepReadonly<DiceAndFixed>,
+        public readonly socialModifier: DeepReadonly<DiceAndFixed>,
     ) { }
 
     increaseDice(times: number, sides: number) : DiceAndFixedAndLevel {
-        return Object.setPrototypeOf({ ...this, baseModifier: this.baseModifier.increaseDice(times, sides) }, DiceAndFixedAndLevel.prototype);
+        let cloned = cloneDeep(this) as Mutable<DiceAndFixedAndLevel>;
+        cloned.baseModifier = this.baseModifier.increaseDice(times, sides);
+        return cloned;
     }
 
     increaseFixed(number: number) : DiceAndFixedAndLevel {
-        return Object.setPrototypeOf({ ...this, baseModifier: this.baseModifier.increaseFixed(number) }, DiceAndFixedAndLevel.prototype);
+        let cloned = cloneDeep(this) as Mutable<DiceAndFixedAndLevel>;
+        cloned.baseModifier = this.baseModifier.increaseFixed(number);
+        return cloned;
     }
 
     average() : number {

@@ -4,6 +4,7 @@ import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Culture} from "../../classes/culture";
 import {getAllCultures} from "../../data/cultures";
+import {cloneDeep} from "lodash";
 
 @Component({
     selector: 'app-culture',
@@ -16,7 +17,9 @@ export class CultureComponent extends CharacterInjectingComponent {
 
     changeCulture(culture: Culture) {
         this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, cultureName: culture.name }, Character.prototype));
+            let charToEdit = cloneDeep(char) as Character;
+            charToEdit.cultureName = culture.name;
+            this.characterStorageService.saveCharacter(charToEdit);
         });
     }
 }

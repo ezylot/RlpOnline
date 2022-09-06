@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Observable, Subject, takeUntil} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {CharacterStorageService} from "../services/character-storage.service";
 import {Character} from "../classes/character";
 import {MatSnackBar} from "@angular/material/snack-bar";

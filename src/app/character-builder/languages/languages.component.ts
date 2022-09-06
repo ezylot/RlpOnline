@@ -4,6 +4,7 @@ import {take, takeUntil} from "rxjs";
 import {Character} from "../../classes/character";
 import {Language} from "../../classes/language";
 import {getAllLanguages} from "../../data/languages";
+import {cloneDeep} from "lodash";
 
 @Component({
   selector: 'app-languages',
@@ -53,27 +54,27 @@ export class LanguagesComponent extends CharacterInjectingComponent {
 
     selectLanguage(selectedLanguage: Language) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let languages = Array.from(char.languagesInLearnOrder);
+            let charToEdit = cloneDeep(char) as Character;
 
-            if(selectedLanguage.getCpCost(languages) > this.openCharacterPoints) {
+            if(selectedLanguage.getCpCost(charToEdit.languagesInLearnOrder) > this.openCharacterPoints) {
                 this._snackBar.open("Language is too expensive", "Warning");
                 return;
             }
 
-            languages.push(selectedLanguage);
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, languagesInLearnOrder: languages}, Character.prototype));
+            charToEdit.languagesInLearnOrder.push(selectedLanguage);
+            this.characterStorageService.saveCharacter(charToEdit);
         });
     }
 
     deselectLanguage(selectedLanguage: Language) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let languages = Array.from(char.languagesInLearnOrder);
+            let charToEdit = cloneDeep(char) as Character;
 
-            let existingIndex = languages.findIndex(l => l.name == selectedLanguage.name);
+            let existingIndex = charToEdit.languagesInLearnOrder.findIndex(l => l.name == selectedLanguage.name);
             if(existingIndex === -1) { throw new Error("Deselected a language the user doesnt have"); }
 
-            languages.splice(existingIndex, 1)
-            this.characterStorageService.saveCharacter(Object.setPrototypeOf({ ...char, languagesInLearnOrder: languages}, Character.prototype));
+            charToEdit.languagesInLearnOrder.splice(existingIndex, 1)
+            this.characterStorageService.saveCharacter(charToEdit);
         });
     }
 

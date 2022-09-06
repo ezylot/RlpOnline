@@ -14,6 +14,9 @@ import {getAllZodiacSigns} from "../data/zodiacsigns";
 import {getAllRaces} from "../data/races";
 import {getAllCultures} from "../data/cultures";
 import {getAllBackgrounds} from "../data/backgrounds";
+import {cloneDeep} from "lodash";
+import {deepFreeze} from "../definitions";
+import {DeepReadonly} from "ts-essentials";
 
 // TODO: add perk cache
 export class CharacterCaches {
@@ -68,6 +71,7 @@ export class Character {
     adventuringXP: number = 0;
 
     constructor(readonly id: string, public readonly createdTime: number, public updatedTime: number) {
+        deepFreeze(this, [ "caches" ])
     }
 
     getRace() : Race | null {
@@ -114,17 +118,10 @@ export class Character {
         return o;
     }
 
-    getFinalStats() : Stats {
-        let chosenStats = this.stats.toStatNumberArray();
-        let raceStatBonis = this.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0);
-
-        return Stats.fromArray(chosenStats.map(function(stat, i) {
-            return stat + raceStatBonis[i];
-        }));
-    }
 
     getTotalCP() {
-        return this.startingCP + this.getCPFromLevel() + (this.getRace()?.cpBonus || 0);
+        let finalCharacter = this.getFinalCharacter();
+        return finalCharacter.startingCP + this.getCPFromLevel() + (this.getRace()?.cpBonus || 0);
     }
 
     getFinalCombatStats() {
@@ -198,7 +195,7 @@ export class Character {
     getUnfulfilledPerkRequirements(category: string | undefined = undefined) : PerkRequirement[] {
         if(this.caches.unfulfilledPerkRequirements === null) {
             let finalCharacter = this.getFinalCharacter();
-            this.caches.unfulfilledPerkRequirements = finalCharacter.perks
+            this.caches.unfulfilledPerkRequirements = (finalCharacter.perks as PerkAndLevel[])
                 .flatMap(pal => ({ pal, req: pal.perk.requirements.filter(req => !req.hasRequirements(finalCharacter, pal.level)) }));
         }
 
@@ -264,19 +261,28 @@ export class Character {
         return 1;
     }
 
-    getFinalCharacter(): Readonly<Character> {
+    getFinalCharacter(): DeepReadonly<Character> {
+
         if(this.caches.finalCharacterCache !== null) return this.caches.finalCharacterCache;
 
-        let finalChar: Character = this;
+        let charCopy: Character = cloneDeep(this);
+
+        let chosenStats = charCopy.stats.toStatNumberArray();
+        let raceStatBonis = charCopy.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0);
+
+        charCopy.stats = Stats.fromArray(chosenStats.map(function(stat, i) {
+            return stat + raceStatBonis[i];
+        }));
+
         for (let pal of this.perks.sort((a,b) => a.perk.priority - b.perk.priority)) {
-            finalChar = Object.freeze(finalChar);
             let race = this.getRace();
             if(race !== null) {
                 pal = race.modifyPerkWhenLearning(pal);
             }
-            finalChar = pal.perk.applyEffect(finalChar, pal.level);
+            charCopy = pal.perk.applyEffect(deepFreeze(cloneDeep(charCopy)), pal.level) as Character;
         }
-        this.caches.finalCharacterCache = Object.freeze(finalChar);
+
+        this.caches.finalCharacterCache = charCopy;
         return this.caches.finalCharacterCache;
     }
 

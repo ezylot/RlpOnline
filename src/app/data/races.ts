@@ -3,6 +3,7 @@ import {LevelUpBonus} from "../classes/levelupbonus";
 import {Stats} from "../classes/stats";
 import {ANIMALS} from "./languages";
 import {PerkAndLevel} from "../classes/perk-and-level";
+import {cloneDeep} from "lodash";
 
 export function getAllRaces() : Race[] { return RACES; }
 const RACES: Race[] = [
@@ -437,16 +438,10 @@ const RACES: Race[] = [
             if(pal.perk.name == "Increase Mana") {
                 let oldAdditionalFixedIncrease = pal.perk.additionalData.additionalFixedIncrease;
                 let newAdditionalFixedIncrease = oldAdditionalFixedIncrease + 2 * pal.level;
-                return Object.setPrototypeOf({
-                    level: pal.level,
-                    perk: {
-                        ...pal.perk,
-                        additionalData: {
-                            ...pal.perk.additionalData,
-                            additionalFixedIncrease: newAdditionalFixedIncrease
-                        }
-                    }
-                }, PerkAndLevel.prototype);
+
+                let cloned = cloneDeep(pal) as PerkAndLevel;
+                cloned.perk.additionalData.additionalFixedIncrease = newAdditionalFixedIncrease;
+                return cloned;
             }
             return pal;
         },

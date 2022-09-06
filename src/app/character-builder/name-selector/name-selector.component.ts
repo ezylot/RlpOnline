@@ -3,6 +3,7 @@ import {Character} from "../../classes/character";
 import {take, takeUntil} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {ADVENTURING_TEXT, COMBATLEVEL_TEXT, SOCIALLEVEL_TEXT} from "../../data/texts";
+import {cloneDeep} from "lodash";
 
 @Component({
     selector: 'app-name-selector',
@@ -37,31 +38,31 @@ export class NameSelectorComponent extends CharacterInjectingComponent{
         let newSocialXP = this.socialXP;
 
         this.character$.pipe(take(1)).subscribe(char => {
-            let charCopy = Object.setPrototypeOf({
-                ...char,
-                name: newName,
-                combatXP: newCombatXP,
-                adventuringXP: newAdventuringXP,
-                socialXP: newSocialXP,
-            }, Character.prototype);
+            let charToEdit = cloneDeep(char) as Character;
 
-            if (charCopy.name === "") {
+            charToEdit.name = newName;
+            charToEdit.combatXP = newCombatXP;
+            charToEdit.adventuringXP = newAdventuringXP;
+            charToEdit.socialXP = newSocialXP;
+
+            if (charToEdit.name === "") {
                 this._snackBar.open("Name must not be empty");
                 return
             }
-            if (charCopy.combatXP < 0) {
+            if (charToEdit.combatXP < 0) {
                 this._snackBar.open("combatXP cannot be negative");
                 return;
             }
-            if (charCopy.adventuringXP < 0) {
+            if (charToEdit.adventuringXP < 0) {
                 this._snackBar.open("adventuringXP cannot be negative");
                 return;
             }
-            if (charCopy.socialXP < 0) {
+            if (charToEdit.socialXP < 0) {
                 this._snackBar.open("socialXP cannot be negative");
                 return;
             }
-            this.characterStorageService.saveCharacter(charCopy);
+
+            this.characterStorageService.saveCharacter(charToEdit);
         });
     }
 }

@@ -84,13 +84,13 @@
 
         <div class="statlist">
             <h2>Final Stats</h2>
-            <div class="stat boxed-stat stat-strength">{{character.getFinalStats().strength}}</div>
-            <div class="stat boxed-stat stat-vitality">{{character.getFinalStats().vitality}}</div>
-            <div class="stat boxed-stat stat-dexterity">{{character.getFinalStats().dexterity}}</div>
-            <div class="stat boxed-stat stat-agility">{{character.getFinalStats().agility}}</div>
-            <div class="stat boxed-stat stat-intellect">{{character.getFinalStats().intellect}}</div>
-            <div class="stat boxed-stat stat-perception">{{character.getFinalStats().perception}}</div>
-            <div class="stat boxed-stat stat-empathy">{{character.getFinalStats().empathy}}</div>
+            <div class="stat boxed-stat stat-strength">{{character.getFinalCharacter().stats.strength}}</div>
+            <div class="stat boxed-stat stat-vitality">{{character.getFinalCharacter().stats.vitality}}</div>
+            <div class="stat boxed-stat stat-dexterity">{{character.getFinalCharacter().stats.dexterity}}</div>
+            <div class="stat boxed-stat stat-agility">{{character.getFinalCharacter().stats.agility}}</div>
+            <div class="stat boxed-stat stat-intellect">{{character.getFinalCharacter().stats.intellect}}</div>
+            <div class="stat boxed-stat stat-perception">{{character.getFinalCharacter().stats.perception}}</div>
+            <div class="stat boxed-stat stat-empathy">{{character.getFinalCharacter().stats.empathy}}</div>
         </div>
 
         <ng-container *ngFor="let conditionalStat of character.getRace()?.conditionalStatbonis">
@@ -108,31 +108,31 @@
             <div class="statlist" [attr.data-tippy-content]="conditionalStatsWarning">
                 <h2>{{ conditionalStat.condition }}</h2>
                 <div [class.bold]="conditionalStat.statboni.strength !== 0" class="stat boxed-stat stat-strength">
-                    {{character.getFinalStats().strength + conditionalStat.statboni.strength}}
+                    {{character.getFinalCharacter().stats.strength + conditionalStat.statboni.strength}}
                     {{conditionalStat.statboni.strength !== 0 ? '*' : '' }}
                 </div>
                 <div [class.bold]="conditionalStat.statboni.vitality !== 0" class="stat boxed-stat stat-vitality">
-                    {{character.getFinalStats().vitality + conditionalStat.statboni.vitality}}
+                    {{character.getFinalCharacter().stats.vitality + conditionalStat.statboni.vitality}}
                     {{conditionalStat.statboni.vitality !== 0 ? '*' : '' }}
                 </div>
                 <div [class.bold]="conditionalStat.statboni.dexterity !== 0" class="stat boxed-stat stat-dexterity">
-                    {{character.getFinalStats().dexterity + conditionalStat.statboni.dexterity}}
+                    {{character.getFinalCharacter().stats.dexterity + conditionalStat.statboni.dexterity}}
                     {{conditionalStat.statboni.dexterity !== 0 ? '*' : '' }}
                 </div>
                 <div [class.bold]="conditionalStat.statboni.agility !== 0" class="stat boxed-stat stat-agility">
-                    {{character.getFinalStats().agility + conditionalStat.statboni.agility}}
+                    {{character.getFinalCharacter().stats.agility + conditionalStat.statboni.agility}}
                     {{conditionalStat.statboni.agility !== 0 ? '*' : '' }}
                 </div>
                 <div [class.bold]="conditionalStat.statboni.intellect !== 0" class="stat boxed-stat stat-intellect">
-                    {{character.getFinalStats().intellect + conditionalStat.statboni.intellect}}
+                    {{character.getFinalCharacter().stats.intellect + conditionalStat.statboni.intellect}}
                     {{conditionalStat.statboni.intellect !== 0 ? '*' : '' }}
                 </div>
                 <div [class.bold]="conditionalStat.statboni.perception !== 0" class="stat boxed-stat stat-perception">
-                    {{character.getFinalStats().perception + conditionalStat.statboni.perception}}
+                    {{character.getFinalCharacter().stats.perception + conditionalStat.statboni.perception}}
                     {{conditionalStat.statboni.perception !== 0 ? '*' : '' }}
                 </div>
                 <div [class.bold]="conditionalStat.statboni.empathy !== 0" class="stat boxed-stat stat-empathy">
-                    {{character.getFinalStats().empathy + conditionalStat.statboni.empathy}}
+                    {{character.getFinalCharacter().stats.empathy + conditionalStat.statboni.empathy}}
                     {{conditionalStat.statboni.empathy !== 0 ? '*' : '' }}
                 </div>
             </div>

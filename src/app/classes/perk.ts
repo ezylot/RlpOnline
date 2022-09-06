@@ -1,5 +1,6 @@
 import {Character} from "./character";
 import {PerkAndLevel} from "./perk-and-level";
+import {DeepReadonly} from "ts-essentials";
 
 export enum PerkCategory {
     BASE,
@@ -21,9 +22,9 @@ export interface Perk {
     additionalData: any;
     priority: number;
     internalCategory: PerkCategory;
-    getCpCostForLevel(level: number, allPerks: Readonly<PerkAndLevel[]>): number;
-    getGoldCostForLevel(level: number, allPerks: Readonly<PerkAndLevel[]>): number;
-    applyEffect(character: Readonly<Character>, level: number): Character;
+    getCpCostForLevel(level: number, allPerks: DeepReadonly<PerkAndLevel[]>): number;
+    getGoldCostForLevel(level: number, allPerks: DeepReadonly<PerkAndLevel[]>): number;
+    applyEffect(character: DeepReadonly<Character>, level: number): DeepReadonly<Character>;
 }
 
 export class PerkRequirement {
@@ -31,7 +32,7 @@ export class PerkRequirement {
                 public readonly perkname?: string,
                 public readonly attributeName?: string) { }
 
-    public hasRequirements(char: Character, wantedLevel: number): boolean {
+    public hasRequirements(char: DeepReadonly<Character>, wantedLevel: number): boolean {
         if(this.perkname) {
             let perk = char.perks.find(pal => pal.perk.name == this.perkname)
             return (perk != undefined && perk.level >= this.getRequiredLevelForWantedLevel(wantedLevel));
