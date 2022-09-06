@@ -605,8 +605,10 @@ const PERKS: Perk[] = [
         requirements: [
             new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "DE"),
         ],
-        tags: [],
-        description: "",
+        tags: [ "Maneuver", "Active", "Repeatable" ],
+        description: "When making a weapon attack based on Dexterity, you can increase the AP cost of the attack by " +
+            "up to 3. If you do, the attack roll and the damage are increased by this value. " +
+            "If the attack is ranged, this increase is doubled.",
         startingLevel: 0,
         priority: 10,
         internalCategory: PerkCategory.MANEUVERS,
@@ -619,6 +621,171 @@ const PERKS: Perk[] = [
         }
     },
     //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Brutal Attack">
+    {
+        groupName: "Brutal Attack",
+        name: "Brutal Attack",
+        requirements: [
+            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "ST"),
+        ],
+        tags: [ "Maneuver", "Active", "Repeatable" ],
+        description: "When making a melee weapon attack based on Strength, you can pay 5 Stamina and reduce your " +
+            "attack roll by up to 3 and add that value to the damage. For example, if your weapon would deal " +
+            "2D4 damage and you had 8 Strength, you could pay 5 Stamina and reduce your attack roll by up " +
+            "to 2, changing the weapon’s damage to 2d4+2. " +
+            "When using this weapon with a two-handed weapon attack, the damage increase is doubled.",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 100, 500, 2500, 7500 ][level-1],
+        getGoldCostForLevel: () => 100,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Elegant Attack">
+    {
+        groupName: "Elegant Attack",
+        name: "Elegant Attack",
+        requirements: [
+            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "AG"),
+        ],
+        tags: [ "Maneuver", "Active", "Repeatable" ],
+        description: "When making a weapon attack based on Agility, you can pay up to 3 Stamina and increase the " +
+            "weapon damage by that number. This damage increase is doubled for unarmed strikes.",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 100, 500, 2500, 7500 ][level-1],
+        getGoldCostForLevel: () => 100,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Feint Attack">
+    {
+        groupName: "Feint Attack",
+        name: "Feint Attack",
+        requirements: [ ],
+        tags: [ "Maneuver", "Active" ],
+        description: "You can spend 2 additional AP to create an opening in your opponent’s defenses, to be able to " +
+            "hit easier. When making a melee weapon attack, make an Empathy check adding bonuses for deception, " +
+            "contested by the defender’s Notice and Perception check (adding bonuses for recognizing " +
+            "deceptions). If your Empathy check succeeds, the defender has to take the hit. This counts for the " +
+            "prerequisite of a Sneak Attack. If you don’t succeed, the defender can react as usual",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 200 ][level-1],
+        getGoldCostForLevel: () => 150,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Provoke">
+    {
+        groupName: "Provoke",
+        name: "Provoke",
+        requirements: [ ],
+        tags: [ "Maneuver", "Active", "Repeatable" ],
+        description: "You can spend 2 AP to provoke an Opponent to attack you. Make an Empathy check, contested " +
+            "by this opponent’s Perception check. If you succeed, this opponent deals half damage (round up) " +
+            "against any creature that isn’t you for their next 1D6 attacks, with an exception to attacks that " +
+            "deal area-based damage effects that includes you.",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 200, 500, 2500, 7500 ][level-1],
+        getGoldCostForLevel: () => 150,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Rage">
+    {
+        groupName: "Rage",
+        name: "Rage",
+        requirements: [ ],
+        tags: [ "Passive", "Repeatable" ],
+        description: "You can enter a state of rage as part of an action. While in rage, your Strength is increased by " +
+            "+1, and your strength-based attacks deal +1 damage, or +2 damage if they are done with a " +
+            "two-handed weapon. Additionally, you gain an amount of temporary Hit Points equal to your Vitality. " +
+            "While in rage, you lose one Stamina per Action Point that you spend. While in rage, you are " +
+            "immune to becoming Exhausted or Heavily Exhausted. After you have raged, you become Heavily " +
+            "Exhausted for 1 hour. While heavily exhausted in this manner, your Stamina are reduced to 1⁄10 " +
+            "of your maximum stamina. You begin regaining stamina normally after one hour." +
+            " Further levels give different effect, refer for that to the RLP for now", // TODO
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 100, 250, 750, 1500, 3500, 7500 ][level-1],
+        getGoldCostForLevel: () => 0,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Sneak Attack">
+    {
+        groupName: "Sneak Attack",
+        name: "Sneak Attack",
+        requirements: [ ],
+        tags: [ "Maneuver", "Active", "Repeatable" ],
+        description: "You can spend 4 Stamina while making a melee weapon attack based on DE or AG, targeting a " +
+            "creature’s weak spot. Enemies immune to critical hits are immune to this effect. You can only do " +
+            "a sneak attack if the target hasn’t seen you or is unable to react to your attack. You deal damage " +
+            "as if you had already hit and as if the target was not wearing any armor, so the target’s armor " +
+            "reduction is bypassed and you deal 1d6 additional damage.",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 100, 250, 550, 1000, 1700, 2450 ][level-1],
+        getGoldCostForLevel: () => 100,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Trip Attack">
+    {
+        groupName: "Trip Attack",
+        name: "Trip Attack",
+        requirements: [ ],
+        tags: [ "Maneuver", "Active" ],
+        description: "When making a melee weapon attack with a weapon you are proficient with, if that attack deals " +
+            "at least 1 damage, you can spend 10 Stamina to make an additional trip attempt (You don’t have to pay the 5 usual Stamina for that attempt).",
+        startingLevel: 0,
+        priority: 10,
+        internalCategory: PerkCategory.MANEUVERS,
+        additionalData: null,
+        getCpCostForLevel: level => [ 1000 ][level-1],
+        getGoldCostForLevel: () => 350,
+        applyEffect(character: DeepReadonly<Character>, level) {
+            // TODO:
+            return character;
+        }
+    },
+    //</editor-fold>
+
+
+
+
     // TODO: Odem Perks
     // TODO: Magic Perks
     // TODO: Divine Perks

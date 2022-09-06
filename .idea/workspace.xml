@@ -3,20 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/backgrounds/backgrounds.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/backgrounds/backgrounds.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/culture/culture.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/culture/culture.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/languages/languages.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/name-selector/name-selector.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/name-selector/name-selector.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/perks/perks.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/zodiac-sign/zodiac-sign.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/dice-and-fixed-and-level.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/dice-and-fixed-and-level.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/races.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/races.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +82,7 @@
       <workItem from="1661342901562" duration="26000" />
       <workItem from="1661812767816" duration="1082000" />
       <workItem from="1661820539131" duration="8000" />
-      <workItem from="1662384962192" duration="42781000" />
+      <workItem from="1662384962192" duration="43812000" />
     </task>
     <servers />
   </component>
