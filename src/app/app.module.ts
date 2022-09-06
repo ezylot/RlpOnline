@@ -9,7 +9,6 @@ import {PerksComponent} from './character-builder/perks/perks.component';
 import {EquipmentComponent} from './character-builder/equipment/equipment.component';
 import {NameSelectorComponent} from "./character-builder/name-selector/name-selector.component";
 import {RouterModule} from "@angular/router";
-import {WelcomeComponent} from './welcome/welcome.component';
 import {NavigationComponent} from './character-builder/navigation/navigation.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -37,7 +36,6 @@ import { ItemsComponent } from './character-builder/items/items.component';
         ZodiacSignComponent,
         PerksComponent,
         EquipmentComponent,
-        WelcomeComponent,
         NavigationComponent,
         OverviewComponent,
         QuickOverviewBarComponent,
