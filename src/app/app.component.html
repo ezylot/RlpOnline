@@ -4,14 +4,29 @@
         <h3>Release 37</h3>
         <div class="nav-circles">
             <div class="circled-outline">
-                <span class="material-icons-outlined new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">person_add</span>
+                <span class="new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">
+                    <i data-feather="user-plus"></i>
+                </span>
             </div>
             <div class="circled-outline">
                 <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
-                <span class="material-icons-outlined" (click)="fileInput.click()" [matTooltip]="'Upload saved character'">upload_file</span>
+                <span (click)="fileInput.click()" [matTooltip]="'Upload saved character'">
+                    <i data-feather="upload"></i>
+                </span>
             </div>
             <div class="circled-outline">
-                <a class="material-icons-outlined" [href]="downloadJsonHref" [matTooltip]="'Save current character as file'" download="{{character.name}}">save</a>
+                <a [href]="downloadJsonHref" [matTooltip]="'Save current character as file'" download="{{character.name}}">
+                    <i data-feather="download"></i>
+                </a>
+            </div>
+            <div class="circled-outline" (click)="toggleDarkmode()">
+                <span [matTooltip]="'Toggle darkmode'" *ngIf="!this.isDarkMode" >
+                    <i data-feather="sun"></i>
+                </span>
+
+                <span [matTooltip]="'Toggle darkmode'" *ngIf="this.isDarkMode">
+                    <i data-feather="moon"></i>
+                </span>
             </div>
         </div>
 

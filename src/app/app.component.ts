@@ -16,6 +16,7 @@ import {delegate} from "tippy.js";
 })
 export class AppComponent extends CharacterInjectingComponent {
 
+    isDarkMode: boolean = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     availableCharacters!: Observable<Character[]>;
     downloadJsonHref!: SafeUrl;
     tippyDelegateInstance: any | null = null;
@@ -79,5 +80,11 @@ export class AppComponent extends CharacterInjectingComponent {
 
     uploadFile(event$: any) {
         event$.target.files.item(0)?.text().then((txt: string) => this.characterStorageService.import(txt));
+    }
+
+    toggleDarkmode() {
+        this.isDarkMode = !this.isDarkMode;
+        if(this.isDarkMode) document.body.classList.add("dark");
+        else document.body.classList.remove("dark");
     }
 }

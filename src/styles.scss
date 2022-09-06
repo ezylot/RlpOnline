@@ -75,8 +75,8 @@ b {
 }
 
 input[type=text], input[type=number] {
-    padding: 10px 0 10px 15px;
-    border:0;
+    padding: 5px;
+    border: 1px solid #d2d2d2;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);margin-top: 4px;
 }
 
@@ -110,18 +110,24 @@ input[type=number] {
     user-select: none;
 }
 
-@media (prefers-color-scheme: dark) {
+@mixin darkmode {
+    // $dark-background: rgb(61, 60, 72);
+    // $dark-background-fore: rgb(77, 75, 89);
+
+    $dark-background: rgb(61, 60, 72);
+    $dark-background-fore: rgb(77, 75, 89);
+
     img {
         filter: brightness(.8) contrast(1.2);
     }
 
     .border-overlapping-title {
-        background-color: rgb(61, 60, 72) !important;
+        background-color: $dark-background !important;
     }
 
     .padded {
-        background-color: rgb(61, 60, 72);
-        border: 1px solid rgb(61, 60, 72);
+        background-color: $dark-background;
+        border: 1px solid $dark-background;
 
         *, a {
             color: #cecece;
@@ -129,14 +135,30 @@ input[type=number] {
     }
 
     #main {
-        background: url('assets/seamless_paper_texture_dark.webp') repeat;
+        background: url('assets/seamless_paper_texture_dark.webp') repeat, #696760;
     }
 
     .mat-expansion-panel {
-        background-color: rgb(77, 75, 89);
+        background-color: $dark-background-fore;
     }
 
     .boxed-stat {
-        background-color: rgb(77, 75, 89) !important;
+        background-color: $dark-background-fore !important;
+    }
+
+    input {
+        background: rgb(43, 42, 51);
+        border: 1px solid #696969;
     }
 }
+
+body.dark {
+    @include darkmode;
+}
+
+@media (prefers-color-scheme: dark) {
+    @include darkmode
+}
+
+
+

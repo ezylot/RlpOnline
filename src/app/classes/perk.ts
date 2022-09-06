@@ -40,7 +40,7 @@ export class PerkRequirement {
 
         if(this.attributeName) {
             // @ts-ignore
-            let attr = char.getFinalStats()[this.attributeName] as number;
+            let attr = char.getFinalCharacter().stats[this.attributeName] as number;
             return (attr != undefined && attr >= this.getRequiredLevelForWantedLevel(wantedLevel));
         }
 
