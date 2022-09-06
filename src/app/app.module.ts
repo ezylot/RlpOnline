@@ -26,6 +26,7 @@ import { BackgroundsComponent } from './character-builder/backgrounds/background
 import { CultureComponent } from './character-builder/culture/culture.component';
 import {SafeHtmlPipe} from "./services/SafeHtmlPipe";
 import {FeatherIconDirective} from "./services/feather-icon.directive";
+import { ItemsComponent } from './character-builder/items/items.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import {FeatherIconDirective} from "./services/feather-icon.directive";
         CultureComponent,
         SafeHtmlPipe,
         FeatherIconDirective,
+        ItemsComponent,
     ],
     imports: [
         BrowserModule,

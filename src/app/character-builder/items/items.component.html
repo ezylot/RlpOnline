@@ -1,0 +1,33 @@
+<character-builder-navigation></character-builder-navigation>
+<quick-overview-bar></quick-overview-bar>
+
+
+<div class="items-builder padded" *ngIf="character$ | async as character;">
+
+    <div class="items-category-selector">
+        <div><a routerLink="/character-builder/items/mundane-objects" routerLinkActive="active">Mundane Objects</a></div>
+        <div><a routerLink="/character-builder/items/consumables" routerLinkActive="active">Consumables</a></div>
+        <div><a routerLink="/character-builder/items/containers" routerLinkActive="active">Containers</a></div>
+        <div><a routerLink="/character-builder/items/potions" routerLinkActive="active">Potions</a></div>
+    </div>
+
+    <div>
+        <span class="searchbar"> Search: <input (input)="search($event)"></span>
+    </div>
+
+
+    <div class="item-row" *ngFor="let item of availableItems; index as i">
+        <div class="select-box" (click)="changeItems(item)">
+            <span class="material-icons-outlined" *ngIf="character.hasItems(item.name)">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="!character.hasItems(item.name)">circle_outline</span>
+        </div>
+
+        <mat-expansion-panel class="culture-expandable">
+            <mat-expansion-panel-header>{{ item.name }}</mat-expansion-panel-header>
+            TBA
+        </mat-expansion-panel>
+    </div>
+
+</div>
+
+

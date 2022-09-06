@@ -1,4 +1,40 @@
 <character-builder-navigation></character-builder-navigation>
 <quick-overview-bar></quick-overview-bar>
-<p>Too lazy to add all the equipment yet</p>
+
+
+<div class="equipment-builder padded" *ngIf="character$ | async as character;">
+
+    <div class="equipment-category-selector">
+        <div><a routerLink="/character-builder/armor/armor" routerLinkActive="active">Armor</a></div>
+        <div><a routerLink="/character-builder/armor/simple-weapon" routerLinkActive="active">Simple Weapons</a></div>
+        <div><a routerLink="/character-builder/armor/regular-weapon" routerLinkActive="active">Regular Weapons</a></div>
+        <div><a routerLink="/character-builder/armor/unusual-weapon" routerLinkActive="active">Unusual Weapons</a></div>
+        <div><a routerLink="/character-builder/armor/shields" routerLinkActive="active">Shields</a></div>
+        <div><a routerLink="/character-builder/armor/hat" routerLinkActive="active">Hats and Helmets</a></div>
+        <div><a routerLink="/character-builder/armor/gloves" routerLinkActive="active">Gloves and Gauntlets</a></div>
+        <div><a routerLink="/character-builder/armor/boots" routerLinkActive="active">Boots and Shoes</a></div>
+        <div><a routerLink="/character-builder/armor/rings" routerLinkActive="active">Rings</a></div>
+        <div><a routerLink="/character-builder/armor/necklaces" routerLinkActive="active">Necklaces and Amulets</a></div>
+        <div><a routerLink="/character-builder/armor/belts" routerLinkActive="active">Belts</a></div>
+    </div>
+
+    <div>
+        <span class="searchbar"> Search: <input (input)="search($event)"></span>
+    </div>
+
+
+    <div class="equipment-row" *ngFor="let equipment of availableEquipment; index as i">
+        <div class="select-box" (click)="changeEquipment(equipment)">
+            <span class="material-icons-outlined" *ngIf="character.hasEquipment(equipment.name)">check_circle_outline</span>
+            <span class="material-icons-outlined" *ngIf="!character.hasEquipment(equipment.name)">circle_outline</span>
+        </div>
+
+        <mat-expansion-panel class="culture-expandable">
+            <mat-expansion-panel-header>{{ equipment.name }}</mat-expansion-panel-header>
+            TBA
+        </mat-expansion-panel>
+    </div>
+
+</div>
+
 

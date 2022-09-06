@@ -7,8 +7,17 @@ import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
   styleUrls: ['./equipment.component.scss']
 })
 export class EquipmentComponent extends CharacterInjectingComponent{
+    availableEquipment: { name: string }[] = [];
 
     override ngOnInit() {
         super.ngOnInit();
+    }
+
+    search($event: Event) {
+
+    }
+
+    changeEquipment(equipment: { name: string }) {
+
     }
 }

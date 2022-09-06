@@ -74,6 +74,14 @@ export class Character {
         deepFreeze(this, [ "caches" ])
     }
 
+    hasEquipment(equipmentName: string): boolean {
+        return true;
+    }
+
+    hasItems(itemName: string): boolean {
+        return true;
+    }
+
     getRace() : Race | null {
         if(this.raceName == null) return null;
         if(this.caches.raceCache != null && this.caches.raceCache.name == this.raceName) {
