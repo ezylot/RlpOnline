@@ -4,7 +4,7 @@ import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {Stats} from "../classes/stats";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 import {PerkAndLevel} from "../classes/perk-and-level";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 import {DeepReadonly} from "ts-essentials";
 
 export function getAllPerks() : Perk[] { return PERKS; }

@@ -4,7 +4,7 @@ import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Culture} from "../../classes/culture";
 import {getAllCultures} from "../../data/cultures";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'app-culture',

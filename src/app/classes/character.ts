@@ -14,7 +14,7 @@ import {getAllZodiacSigns} from "../data/zodiacsigns";
 import {getAllRaces} from "../data/races";
 import {getAllCultures} from "../data/cultures";
 import {getAllBackgrounds} from "../data/backgrounds";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 import {deepFreeze} from "../definitions";
 import {DeepReadonly} from "ts-essentials";
 

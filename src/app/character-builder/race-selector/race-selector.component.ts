@@ -4,7 +4,7 @@ import {Race} from "../../classes/race";
 import {take} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {getAllRaces} from "../../data/races";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'app-race-selector',

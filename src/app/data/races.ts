@@ -3,7 +3,7 @@ import {LevelUpBonus} from "../classes/levelupbonus";
 import {Stats} from "../classes/stats";
 import {ANIMALS} from "./languages";
 import {PerkAndLevel} from "../classes/perk-and-level";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 export function getAllRaces() : Race[] { return RACES; }
 const RACES: Race[] = [

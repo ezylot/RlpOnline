@@ -15,7 +15,7 @@ import {
     VITALITY_TEXT,
     CONDITIONAL_STAT_TEXT,
 } from "../../data/texts";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'app-attributes',

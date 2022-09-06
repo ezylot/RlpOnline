@@ -1,6 +1,6 @@
 import {DiceAndFixed} from "./dice-and-fixed";
 import {Mutable} from "../definitions";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 import {DeepReadonly} from "ts-essentials";
 
 

@@ -3,7 +3,7 @@ import {Character} from "../../classes/character";
 import {take, takeUntil} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {ADVENTURING_TEXT, COMBATLEVEL_TEXT, SOCIALLEVEL_TEXT} from "../../data/texts";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'app-name-selector',

@@ -4,7 +4,7 @@ import {take, takeUntil} from "rxjs";
 import {Character} from "../../classes/character";
 import {Language} from "../../classes/language";
 import {getAllLanguages} from "../../data/languages";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
   selector: 'app-languages',

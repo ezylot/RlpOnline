@@ -4,7 +4,7 @@ import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Background} from "../../classes/background";
 import {getAllBackgrounds} from "../../data/backgrounds";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'app-background',

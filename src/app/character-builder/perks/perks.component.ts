@@ -5,7 +5,7 @@ import {getAllPerks} from "../../data/perks";
 import {PerkAndLevel} from "../../classes/perk-and-level";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {PerkCategory} from "../../classes/perk";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
     selector: 'app-perks',

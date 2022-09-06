@@ -4,7 +4,7 @@ import {Character} from "../../classes/character";
 import {ZodiacSign} from "../../classes/zodiacsign";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {getAllZodiacSigns} from "../../data/zodiacsigns";
-import {cloneDeep} from "lodash";
+import {cloneDeep} from "lodash-es";
 
 @Component({
   selector: 'app-zodiac-sign',
