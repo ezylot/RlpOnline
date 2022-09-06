@@ -109,3 +109,34 @@ input[type=number] {
 .material-icons-outlined {
     user-select: none;
 }
+
+@media (prefers-color-scheme: dark) {
+    img {
+        filter: brightness(.8) contrast(1.2);
+    }
+
+    .border-overlapping-title {
+        background-color: rgb(61, 60, 72) !important;
+    }
+
+    .padded {
+        background-color: rgb(61, 60, 72);
+        border: 1px solid rgb(61, 60, 72);
+
+        *, a {
+            color: #cecece;
+        }
+    }
+
+    #main {
+        background: url('assets/seamless_paper_texture_dark.webp') repeat;
+    }
+
+    .mat-expansion-panel {
+        background-color: rgb(77, 75, 89);
+    }
+
+    .boxed-stat {
+        background-color: rgb(77, 75, 89) !important;
+    }
+}
