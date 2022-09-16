@@ -718,7 +718,7 @@ const PERKS: Perk[] = [
         groupName: "Rage",
         name: "Rage",
         requirements: [ ],
-        tags: [ "Passive", "Repeatable" ],
+        tags: [ "Maneuver", "Active", "Repeatable" ],
         description: "You can enter a state of rage as part of an action. While in rage, your Strength is increased by " +
             "+1, and your strength-based attacks deal +1 damage, or +2 damage if they are done with a " +
             "two-handed weapon. Additionally, you gain an amount of temporary Hit Points equal to your Vitality. " +

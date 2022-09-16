@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/perk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/perk.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/classes/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/stats.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/races.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/races.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/stats.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/definitions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +88,7 @@
       <workItem from="1662929962540" duration="82000" />
       <workItem from="1662933820053" duration="815000" />
       <workItem from="1662945315772" duration="630000" />
-      <workItem from="1663335018801" duration="4677000" />
+      <workItem from="1663335018801" duration="5339000" />
     </task>
     <servers />
   </component>
