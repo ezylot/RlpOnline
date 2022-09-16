@@ -7,15 +7,16 @@ import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {take, takeUntil} from "rxjs";
 import {
     AGILITY_TEXT,
+    CONDITIONAL_STAT_TEXT,
     DEXTERITY_TEXT,
     EMPATHY_TEXT,
     INTELLECT_TEXT,
     PERCEPTION_TEXT,
     STRENGTH_TEXT,
     VITALITY_TEXT,
-    CONDITIONAL_STAT_TEXT,
 } from "../../data/texts";
 import {cloneDeep} from "lodash-es";
+import {Mutable, OnlyProperties} from "../../definitions";
 
 @Component({
     selector: 'app-attributes',
@@ -53,5 +54,38 @@ export class AttributesComponent extends CharacterInjectingComponent{
             this.characterStorageService.saveCharacter(charToEdit);
         });
 
+    }
+
+    // Increase and Decrease for humans
+    decreaseStat(statName: keyof OnlyProperties<Stats>) {
+        this.character$.pipe(take(1)).subscribe(char => {
+            let charToEdit = cloneDeep(char) as Character;
+            let newStats = charToEdit.additionalData.chosenStats as OnlyProperties<Mutable<Stats>>;
+            if(newStats[statName] <= 0) {
+                this._snackBar.open("Cant decrease stats to negative values.");
+                return;
+            }
+            newStats[statName] -= 1;
+
+            charToEdit.additionalData.chosenStats = newStats;
+            this.characterStorageService.saveCharacter(charToEdit);
+        });
+    }
+
+    increaseStat(statName: keyof OnlyProperties<Stats>) {
+        this.character$.pipe(take(1)).subscribe(char => {
+            if(char.additionalData.chosenStats.summ() >= 2) {
+                this._snackBar.open("You can only spend 2 stat increases as a human.");
+                return;
+            }
+
+            let charToEdit = cloneDeep(char) as Character;
+            let newStats = charToEdit.additionalData.chosenStats as OnlyProperties<Mutable<Stats>>;
+
+            newStats[statName] += 1;
+
+            charToEdit.additionalData.chosenStats = newStats;
+            this.characterStorageService.saveCharacter(charToEdit);
+        });
     }
 }

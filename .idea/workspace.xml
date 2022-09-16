@@ -3,6 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="46dbc064-2d13-4f6c-a870-06d9172970ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/attributes/attributes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/character-builder/race-selector/race-selector.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/character.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/character.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/perk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/perk.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/classes/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/classes/stats.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/perks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/perks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/races.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/races.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/stats.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/definitions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/character-storage.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,27 +44,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Projects/rlp-online/src/app/data",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "ts.external.directory.path": "D:\\Projects\\rlp-online\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/rlp-online/src/app/data&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\rlp-online\\node_modules\\typescript\\lib&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JSON",
-      "CSS"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JSON&quot;,
+      &quot;CSS&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\rlp-online\src\app\data" />
@@ -81,7 +93,16 @@
       <workItem from="1661342901562" duration="26000" />
       <workItem from="1661812767816" duration="1082000" />
       <workItem from="1661820539131" duration="8000" />
-      <workItem from="1662384962192" duration="54015000" />
+      <workItem from="1662384962192" duration="57697000" />
+      <workItem from="1662707959961" duration="1220000" />
+      <workItem from="1662721221457" duration="171000" />
+      <workItem from="1662913509940" duration="622000" />
+      <workItem from="1662929444069" duration="233000" />
+      <workItem from="1662929698907" duration="32000" />
+      <workItem from="1662929962540" duration="82000" />
+      <workItem from="1662933820053" duration="815000" />
+      <workItem from="1662945315772" duration="630000" />
+      <workItem from="1663335018801" duration="4677000" />
     </task>
     <servers />
   </component>

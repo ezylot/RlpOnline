@@ -35,6 +35,20 @@
     }
 }
 
+.human-statlist {
+    .boxed-stat {
+        cursor: default;
+
+        [disabled="true"] * {
+            cursor: not-allowed;
+        }
+
+        svg {
+            cursor: pointer;
+        }
+    }
+}
+
 .stat {
     display: block;
     padding-top: 20px;

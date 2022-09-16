@@ -17,6 +17,7 @@ import {getAllBackgrounds} from "../data/backgrounds";
 import {cloneDeep} from "lodash-es";
 import {deepFreeze} from "../definitions";
 import {DeepReadonly} from "ts-essentials";
+import {race} from "rxjs";
 
 // TODO: add perk cache
 export class CharacterCaches {
@@ -62,6 +63,7 @@ export class Character {
 
     public stats: Stats = STANDARD_ARRAY;
     public perks: PerkAndLevel[] = [];
+    public additionalData: any = { };
 
     public equipment: [] | null = null;
     public languagesInLearnOrder: Language[] = [];
@@ -277,6 +279,7 @@ export class Character {
 
         let chosenStats = charCopy.stats.toStatNumberArray();
         let raceStatBonis = charCopy.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0);
+        if(charCopy.getRace()?.name === "Humans") raceStatBonis = charCopy.additionalData.chosenStats.toStatNumberArray();
 
         charCopy.stats = Stats.fromArray(chosenStats.map(function(stat, i) {
             return stat + raceStatBonis[i];

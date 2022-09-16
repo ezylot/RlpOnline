@@ -1,6 +1,7 @@
 import {Character} from "./character";
 import {PerkAndLevel} from "./perk-and-level";
 import {DeepReadonly} from "ts-essentials";
+import {Stats} from "./stats";
 
 export enum PerkCategory {
     BASE,
@@ -30,7 +31,7 @@ export interface Perk {
 export class PerkRequirement {
     constructor(public readonly levels: { [key:number]:number; },
                 public readonly perkname?: string,
-                public readonly attributeName?: string) { }
+                public readonly attributeName?: keyof Stats) { }
 
     public hasRequirements(char: DeepReadonly<Character>, wantedLevel: number): boolean {
         if(this.perkname) {

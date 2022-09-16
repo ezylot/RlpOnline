@@ -60,16 +60,59 @@
             <p class="stat">+</p>
         </div>
 
-        <div class="statlist" *ngIf="character.getRace() as race;">
-            <h2>Race Bonis</h2>
-            <div class="stat boxed-stat stat-strength">{{race?.statboni?.strength}}</div>
-            <div class="stat boxed-stat stat-vitality">{{race?.statboni?.vitality}}</div>
-            <div class="stat boxed-stat stat-dexterity">{{race?.statboni?.dexterity}}</div>
-            <div class="stat boxed-stat stat-agility">{{race?.statboni?.agility}}</div>
-            <div class="stat boxed-stat stat-intellect">{{race?.statboni?.intellect}}</div>
-            <div class="stat boxed-stat stat-perception">{{race?.statboni?.perception}}</div>
-            <div class="stat boxed-stat stat-empathy">{{race?.statboni?.empathy}}</div>
-        </div>
+        <ng-container *ngIf="character.getRace() as race;">
+            <div class="statlist" *ngIf="race.name !== 'Humans'; else humanBlock">
+                <h2>Race Bonis</h2>
+                <div class="stat boxed-stat stat-strength">{{race.statboni.strength}}</div>
+                <div class="stat boxed-stat stat-vitality">{{race.statboni.vitality}}</div>
+                <div class="stat boxed-stat stat-dexterity">{{race.statboni.dexterity}}</div>
+                <div class="stat boxed-stat stat-agility">{{race.statboni.agility}}</div>
+                <div class="stat boxed-stat stat-intellect">{{race.statboni.intellect}}</div>
+                <div class="stat boxed-stat stat-perception">{{race.statboni.perception}}</div>
+                <div class="stat boxed-stat stat-empathy">{{race.statboni.empathy}}</div>
+            </div>
+
+            <ng-template #humanBlock>
+                <div class="statlist human-statlist" *ngIf="character.additionalData.chosenStats as chosenStats">
+                    <h2>Human Bonis</h2>
+                    <div class="stat boxed-stat stat-strength">
+                        <span (click)="decreaseStat('strength')" [attr.disabled]="chosenStats.strength <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.strength}}
+                        <span (click)="increaseStat('strength')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                    <div class="stat boxed-stat stat-vitality">
+                        <span (click)="decreaseStat('vitality')" [attr.disabled]="chosenStats.vitality <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.vitality}}
+                        <span (click)="increaseStat('vitality')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                    <div class="stat boxed-stat stat-dexterity">
+                        <span (click)="decreaseStat('dexterity')" [attr.disabled]="chosenStats.dexterity <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.dexterity}}
+                        <span (click)="increaseStat('dexterity')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                    <div class="stat boxed-stat stat-agility">
+                        <span (click)="decreaseStat('agility')" [attr.disabled]="chosenStats.agility <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.agility}}
+                        <span (click)="increaseStat('agility')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                    <div class="stat boxed-stat stat-intellect">
+                        <span (click)="decreaseStat('intellect')" [attr.disabled]="chosenStats.intellect <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.intellect}}
+                        <span (click)="increaseStat('intellect')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                    <div class="stat boxed-stat stat-perception">
+                        <span (click)="decreaseStat('perception')" [attr.disabled]="chosenStats.perception <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.perception}}
+                        <span (click)="increaseStat('perception')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                    <div class="stat boxed-stat stat-empathy">
+                        <span (click)="decreaseStat('empathy')" [attr.disabled]="chosenStats.empathy <= 0"><i data-feather="minus"></i></span>
+                        {{chosenStats.empathy}}
+                        <span (click)="increaseStat('empathy')" [attr.disabled]="chosenStats.summ() >= 2"><i data-feather="plus"></i></span>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
 
         <div class="fixed-column">
             <h2>&nbsp;</h2>

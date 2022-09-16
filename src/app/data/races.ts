@@ -4,6 +4,7 @@ import {Stats} from "../classes/stats";
 import {ANIMALS} from "./languages";
 import {PerkAndLevel} from "../classes/perk-and-level";
 import {cloneDeep} from "lodash-es";
+import {ZERO_STATS} from "./stats";
 
 export function getAllRaces() : Race[] { return RACES; }
 const RACES: Race[] = [
@@ -289,7 +290,7 @@ const RACES: Race[] = [
         textDescription: "Humans can freely add 4 attribute points, but they can not increase any attribute above 12 with this.<br />" +
             "Additionally, humans can create their character with 1800 CP instead of 1500<br /><br />" +
             "Humans start the game with 25 Health, 25 Stamina and 25 Mana.",
-        statboni: new Stats(0, 0, 0, 0, 0, 0, 0),
+        statboni: ZERO_STATS,
         conditionalStatbonis: [],
         traitsAsStrings: [ ],
         startingHealth: 25,

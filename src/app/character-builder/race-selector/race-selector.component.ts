@@ -5,6 +5,7 @@ import {take} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {getAllRaces} from "../../data/races";
 import {cloneDeep} from "lodash-es";
+import {ZERO_STATS} from "../../data/stats";
 
 @Component({
     selector: 'app-race-selector',
@@ -19,6 +20,7 @@ export class RaceSelectorComponent extends CharacterInjectingComponent {
         this.character$.pipe(take(1)).subscribe(char => {
             let charToEdit = cloneDeep(char) as Character;
             charToEdit.raceName = race.name;
+            if(race.name === "Humans") charToEdit.additionalData.chosenStats = ZERO_STATS;
             this.characterStorageService.saveCharacter(charToEdit);
         })
     }

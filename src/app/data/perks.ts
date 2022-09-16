@@ -603,7 +603,7 @@ const PERKS: Perk[] = [
         groupName: "Aimed Attack",
         name: "Aimed Attack",
         requirements: [
-            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "DE"),
+            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "dexterity"),
         ],
         tags: [ "Maneuver", "Active", "Repeatable" ],
         description: "When making a weapon attack based on Dexterity, you can increase the AP cost of the attack by " +
@@ -626,7 +626,7 @@ const PERKS: Perk[] = [
         groupName: "Brutal Attack",
         name: "Brutal Attack",
         requirements: [
-            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "ST"),
+            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "strength"),
         ],
         tags: [ "Maneuver", "Active", "Repeatable" ],
         description: "When making a melee weapon attack based on Strength, you can pay 5 Stamina and reduce your " +
@@ -651,7 +651,7 @@ const PERKS: Perk[] = [
         groupName: "Elegant Attack",
         name: "Elegant Attack",
         requirements: [
-            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "AG"),
+            new PerkRequirement({ 1: 3, 2: 6, 3: 9, 4: 12 }, undefined, "agility"),
         ],
         tags: [ "Maneuver", "Active", "Repeatable" ],
         description: "When making a weapon attack based on Agility, you can pay up to 3 Stamina and increase the " +

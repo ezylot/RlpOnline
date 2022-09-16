@@ -2,14 +2,6 @@
 
 export class Stats {
 
-    readonly ST: number;
-    readonly VI: number;
-    readonly DE: number;
-    readonly AG: number;
-    readonly IN: number;
-    readonly PE: number;
-    readonly EM: number;
-
     constructor(
         readonly strength: number,
         readonly vitality: number,
@@ -18,25 +10,17 @@ export class Stats {
         readonly intellect: number,
         readonly perception: number,
         readonly empathy: number
-    ) {
-        this.ST = strength;
-        this.VI = vitality;
-        this.DE = dexterity;
-        this.AG = agility;
-        this.IN = intellect;
-        this.PE = perception;
-        this.EM = empathy;
-    }
+    ) { }
 
     public toString() : string {
         let string = "";
-        if(this.ST !== 0) string += `ST: ${this.ST}, `;
-        if(this.VI !== 0) string += `VI: ${this.VI}, `;
-        if(this.DE !== 0) string += `DE: ${this.DE}, `;
-        if(this.AG !== 0) string += `AG: ${this.AG}, `;
-        if(this.IN !== 0) string += `IN: ${this.IN}, `;
-        if(this.PE !== 0) string += `PE: ${this.PE}, `;
-        if(this.EM !== 0) string += `EM: ${this.EM}, `;
+        if(this.strength !== 0) string += `ST: ${this.strength}, `;
+        if(this.vitality !== 0) string += `VI: ${this.vitality}, `;
+        if(this.dexterity !== 0) string += `DE: ${this.dexterity}, `;
+        if(this.agility !== 0) string += `AG: ${this.agility}, `;
+        if(this.intellect !== 0) string += `IN: ${this.intellect}, `;
+        if(this.perception !== 0) string += `PE: ${this.perception}, `;
+        if(this.empathy !== 0) string += `EM: ${this.empathy}, `;
 
         if(string.length > 0) string = string.substring(0, string.length - 2);
         return string;
@@ -64,5 +48,9 @@ export class Stats {
             array[5],
             array[6],
         )
+    }
+
+    public summ(): number {
+        return this.toStatNumberArray().reduce((a,b) => a + b, 0);
     }
 }

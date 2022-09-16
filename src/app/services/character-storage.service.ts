@@ -142,6 +142,8 @@ export class CharacterStorageService {
                                 let foundRace = getAllRaces().find(r => r.name === race!.name)
                                 if(foundRace === undefined) throw new Error("wtf??");
                                 race = foundRace;
+
+                                if(foundRace.name === "Humans") Object.setPrototypeOf(character.additionalData.chosenStats, Stats.prototype);
                             }
 
                             for (let i = 0; i < character.perks.length; i++){
