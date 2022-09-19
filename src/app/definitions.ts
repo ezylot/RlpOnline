@@ -1,4 +1,4 @@
-export function deepFreeze<T>(obj: T, excludedObjects: string[] = []) {
+export function deepFreeze<T>(obj: T, excludedObjects: string[] = []): T {
     let propNames = Object.getOwnPropertyNames(obj);
     for (let name of propNames.filter(n => !excludedObjects.includes(n))) {
         let value = (obj as any)[name];

@@ -14,10 +14,9 @@ import {getAllZodiacSigns} from "../data/zodiacsigns";
 import {getAllRaces} from "../data/races";
 import {getAllCultures} from "../data/cultures";
 import {getAllBackgrounds} from "../data/backgrounds";
-import {cloneDeep} from "lodash-es";
+import {cloneDeep, orderBy} from "lodash-es";
 import {deepFreeze} from "../definitions";
 import {DeepReadonly} from "ts-essentials";
-import {race} from "rxjs";
 
 // TODO: add perk cache
 export class CharacterCaches {
@@ -72,7 +71,7 @@ export class Character {
     adventuringXP: number = 0;
 
     constructor(readonly id: string, public readonly createdTime: number, public updatedTime: number) {
-        deepFreeze(this, [ "caches" ])
+        this.deepFreeze();
     }
 
     hasEquipment(equipmentName: string): boolean {
@@ -278,12 +277,12 @@ export class Character {
             return stat + raceStatBonis[i];
         }));
 
-        for (let pal of this.perks.sort((a,b) => a.perk.priority - b.perk.priority)) {
+        for (let pal of orderBy(this.perks, ['perk.priority'], ['asc'])) {
             let race = this.getRace();
             if(race !== null) {
                 pal = race.modifyPerkWhenLearning(pal);
             }
-            charCopy = pal.perk.applyEffect(deepFreeze(cloneDeep(charCopy)), pal.level) as Character;
+            charCopy = pal.perk.applyEffect(cloneDeep(charCopy).deepFreeze(), pal.level) as Character;
         }
 
         this.caches.finalCharacterCache = charCopy;
@@ -298,5 +297,9 @@ export class Character {
         } = this;
 
         return objectWithoutCaches;
+    }
+
+    private deepFreeze(): Character {
+        return deepFreeze(this, [ "caches" ]);
     }
 }
