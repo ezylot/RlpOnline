@@ -17,7 +17,7 @@ const PERKS: Perk[] = [
         name: "Increase Health",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You increase your Health by 1D6 + Vitality. Each time you gain a higher Rank for this perk, your Health is increased again.",
+        description: `You increase your Health by 1D6 + Vitality. Each time you gain a higher Rank for this perk, your Health is increased again.`,
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -49,7 +49,7 @@ const PERKS: Perk[] = [
         name: "Increase Stamina",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You increase your Stamina by 1D6 + Strength. Each time you gain a higher Rank for this perk, your Stamina is increased again.",
+        description: `You increase your Stamina by 1D6 + Strength. Each time you gain a higher Rank for this perk, your Stamina is increased again.`,
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -81,7 +81,7 @@ const PERKS: Perk[] = [
         name: "Increase Mana",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You increase your Mana by 1D6 + Intellect. Each time you gain a higher Rank for this perk, your Mana is increased again.",
+        description: `You increase your Mana by 1D6 + Intellect. Each time you gain a higher Rank for this perk, your Mana is increased again.`,
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -119,14 +119,11 @@ const PERKS: Perk[] = [
         name: "Enhance Pool: " + stat,
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "Choose a pool value. Whenever you gain a rank in the \"Increase\" Perk for that pool value (In-\n" +
-            "crease Health, Increase Stamina or Increase Mana), the amount of points you gain is increased\n" +
-            "by one die size (from 1d6 to 1d8 to 1d10 to a maximum of 1d12). Don’t re-roll previous ranks\n" +
-            "of the \"Increase\" Perk for that pool value. Instead, you gain 1 point for each rank of \"Increase\"\n" +
-            "you already have for that pool value. Additionally, your regeneration factor is increased by 1 (for\n" +
-            "Mana, you roll twice, thrice or four times per hour respectively).\n" +
-            "Whenever you gain another rank of this perk, you choose the pool value to enhance. No one pool\n" +
-            "value can be enhanced more than 3 times",
+        description: "Whenever you gain a rank in the \"Increase\" Perk for this pool value, the amount of points you gain is increased" +
+            "by one die size (from 1d6 to 1d8 to 1d10 to a maximum of 1d12). For new levels in this perk you don’t re-roll, " +
+            "instead you gain a flat value equal to the rank of \"Increase\" you already have for that pool value. " +
+            "Additionally, your regeneration factor is increased by 1 (for Mana, you roll twice, thrice or four times per hour respectively)." +
+            "Whenever you gain another rank of this perk, you choose the pool value to enhance. No one pool value can be enhanced more than 3 times",
         startingLevel: 0,
         priority: 80,
         internalCategory: PerkCategory.BASE,

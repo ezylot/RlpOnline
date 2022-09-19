@@ -127,7 +127,7 @@
             <div class="perks">
                 <span class="border-overlapping-title">Perks</span>
                 <div *ngFor="let pal of character.perks">
-                    <span class="overview-perk-line">{{ pal.perk.name }} ({{pal.level}})</span> - {{ pal.perk.description }}
+                    <span class="overview-perk-line">{{ pal.perk.name }} ({{pal.level}})</span> - <span [innerHTML]="pal.perk.description  | safeHtml"></span>
                 </div>
             </div>
             <div class="equipment" *ngIf="character.equipment">
