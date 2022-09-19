@@ -58,7 +58,7 @@
     .row {
         display: flex;
         flex-direction: row;
-        padding-top: 10px;
+        padding-top: 15px;
 
         .combatstat-block {
             flex: 1;
@@ -72,6 +72,9 @@
             margin-bottom: 8px;
         }
 
+        .combatstat-bonus {
+            margin-top: 6px;
+        }
     }
 
     .race-row {

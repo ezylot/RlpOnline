@@ -47,17 +47,16 @@ export class Character {
 
     caches = new CharacterCaches();
 
-    public maxHealth: DiceAndFixed = DiceAndFixed.EMPTY;
-    public healthRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
-    public maxStamina: DiceAndFixed = DiceAndFixed.EMPTY;
-    public staminaRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
-    public maxMana: DiceAndFixed = DiceAndFixed.EMPTY;
-    public manaRegenBonus: DiceAndFixed = DiceAndFixed.EMPTY;
+    public maxHealth: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
+    public healthRegenBonus: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
+    public maxStamina: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
+    public staminaRegenBonus: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
+    public maxMana: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
+    public manaRegenBonus: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
 
-    public dodgeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
-    public evadeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
-    public noticeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
-    public willpowerModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.EMPTY;
+    public dodgeModifier: DeepReadonly<DiceAndFixedAndLevel> = DiceAndFixedAndLevel.EMPTY;
+    public noticeModifier: DeepReadonly<DiceAndFixedAndLevel> = DiceAndFixedAndLevel.EMPTY;
+    public willpowerModifier: DeepReadonly<DiceAndFixedAndLevel> = DiceAndFixedAndLevel.EMPTY;
 
     public statcap: Stats = new Stats(12, 12, 12, 12, 12,12, 12);
 
@@ -149,15 +148,9 @@ export class Character {
                 .increaseFixed(race?.startingMana || 0)
                 .increaseFixed(finalChar.stats.intellect),
 
-            dodgeModifier: finalChar.dodgeModifier
-                .increaseFixed(finalChar.stats.agility)
-                .increaseFixed(8),
-            noticeModifier: finalChar.noticeModifier
-                .increaseFixed(finalChar.stats.perception)
-                .increaseFixed(8),
-            willpowerModifier: finalChar.willpowerModifier
-                .increaseFixed(finalChar.stats.empathy)
-                .increaseFixed(8),
+            dodgeModifier: finalChar.dodgeModifier.increaseFixed(finalChar.stats.agility),
+            noticeModifier: finalChar.noticeModifier.increaseFixed(finalChar.stats.perception),
+            willpowerModifier: finalChar.willpowerModifier.increaseFixed(finalChar.stats.empathy),
         });
     }
 

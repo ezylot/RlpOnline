@@ -15,13 +15,13 @@ export class DiceAndFixedAndLevel {
         public readonly socialModifier: DeepReadonly<DiceAndFixed>,
     ) { }
 
-    increaseDice(times: number, sides: number) : DiceAndFixedAndLevel {
+    increaseDice(times: number, sides: number) : DeepReadonly<DiceAndFixedAndLevel> {
         let cloned = cloneDeep(this) as Mutable<DiceAndFixedAndLevel>;
         cloned.baseModifier = this.baseModifier.increaseDice(times, sides);
         return cloned;
     }
 
-    increaseFixed(number: number) : DiceAndFixedAndLevel {
+    increaseFixed(number: number) : DeepReadonly<DiceAndFixedAndLevel> {
         let cloned = cloneDeep(this) as Mutable<DiceAndFixedAndLevel>;
         cloned.baseModifier = this.baseModifier.increaseFixed(number);
         return cloned;
@@ -29,6 +29,14 @@ export class DiceAndFixedAndLevel {
 
     average() : number {
         return this.baseModifier.average();
+    }
+
+    min() : number {
+        return this.baseModifier.min();
+    }
+
+    max() : number {
+        return this.baseModifier.max();
     }
 
     hasLevelSpecificValues() {

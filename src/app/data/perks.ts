@@ -119,10 +119,10 @@ const PERKS: Perk[] = [
         name: "Enhance Pool: " + stat,
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "Choose a pool value. Whenever you gain a rank in the ”Increase” Perk for that pool value (In-\n" +
+        description: "Choose a pool value. Whenever you gain a rank in the \"Increase\" Perk for that pool value (In-\n" +
             "crease Health, Increase Stamina or Increase Mana), the amount of points you gain is increased\n" +
             "by one die size (from 1d6 to 1d8 to 1d10 to a maximum of 1d12). Don’t re-roll previous ranks\n" +
-            "of the ”Increase” Perk for that pool value. Instead, you gain 1 point for each rank of ”Increase”\n" +
+            "of the \"Increase\" Perk for that pool value. Instead, you gain 1 point for each rank of \"Increase\"\n" +
             "you already have for that pool value. Additionally, your regeneration factor is increased by 1 (for\n" +
             "Mana, you roll twice, thrice or four times per hour respectively).\n" +
             "Whenever you gain another rank of this perk, you choose the pool value to enhance. No one pool\n" +
@@ -290,7 +290,7 @@ const PERKS: Perk[] = [
         name: "Cloth Armor Training",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You are trained with armor made of cloth. You add your level to Dodge and Evade checks while naked, or equipped with armor with the Cloth” descriptor.",
+        description: "You are trained with armor made of cloth. You add your level to your Dodge bonus while naked, or equipped with armor with the \"Cloth\" descriptor.",
         startingLevel: 0,
         priority: 150,
         internalCategory: PerkCategory.MARTIAL,
@@ -310,7 +310,7 @@ const PERKS: Perk[] = [
         name: "Light Armor Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Cloth Armor Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with light. You add your level to Dodge and Evade checks while equipped with armor with the ”Light” descriptor.",
+        description: "You add your level to your Dodge bonus while equipped with armor with the \"Light\" descriptor.",
         startingLevel: 0,
         priority: 150,
         internalCategory: PerkCategory.MARTIAL,
@@ -330,7 +330,7 @@ const PERKS: Perk[] = [
         name: "Medium Armor Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Cloth Armor Training")],
         tags: ["Passive", "Repeatable", " Source"],
-        description: "You are trained with medium armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Medium” descriptor.\n" +
+        description: "You add your level to your Dodge Bonus while equipped with armor with the \"Medium\" descriptor.\n" +
                 "Additionally, your Agility can not exceed 9 while wearing this type of armor",
         startingLevel: 0,
         priority: 150,
@@ -355,7 +355,7 @@ const PERKS: Perk[] = [
         name: "Heavy Armor Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Cloth Armor Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with heavy armor. You add your level to Dodge and Evade checks while equipped with armor with the ”Heavy” descriptor.\n" +
+        description: "You add your level to your Dodge bonus while equipped with armor with the \"Heavy\" descriptor.\n" +
                 "Additionally, the resistance you gain from such armor against blunt, cutting and piercing is increased by 1.",
         startingLevel: 0,
         priority: 150,
@@ -378,7 +378,7 @@ const PERKS: Perk[] = [
         name: "Simple Weapon Training",
         requirements: [],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with all weapons that have the ”Simple” descriptor. You add your level to attack\n" +
+        description: "You are trained with all weapons that have the \"Simple\" descriptor. You add your level to attack\n" +
             "and block rolls made with that weapon.",
         startingLevel: 0,
         priority: 100,
@@ -398,7 +398,7 @@ const PERKS: Perk[] = [
         name: "Axe Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with axes. This includes all weapons with the ”Axe” descriptor. You add your\n" +
+        description: "You are trained with axes. This includes all weapons with the \"Axe\" descriptor. You add your\n" +
             "level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -418,7 +418,7 @@ const PERKS: Perk[] = [
         name: "Blunt Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with blunt weapons. This includes all weapons with the ”Blunt” descriptor. You\n" +
+        description: "You are trained with blunt weapons. This includes all weapons with the \"Blunt\" descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 155,
@@ -438,7 +438,7 @@ const PERKS: Perk[] = [
         name: "Bow Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with bows. This includes all weapons with the ”Bow” descriptor. You add your\n" +
+        description: "You are trained with bows. This includes all weapons with the \"Bow\" descriptor. You add your\n" +
             "level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -458,7 +458,7 @@ const PERKS: Perk[] = [
         name: "Crossbow Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with crossbows. This includes all weapons with the ”Crossbow” descriptor. You\n" +
+        description: "You are trained with crossbows. This includes all weapons with the \"Crossbow\" descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -478,7 +478,7 @@ const PERKS: Perk[] = [
         name: "Polearm Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with polearms. This includes all weapons that have the ”Polearm” descriptor.\n" +
+        description: "You are trained with polearms. This includes all weapons that have the \"Polearm\" descriptor.\n" +
             "You add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -498,7 +498,7 @@ const PERKS: Perk[] = [
         name: "Shield Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with shields. This includes all weapons with the ”Shield” descriptor. You add\n" +
+        description: "You are trained with shields. This includes all weapons with the \"Shield\" descriptor. You add\n" +
             "your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -518,7 +518,7 @@ const PERKS: Perk[] = [
         name: "Sword Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with swords. This includes all weapons that have the ”Sword” descriptor. You\n" +
+        description: "You are trained with swords. This includes all weapons that have the \"Sword\" descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -538,7 +538,7 @@ const PERKS: Perk[] = [
         name: "Throwing Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with throwing weapons. This includes all weapons that have the ”Throwing”\n" +
+        description: "You are trained with throwing weapons. This includes all weapons that have the \"Throwing\"\n" +
             "descriptor. You add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 155,
@@ -559,7 +559,7 @@ const PERKS: Perk[] = [
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
         description: "This is a set of different perks. You are trained with a certain type of weapon that does not have\n" +
-            "the ”Unusual” descriptor. You add your level to attack and block rolls made with that weapon.\n" +
+            "the \"Unusual\" descriptor. You add your level to attack and block rolls made with that weapon.\n" +
             "You choose the weapon type that you are proficient in when you choose this perk. You can gain\n" +
             "another instance of this perk by choosing a different weapon.",
         startingLevel: 0,
@@ -580,8 +580,8 @@ const PERKS: Perk[] = [
         name: "Unusual Weapon Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "This is a set of different perks. You are trained with a certain type of weapon that has the ”Un-\n" +
-            "usual” descriptor. You add your level to attack and block rolls made with that weapon.\n" +
+        description: "This is a set of different perks. You are trained with a certain type of weapon that has the" +
+            " \"Unusual\" descriptor. You add your level to attack and block rolls made with that weapon.\n" +
             "You choose the weapon type that you are proficient in when you choose this perk. You can gain\n" +
             "another instance of this perk by choosing a different weapon.",
         startingLevel: 0,
@@ -1197,31 +1197,17 @@ function getArmorModifiers(character: DeepReadonly<Character>, level: number) : 
         character.dodgeModifier.baseModifier,
         character.dodgeModifier.socialModifier
             .increaseDice(level - 1, 4)
-            .increaseFixed((level - 1) * 2 + character.getSocialLevel()),
+            .increaseFixed(character.getSocialLevel()),
         character.dodgeModifier.combatModifier
             .increaseDice(level - 1, 4)
-            .increaseFixed((level - 1) * 2 + character.getCombatLevel()),
+            .increaseFixed(character.getCombatLevel()),
         character.dodgeModifier.adventuringModifier
             .increaseDice(level - 1, 4)
-            .increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
-    );
-
-    let evadeModifier = new DiceAndFixedAndLevel(
-        character.evadeModifier.baseModifier,
-        character.evadeModifier.socialModifier
-            .increaseDice(level - 1, 4)
-            .increaseFixed((level - 1) * 2 + character.getSocialLevel()),
-        character.evadeModifier.combatModifier
-            .increaseDice(level - 1, 4)
-            .increaseFixed((level - 1) * 2 + character.getCombatLevel()),
-        character.evadeModifier.adventuringModifier
-            .increaseDice(level - 1, 4)
-            .increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+            .increaseFixed(character.getAdventuringLevel()),
     );
 
     let charToEdit = cloneDeep(character) as Character;
     charToEdit.dodgeModifier = dodgeModifier;
-    charToEdit.evadeModifier = evadeModifier;
     return charToEdit;
 }
 

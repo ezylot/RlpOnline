@@ -72,21 +72,17 @@ export const MANA_RECOVER_TEXT = 'Mana is recovered over time, but the rate at w
     'points per hour';
 
 
-export const DODGE_TEXT = 'Dodge is a character’s ability to dodge an incoming attack. If an attack is below this value, it ' +
-    'automatically misses. If it is above the target’s Dodge value, the defender might still be able to ' +
-    'perform defensive actions. ' +
-    '<br><br>It is equal to 8 + AG';
+export const DODGE_TEXT = 'Dodge is a character’s ability to dodge an incoming attack. <br><br> The bonus for this attribute is based on Agility.';
 
 export const NOTICE_TEXT = 'Notice is a character’s ability to notice something unseen, like a noise, slight draft, or sneaking ' +
-    'enemy. It does not automatically unveil anything, but a hidden object not reaching a character’s ' +
-    'notice value will at least give them the idea that something is off. ' +
-    '<br><br>It is equal to 8 + PE';
+    'enemy. It does not automatically unveil anything, but a hidden object not reaching a character\'s notice value will at least give them the idea that something is off.' +
+    '<br><br> The bonus for this attribute is based on Perception.';
 
-export const WILLPOWER_TEXT = 'Willpower is a    character’s ability to withstand emotional manipulation, as well as enchantment. ' +
-    'If a character is target to emotional manipulation or a spell or magical effect they don’t want to ' +
-    'be affected by, and the roll associated with the effect does not reach their Willpower value, the ' +
-    'resist the effect outright and don’t have to roll competing checks. ' +
-    '<br><br>It is equal to 8 + EM';
+export const WILLPOWER_TEXT = 'Willpower is a character’s ability to withstand emotional manipulation, as well as enchantment. ' +
+    'If a character is target to emotional manipulation or a spell or magical effect they don\'t want to be affected by, and' +
+    ' the roll associated with the effect does not reach their Willpower value, the resist the effect outright and ' +
+    'don\'t have to roll competing checks.' +
+    '<br><br> The bonus for this attribute is based on Empathy.';
 
 export const CONDITIONAL_STAT_TEXT: string = 'There are conditional stat bonis connected to that race. They show up only ' +
     'on this page, and will not be used in any further calculation. You need to check yourself if the modifications have any impact' +

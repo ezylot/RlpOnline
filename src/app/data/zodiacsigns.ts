@@ -18,7 +18,7 @@ const ZODIAC_SIGNS: ZodiacSign[] = [
         endDate: "18. Showerhome ",
         description: "Those born under the sign of The Worker are reliable, diligent and honorable, but also tend to be thick-headed.<br/><br/>" +
             "As someone born under the sign of The Worker, you can gain 5 temporary Stamina + 2 temporary stamina for " +
-            "each level of ”Increase Stamina” that you have once per day. These temporary stamina are used up after the " +
+            "each level of ”Increase Stamina” that you have for 10 minutes once per day. These temporary stamina are used up after the " +
             "rest of your stamina, and you lose the leftover temporary stamina after 10 minutes. You can do so as part " +
             "of any other action you’re performing."
     },
@@ -61,8 +61,7 @@ const ZODIAC_SIGNS: ZodiacSign[] = [
         endDate: "3.Last Harvest",
         description: "Those born under the sign of The Mountain are stoic, confident and disciplined, but also tend to be slow.<br/><br/>" +
             "As someone born under the sign of The Mountain, you can gain 5 temporary Health + 2 temporary Health per " +
-            "Level of ”Increase Health” you have for 10 minutes once per day. These Health Points are reduced before " +
-            "the rest of your Health. You can do so as part of any other action you’re performing."
+            "Level of ”Increase Health” you have for 10 minutes once per day. You can do so as part of any other action you’re performing."
     },
     {
         name: "The Quill",

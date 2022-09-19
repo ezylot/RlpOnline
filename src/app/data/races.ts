@@ -416,13 +416,13 @@ const RACES: Race[] = [
             "However, every Umbrana’s Empathy is reduced by 2<br />" +
             "Also, their Agility is reduced by 1<br />" +
             "Due to their magical nature, Umbrana have an affinity for Magic. They gain +2 Mana for each level of ”Increase Mana” that they gain.<br />" +
-            "Also, they gain an additional 2 resistance to damage from spells. This resistance triggers last in the line of resistances. For every point of damage it absorbs, the Umbrana regenerates 1 Mana<br /><br />" +
+            "Also, they gain an additional 2 resistance to damage from magic. This resistance triggers last in the line of resistances. For every point of damage it absorbs, the Umbrana regenerates 1 Mana<br /><br />" +
             "Umbrana start the game with 25 Health, 20 Stamina and 25 Mana.",
         statboni: new Stats(2, 0, 0, -1, 2, 0, -2),
         conditionalStatbonis: [],
         traitsAsStrings: [
             'Due to their magical nature, Umbrana have an affinity for Magic. They gain +2 Mana for each level of ”Increase Mana” that they gain <span style="font-size: 1em; vertical-align: sub;" data-tippy-content="Already included in calculated max mana" class="material-icons-outlined">help_outline</span>',
-            "They gain an additional 2 resistance to damage from spells. This resistance triggers last in the line of resistances. For every point of damage it absorbs, the Umbrana regenerates 1 Mana"
+            "They gain an additional 2 resistance to damage from magic. This resistance triggers last in the line of resistances. For every point of damage it absorbs, the Umbrana regenerates 1 Mana"
         ],
         startingHealth: 20,
         startingStamina: 20,
@@ -434,7 +434,7 @@ const RACES: Race[] = [
         modifyAttack: function(attackRoll) { return attackRoll; },
         modifyDamage: function(attackRoll, damageRoll) { return damageRoll; },
         modifyIncomingAttack: function(damageRoll) { return damageRoll; },
-        modifyIncomingDamage: function(damageRoll) { return damageRoll; }, // TODO: "They gain an additional 2 resistance to damage from spells. This resistance triggers last in the line of resistances. For every point of damage it absorbs, the Umbrana regenerates 1 Mana"
+        modifyIncomingDamage: function(damageRoll) { return damageRoll; }, // TODO: "They gain an additional 2 resistance to damage from magic. This resistance triggers last in the line of resistances. For every point of damage it absorbs, the Umbrana regenerates 1 Mana"
         modifyPerkWhenLearning: function(pal) {
             if(pal.perk.name == "Increase Mana") {
                 let oldAdditionalFixedIncrease = pal.perk.additionalData.additionalFixedIncrease;

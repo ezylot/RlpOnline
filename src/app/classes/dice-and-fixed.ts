@@ -1,13 +1,14 @@
 import {Dice} from "./dice";
+import {DeepReadonly} from "ts-essentials";
 
 
 export class DiceAndFixed {
 
     public static EMPTY: DiceAndFixed = new DiceAndFixed(0, []);
 
-    constructor(public readonly fixedNumber: number, public readonly dices: Dice[]) { }
+    constructor(public readonly fixedNumber: number, public readonly dices: DeepReadonly<Dice[]>) { }
 
-    increaseDice(times: number, sides: number) : DiceAndFixed {
+    increaseDice(times: number, sides: number) : DeepReadonly<DiceAndFixed> {
         let newDices = Array.from(this.dices);
 
         let index = newDices.findIndex(value => value.sides === sides);
@@ -21,17 +22,24 @@ export class DiceAndFixed {
         return new DiceAndFixed(this.fixedNumber, newDices);
     }
 
-    increaseFixed(number: number) {
+    increaseFixed(number: number): DeepReadonly<DiceAndFixed> {
         return new DiceAndFixed(this.fixedNumber + number, Array.from(this.dices));
     }
 
-    average() {
-        let sum = this.fixedNumber;
-        this.dices.forEach(d => sum += (d.sides+1) / 2 * d.multiplier);
-        return sum;
+    average(): number {
+        return this.fixedNumber + this.dices.reduce((counter, dice) => counter + dice.average(), 0);
     }
 
-    public toString() : string {
+    min() : number {
+        return this.fixedNumber + this.dices.reduce((counter, dice) => counter + dice.min(), 0);
+    }
+
+    max() : number {
+        return this.fixedNumber + this.dices.reduce((counter, dice) => counter + dice.max(), 0);
+    }
+
+
+    public toString(): string {
         let fixedString = "";
         let diceString = "";
 

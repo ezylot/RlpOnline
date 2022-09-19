@@ -5,17 +5,17 @@
         <div [matTooltip]="_HEALTH_TEXT">Health <br /> {{ fcs.maxHealth }}</div>
         <div [matTooltip]="_STAMINA_TEXT">Stamina <br /> {{ fcs.maxStamina }}</div>
         <div [matTooltip]="_MANA_TEXT">Mana <br /> {{ fcs.maxMana }}</div>
-        <div [matTooltip]="_DODGE_TEXT + (fcs.dodgeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">
+        <div [matTooltip]="getDodgeTooltipText(fcs.dodgeModifier)">
             Dodge <br />
-            {{ fcs.dodgeModifier }}
+            + {{ fcs.dodgeModifier.toString() }}
         </div>
-        <div [matTooltip]="_NOTICE_TEXT + (fcs.noticeModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">
+        <div [matTooltip]="getNoticeTooltipText(fcs.noticeModifier)">
             Notice <br />
-            {{ fcs.noticeModifier }}
+            + {{ fcs.noticeModifier.toString() }}
         </div>
-        <div [matTooltip]="_WILLPOWER_TEXT + (fcs.willpowerModifier.hasLevelSpecificValues() ? _VALUE_LEVEL_DEPENDENT : '')">
+        <div [matTooltip]="getWillpowerTooltipText(fcs.willpowerModifier)">
             Willpower <br />
-            {{ fcs.willpowerModifier }}
+            + {{ fcs.willpowerModifier.toString() }}
         </div>
     </div>
 </ng-container>

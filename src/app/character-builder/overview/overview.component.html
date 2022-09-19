@@ -73,15 +73,18 @@
                 <div class="row">
                     <div class="combatstat-block">
                         <div class="combatstat-title" [matTooltip]="_DODGE_TEXT">Dodge</div>
-                        <div>{{ character.getFinalCombatStats().dodgeModifier.toExactString() }}</div>
+                        <div>({{ character.getFinalCombatStats().dodgeModifier.increaseFixed(8).min() }} - {{ character.getFinalCombatStats().dodgeModifier.increaseFixed(20).max() }})</div>
+                        <div class="combatstat-bonus">+ {{ character.getFinalCombatStats().dodgeModifier.toExactString() }}</div>
                     </div>
                     <div class="combatstat-block">
                         <div class="combatstat-title" [matTooltip]="_NOTICE_TEXT">Notice</div>
-                        <div>{{ character.getFinalCombatStats().noticeModifier.toExactString() }}</div>
+                        <div>({{ character.getFinalCombatStats().noticeModifier.increaseFixed(8).min() }} - {{ character.getFinalCombatStats().noticeModifier.increaseFixed(20).max() }})</div>
+                        <div class="combatstat-bonus">+ {{ character.getFinalCombatStats().noticeModifier.toExactString() }}</div>
                     </div>
                     <div class="combatstat-block">
                         <div class="combatstat-title" [matTooltip]="_WILLPOWER_TEXT">Willpower</div>
-                        <div>{{ character.getFinalCombatStats().willpowerModifier.toExactString() }}</div>
+                        <div>({{ character.getFinalCombatStats().willpowerModifier.increaseFixed(8).min() }} - {{ character.getFinalCombatStats().willpowerModifier.increaseFixed(20).max() }})</div>
+                        <div class="combatstat-bonus">+ {{ character.getFinalCombatStats().willpowerModifier.toExactString() }}</div>
                     </div>
                 </div>
             </div>
