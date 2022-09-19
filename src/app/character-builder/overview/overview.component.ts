@@ -74,4 +74,8 @@ export class OverviewComponent extends CharacterInjectingComponent {
             this.downloadJsonHref = uri;
         });
     }
+
+    openPrintDialog() {
+        window.print();
+    }
 }

@@ -10,7 +10,8 @@
             <span [matTooltipPosition]="'above'" [matTooltip]="'Background'"> {{ character.getBackground()?.name ?? 'adventurer without a job' }}</span>
         </h1>
 
-        <a class="material-icons-outlined" [href]="downloadJsonHref" download="{{character.name}}">save</a>
+        <a class="save-button" [href]="downloadJsonHref" download="{{character.name}}"><i data-feather="save"></i></a>
+        <span class="print-button" (click)="openPrintDialog()"><i data-feather="printer"></i></span>
     </div>
 
 
