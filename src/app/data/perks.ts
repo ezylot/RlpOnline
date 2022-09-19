@@ -233,7 +233,7 @@ const PERKS: Perk[] = [
         name: "Alert",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You have honed your senses and gained increased reflexes. You add your level to Notice",
+        description: "You have honed your senses and gained increased reflexes. You add your level to your Notice Bonus",
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -243,10 +243,10 @@ const PERKS: Perk[] = [
         applyEffect(character: DeepReadonly<Character>, level) {
             let charToEdit = cloneDeep(character) as Character;
             charToEdit.noticeModifier = new DiceAndFixedAndLevel(
-                character.noticeModifier.baseModifier,
-                character.noticeModifier.socialModifier.increaseFixed((level - 1) * 2 + character.getSocialLevel()),
-                character.noticeModifier.combatModifier.increaseFixed((level - 1) * 2 + character.getCombatLevel()),
-                character.noticeModifier.adventuringModifier.increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+                character.noticeModifier.baseModifier.increaseDice((level - 1), 4),
+                character.noticeModifier.combatModifier.increaseFixed(character.getCombatLevel()),
+                character.noticeModifier.adventuringModifier.increaseFixed(character.getAdventuringLevel()),
+                character.noticeModifier.socialModifier.increaseFixed(character.getSocialLevel()),
             );
 
             return charToEdit;
@@ -259,7 +259,7 @@ const PERKS: Perk[] = [
         name: "Resilient",
         requirements: [],
         tags: ["Passive", "Repeatable"],
-        description: "You have become strong-willed and aren’t as easily swayed anymore. You add your level to Willpower",
+        description: "You have become strong-willed and aren’t as easily swayed anymore. You add your level to your Willpower bonus",
         startingLevel: 0,
         priority: 100,
         internalCategory: PerkCategory.BASE,
@@ -269,10 +269,10 @@ const PERKS: Perk[] = [
         applyEffect(character: DeepReadonly<Character>, level) {
             let charToEdit = cloneDeep(character) as Character;
             charToEdit.willpowerModifier = new DiceAndFixedAndLevel(
-                character.willpowerModifier.baseModifier,
-                character.willpowerModifier.socialModifier.increaseFixed((level - 1) * 2 + character.getSocialLevel()),
-                character.willpowerModifier.combatModifier.increaseFixed((level - 1) * 2 + character.getCombatLevel()),
-                character.willpowerModifier.adventuringModifier.increaseFixed((level - 1) * 2 + character.getAdventuringLevel()),
+                character.willpowerModifier.baseModifier.increaseDice(level - 1, 4),
+                character.willpowerModifier.combatModifier.increaseFixed(character.getCombatLevel()),
+                character.willpowerModifier.adventuringModifier.increaseFixed(character.getAdventuringLevel()),
+                character.willpowerModifier.socialModifier.increaseFixed(character.getSocialLevel()),
             )
 
             return charToEdit;
@@ -555,8 +555,8 @@ const PERKS: Perk[] = [
         name: "Weapon Training",
         requirements: [ new PerkRequirement({ 1: 1 }, "Simple Weapon Training") ],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "This is a set of different perks. You are trained with a certain type of weapon that does not have\n" +
-            "the \"Unusual\" descriptor. You add your level to attack and block rolls made with that weapon.\n" +
+        description: "This is a set of different perks. You are trained with one type of weapon (Like \"Arming Sword\" or \"Light Crossbow\") " +
+            "that does not have the \"Unusual\" descriptor. You add your level to attack and block rolls made with that weapon.\n" +
             "You choose the weapon type that you are proficient in when you choose this perk. You can gain\n" +
             "another instance of this perk by choosing a different weapon.",
         startingLevel: 0,
@@ -766,7 +766,7 @@ const PERKS: Perk[] = [
         requirements: [ ],
         tags: [ "Maneuver", "Active" ],
         description: "When making a melee weapon attack with a weapon you are proficient with, if that attack deals " +
-            "at least 1 damage, you can spend 10 Stamina to make an additional trip attempt (You don’t have to pay the 5 usual Stamina for that attempt).",
+            "at least 1 damage, you can spend 10 Stamina to make an additional trip attempt (You don’t have to pay the usual Stamina for that attempt).",
         startingLevel: 0,
         priority: 10,
         internalCategory: PerkCategory.MANEUVERS,
@@ -1191,16 +1191,10 @@ function recursiveSkillCostCalculator(current: number) : number {
 
 function getArmorModifiers(character: DeepReadonly<Character>, level: number) : DeepReadonly<Character> {
     let dodgeModifier = new DiceAndFixedAndLevel(
-        character.dodgeModifier.baseModifier,
-        character.dodgeModifier.socialModifier
-            .increaseDice(level - 1, 4)
-            .increaseFixed(character.getSocialLevel()),
-        character.dodgeModifier.combatModifier
-            .increaseDice(level - 1, 4)
-            .increaseFixed(character.getCombatLevel()),
-        character.dodgeModifier.adventuringModifier
-            .increaseDice(level - 1, 4)
-            .increaseFixed(character.getAdventuringLevel()),
+        character.dodgeModifier.baseModifier.increaseDice(level - 1, 4),
+        character.dodgeModifier.combatModifier.increaseFixed(character.getCombatLevel()),
+        character.dodgeModifier.adventuringModifier.increaseFixed(character.getAdventuringLevel()),
+        character.dodgeModifier.socialModifier.increaseFixed(character.getSocialLevel()),
     );
 
     let charToEdit = cloneDeep(character) as Character;
