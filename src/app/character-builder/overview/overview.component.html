@@ -18,36 +18,36 @@
         <div class="left-column">
             <div class="attributes">
                 <span class="border-overlapping-title">Stats</span>
-                <span class="attribute-title" [matTooltip]="_STRENGTH_TEXT">Strength (ST)</span>
+                <span class="attribute-title" [matTooltip]="_STRENGTH_TEXT"><span class="attr-full-name">Strength</span> (ST)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.strength }}</span>
-                <span class="attribute-title" [matTooltip]="_VITALITY_TEXT">Vitality (VI)</span>
+                <span class="attribute-title" [matTooltip]="_VITALITY_TEXT"><span class="attr-full-name">Vitality</span> (VI)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.vitality }}</span>
-                <span class="attribute-title" [matTooltip]="_DEXTERITY_TEXT">Dexterity (DE)</span>
+                <span class="attribute-title" [matTooltip]="_DEXTERITY_TEXT"><span class="attr-full-name">Dexterity</span> (DE)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.dexterity }}</span>
-                <span class="attribute-title" [matTooltip]="_AGILITY_TEXT">Agility (AG)</span>
+                <span class="attribute-title" [matTooltip]="_AGILITY_TEXT"><span class="attr-full-name">Agility</span> (AG)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.agility }}</span>
-                <span class="attribute-title" [matTooltip]="_INTELLECT_TEXT">Intellect (IN)</span>
+                <span class="attribute-title" [matTooltip]="_INTELLECT_TEXT"><span class="attr-full-name">Intellect</span> (IN)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.intellect }}</span>
-                <span class="attribute-title" [matTooltip]="_PERCEPTION_TEXT">Perception (PE)</span>
+                <span class="attribute-title" [matTooltip]="_PERCEPTION_TEXT"><span class="attr-full-name">Perception</span> (PE)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.perception }}</span>
-                <span class="attribute-title" [matTooltip]="_EMPATHY_TEXT">Empathy (EM)</span>
+                <span class="attribute-title" [matTooltip]="_EMPATHY_TEXT"><span class="attr-full-name">Empathy</span> (EM)</span>
                 <span class="attribute-value">{{ character.getFinalCharacter().stats.empathy }}</span>
             </div>
             <div class="levels">
                 <span class="border-overlapping-title">Levels</span>
                 <div class="levels-block levels-combat">
                     <b class="level-title" [matTooltipPosition]="'above'" [matTooltip]="_COMBATLEVEL_TEXT">Combat</b>
-                    <span class="level-level">Level {{ character.getCombatLevel() }}</span>
+                    <span class="level-level">Lv. {{ character.getCombatLevel() }}</span>
                     <span class="level-xp">{{ character.combatXP}} XP</span>
                 </div>
                 <div class="levels-block levels-adventuring">
                     <b class="level-title" [matTooltipPosition]="'above'" [matTooltip]="_ADVENTURING_TEXT">Adv.</b>
-                    <span class="level-level">Level {{ character.getAdventuringLevel() }}</span>
+                    <span class="level-level">Lv. {{ character.getAdventuringLevel() }}</span>
                     <span class="level-xp">{{ character.adventuringXP}} XP</span>
                 </div>
                 <div class="levels-block levels-social">
                     <b class="level-title" [matTooltipPosition]="'above'" [matTooltip]="_SOCIALLEVEL_TEXT">Social</b>
-                    <span class="level-level">Level {{ character.getSocialLevel() }}</span>
+                    <span class="level-level">Lv. {{ character.getSocialLevel() }}</span>
                     <span class="level-xp">{{ character.socialXP}} XP</span>
                 </div>
             </div>

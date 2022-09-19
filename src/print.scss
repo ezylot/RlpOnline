@@ -1,0 +1,62 @@
+@media print {
+    header, character-builder-navigation, .material-icons-outlined {
+        display: none !important;
+    }
+
+    .padded {
+        padding: 15px 0 !important;
+        border: 0;
+    }
+
+    .race-benefits,
+    .zodiacsign-benefits,
+    .perks,
+    .combatstats,
+    .equipment,
+    .languages,
+    .recovering-values,
+    .culture-benefits,
+    .background-benefits,
+    .attributes,
+    .levels {
+        border-width: 2px !important;
+    }
+
+
+    .levels {
+        width: 120px;
+        max-width: 120px;
+        flex-direction: column;
+
+        .level-xp {
+            margin-bottom: 10px;
+        }
+    }
+
+    #content {
+        overflow-y: visible !important;
+    }
+
+    body, .padded {
+        max-width: 750px !important;
+    }
+
+    .main-right {
+        width: 600px;
+        max-width: 600px;
+        padding-right: 0 !important;
+    }
+
+    .attributes {
+        width: 94px;
+        max-width: 94px;
+
+        .attr-full-name {
+            display: none !important;
+        }
+
+        .attribute-value {
+            margin-bottom: 12px !important;
+        }
+    }
+}
