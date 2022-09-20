@@ -1,5 +1,4 @@
 import {ZodiacSign} from "../classes/zodiacsign";
-import {Background} from "../classes/background";
 
 
 export function getAllZodiacSigns() : ZodiacSign[] { return ZODIAC_SIGNS; }

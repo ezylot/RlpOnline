@@ -3,7 +3,6 @@ import {Character, CharacterCaches} from '../classes/character';
 import {
     BehaviorSubject,
     combineLatest,
-    filter,
     map,
     Observable,
     ReplaySubject,
@@ -39,10 +38,7 @@ export class CharacterStorageService {
             map(([currentCharacterId, allCharacters]) => {
 
                 if(allCharacters.length == 0) {
-                    let newChar = this.generateNewCharacter();
-                    console.log("Creating new character", newChar.id);
-                    this.saveCharacter(newChar);
-                    return newChar;
+                    return this.generateNewCharacter();
                 }
 
                 if(currentCharacterId === undefined) return allCharacters[0];
@@ -71,7 +67,9 @@ export class CharacterStorageService {
     generateNewCharacter() {
         let newId = Math.floor(Math.random() * Math.pow(36, 50)).toString(36);
         let now = new Date().getTime();
-        return new Character(newId, now, now);
+        let newCharacter = new Character(newId, now, now);
+        this.saveCharacter(newCharacter);
+        return newCharacter;
     }
 
     import(txt: string) {

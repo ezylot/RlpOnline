@@ -1,5 +1,3 @@
-import {multicast} from "rxjs";
-
 export class Dice {
     constructor(public readonly multiplier: number, public readonly sides: number) { }
 
