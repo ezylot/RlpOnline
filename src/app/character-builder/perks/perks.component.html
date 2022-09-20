@@ -5,32 +5,46 @@
 <div class="perks-builder padded" *ngIf="character$ | async as character;">
 
     <div class="perk-category-selector">
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('BASE').length > 0">warning</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('BASE').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning</i>
+            </span>
             <a routerLink="/character-builder/perks" routerLinkActive="active">Base Perks</a>
         </div>
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('MARTIAL').length > 0">warning_outline</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('MARTIAL').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning_outline</i>
+            </span>
             <a routerLink="/character-builder/martial-perks" routerLinkActive="active">Martial Perks</a>
         </div>
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('ODEM').length > 0">warning</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('ODEM').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning</i>
+            </span>
             <a routerLink="/character-builder/odem-perks" routerLinkActive="active">Odem Perks</a>
         </div>
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('MANEUVERS').length > 0">warning</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('MANEUVERS').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning</i>
+            </span>
             <a routerLink="/character-builder/maneuvers" routerLinkActive="active">Maneuvers</a>
         </div>
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('MAGIC').length > 0">warning</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('MAGIC').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning</i>
+            </span>
             <a routerLink="/character-builder/magical-perks" routerLinkActive="active">Magic Perks</a>
         </div>
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('DIVINE').length > 0">warning</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('DIVINE').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning</i>
+            </span>
             <a routerLink="/character-builder/divine-perks" routerLinkActive="active">Divine Perks</a>
         </div>
-        <div><i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements."
-                *ngIf="character.getUnfulfilledPerkRequirements('SKILL').length > 0">warning</i>
+        <div>
+            <span *ngIf="character.getUnfulfilledPerkRequirements('SKILL').length > 0">
+                <i data-feather="alert-triangle" data-tippy-content="Some perks are missing requirements.">warning</i>
+            </span>
             <a routerLink="/character-builder/skill-perks" routerLinkActive="active">Skill Perks</a>
         </div>
     </div>
