@@ -122,6 +122,7 @@ export class CharacterStorageService {
                         for (let character of parsed) {
                             Object.setPrototypeOf(character, Character.prototype);
                             Object.setPrototypeOf(character.stats, Stats.prototype);
+                            Object.setPrototypeOf(character.statcap, Stats.prototype);
 
                             Object.setPrototypeOf(character.maxHealth, DiceAndFixed.prototype);
                             Object.setPrototypeOf(character.healthRegenBonus, DiceAndFixed.prototype);
@@ -137,11 +138,7 @@ export class CharacterStorageService {
 
                             let race = character.getRace();
                             if(race !== null) {
-                                let foundRace = getAllRaces().find(r => r.name === race!.name)
-                                if(foundRace === undefined) throw new Error("wtf??");
-                                race = foundRace;
-
-                                if(foundRace.name === "Humans") Object.setPrototypeOf(character.additionalData.chosenStats, Stats.prototype);
+                                if(race.name === "Humans") Object.setPrototypeOf(character.additionalData.chosenStats, Stats.prototype);
                             }
 
                             for (let i = 0; i < character.perks.length; i++){
