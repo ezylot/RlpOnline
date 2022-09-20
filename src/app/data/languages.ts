@@ -1,5 +1,4 @@
 import {Language} from "../classes/language";
-import {Background} from "../classes/background";
 
 
 // Special Language for Gnomes

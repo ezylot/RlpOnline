@@ -1,6 +1,8 @@
+import {immerable} from "immer";
 
 
 export class Stats {
+    [immerable] = true;
 
     constructor(
         readonly strength: number,

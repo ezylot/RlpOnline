@@ -5,7 +5,7 @@ import {getAllPerks} from "../../data/perks";
 import {PerkAndLevel} from "../../classes/perk-and-level";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {PerkCategory} from "../../classes/perk";
-import {cloneDeep} from "lodash-es";
+import produce, {Immutable} from "immer";
 
 @Component({
     selector: 'app-perks',
@@ -78,44 +78,43 @@ export class PerksComponent extends CharacterInjectingComponent {
 
     selectPerk(selectedPal: PerkAndLevel) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
 
-            let missingRequirements = selectedPal.perk.requirements.filter(req => !req.hasRequirements(charToEdit, selectedPal.level));
+            let missingRequirements = selectedPal.perk.requirements.filter(req => !req.hasRequirements(char, selectedPal.level));
             if(missingRequirements.length > 0) {
                 this._snackBar.open(`You do not have the requirement: ${missingRequirements[0].toCustomString(selectedPal.level)}`);
                 return;
             }
 
-            if(selectedPal.perk.getCpCostForLevel(selectedPal.level, charToEdit.perks) > this.openCharacterPoints) {
+            if(selectedPal.perk.getCpCostForLevel(selectedPal.level, char.perks) > this.openCharacterPoints) {
                 this._snackBar.open("Perk is too expensive", "Warning");
                 return;
             }
 
-            let existingIndex = charToEdit.perks.findIndex(pal => pal.perk.name == selectedPal.perk.name)
-            if(existingIndex === -1) {
-                charToEdit.perks.push(new PerkAndLevel(selectedPal.level, selectedPal.perk));
-            } else {
-                charToEdit.perks[existingIndex] = new PerkAndLevel(selectedPal.level, charToEdit.perks[existingIndex].perk);
-            }
+            let existingIndex = char.perks.findIndex(pal => pal.perk.name == selectedPal.perk.name);
 
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                if(existingIndex === -1) {
+                    charToEdit.perks.push(new PerkAndLevel(selectedPal.level, selectedPal.perk));
+                } else {
+                    charToEdit.perks[existingIndex] = new PerkAndLevel(selectedPal.level, selectedPal.perk);
+                }
+            }));
         });
     }
 
     deselectPerk(selectedPal: PerkAndLevel) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-            let existingIndex = charToEdit.perks.findIndex(pal => pal.perk.name == selectedPal.perk.name)
+            let existingIndex = char.perks.findIndex(pal => pal.perk.name == selectedPal.perk.name)
             if(existingIndex === -1) { throw new Error("Deselected a perk the user doesnt have"); }
 
-            if(charToEdit.perks[existingIndex].level == 1) {
-                charToEdit.perks.splice(existingIndex, 1);
-            } else {
-                charToEdit.perks[existingIndex] = new PerkAndLevel(selectedPal.level - 1, charToEdit.perks[existingIndex].perk);
-            }
-
-            this.characterStorageService.saveCharacter(charToEdit);
-        });
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                if(charToEdit.perks[existingIndex].level == 1) {
+                    charToEdit.perks.splice(existingIndex, 1);
+                } else {
+                    charToEdit.perks[existingIndex] = new PerkAndLevel(selectedPal.level - 1, selectedPal.perk);
+                }
+            }));
+         });
     }
 
     search($event: Event) {

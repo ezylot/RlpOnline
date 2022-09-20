@@ -1,30 +1,31 @@
 import {DiceAndFixed} from "./dice-and-fixed";
-import {Mutable} from "../definitions";
-import {cloneDeep} from "lodash-es";
-import {DeepReadonly} from "ts-essentials";
+import {immerable, produce} from "immer";
 
 
 export class DiceAndFixedAndLevel {
+    [immerable] = true;
 
-    public static EMPTY: DiceAndFixedAndLevel = new DiceAndFixedAndLevel(DiceAndFixed.EMPTY, DiceAndFixed.EMPTY, DiceAndFixed.EMPTY, DiceAndFixed.EMPTY);
-
-    constructor(
-        public readonly baseModifier: DeepReadonly<DiceAndFixed>,
-        public readonly combatModifier: DeepReadonly<DiceAndFixed>,
-        public readonly adventuringModifier: DeepReadonly<DiceAndFixed>,
-        public readonly socialModifier: DeepReadonly<DiceAndFixed>,
-    ) { }
-
-    increaseDice(times: number, sides: number) : DeepReadonly<DiceAndFixedAndLevel> {
-        let cloned = cloneDeep(this) as Mutable<DiceAndFixedAndLevel>;
-        cloned.baseModifier = this.baseModifier.increaseDice(times, sides);
-        return cloned;
+    public static empty(): DiceAndFixedAndLevel {
+        return new DiceAndFixedAndLevel(DiceAndFixed.empty(), DiceAndFixed.empty(), DiceAndFixed.empty(), DiceAndFixed.empty());
     }
 
-    increaseFixed(number: number) : DeepReadonly<DiceAndFixedAndLevel> {
-        let cloned = cloneDeep(this) as Mutable<DiceAndFixedAndLevel>;
-        cloned.baseModifier = this.baseModifier.increaseFixed(number);
-        return cloned;
+    constructor(
+        public readonly baseModifier: DiceAndFixed,
+        public readonly combatModifier: DiceAndFixed,
+        public readonly adventuringModifier: DiceAndFixed,
+        public readonly socialModifier: DiceAndFixed,
+    ) { }
+
+    increaseDice(times: number, sides: number) : DiceAndFixedAndLevel {
+        return produce(this, draft => {
+            draft.baseModifier = this.baseModifier.increaseDice(times, sides);
+        });
+    }
+
+    increaseFixed(number: number) : DiceAndFixedAndLevel {
+        return produce(this, draft => {
+            draft.baseModifier = this.baseModifier.increaseFixed(number);
+        });
     }
 
     average() : number {
@@ -68,11 +69,9 @@ export class DiceAndFixedAndLevel {
             socialTotal = socialTotal.increaseDice(dice.multiplier, dice.sides);
         }
 
-        if(combatTotal.average() == adventuringTotal.average() && adventuringTotal.average() == socialTotal.average()) {
-            return combatTotal.toString();
-        }
-
-        return `Combat ${combatTotal} | Adventuring ${adventuringTotal} | Social ${socialTotal}`;
+        return `<span class="exact-string-stat">Combat:</span> + ${combatTotal} <br />
+                <span class="exact-string-stat"">Adven.:</span> + ${adventuringTotal} <br />
+                <span class="exact-string-stat">Social:</span> + ${socialTotal}`;
 
     }
 }

@@ -18,6 +18,9 @@ import {DiceAndFixed} from "../classes/dice-and-fixed";
 import {getAllRaces} from "../data/races";
 import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
 import {Language} from "../classes/language";
+import {immerable, setAutoFreeze} from "immer";
+import {OnlyProperties} from "../definitions";
+import {plainToClass, plainToClassFromExist} from "class-transformer";
 
 @Injectable({
   providedIn: 'root'
@@ -110,31 +113,11 @@ export class CharacterStorageService {
                 return new Observable<Character[]>(o => {
                     let storedString = window.localStorage.getItem("characters");
                     try {
-                        let parsed = JSON.parse(storedString || "[]", function(key, value) {
-                            if(key == "baseModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
-                            if(key == "combatModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
-                            if(key == "adventuringModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
-                            if(key == "socialModifier") return Object.setPrototypeOf(value, DiceAndFixed.prototype);
+                        let parsed = JSON.parse(storedString || "[]") as OnlyProperties<Character>[];
 
-                            return value;
-                        }) as Character[];
-
-                        for (let character of parsed) {
-                            Object.setPrototypeOf(character, Character.prototype);
-                            Object.setPrototypeOf(character.stats, Stats.prototype);
-                            Object.setPrototypeOf(character.statcap, Stats.prototype);
-
-                            Object.setPrototypeOf(character.maxHealth, DiceAndFixed.prototype);
-                            Object.setPrototypeOf(character.healthRegenBonus, DiceAndFixed.prototype);
-                            Object.setPrototypeOf(character.maxStamina, DiceAndFixed.prototype);
-                            Object.setPrototypeOf(character.staminaRegenBonus, DiceAndFixed.prototype);
-                            Object.setPrototypeOf(character.maxMana, DiceAndFixed.prototype);
-                            Object.setPrototypeOf(character.manaRegenBonus, DiceAndFixed.prototype);
-                            Object.setPrototypeOf(character.dodgeModifier, DiceAndFixedAndLevel.prototype);
-                            Object.setPrototypeOf(character.noticeModifier, DiceAndFixedAndLevel.prototype);
-                            Object.setPrototypeOf(character.willpowerModifier, DiceAndFixedAndLevel.prototype);
-
-                            character.caches = new CharacterCaches();
+                        let parsedAndTransformed = parsed.map(plainCharacterObject => {
+                            let newChar = new Character(plainCharacterObject.id, plainCharacterObject.createdTime, plainCharacterObject.updatedTime);
+                            let character = plainToClassFromExist(newChar, plainCharacterObject, { enableImplicitConversion: true });
 
                             let race = character.getRace();
                             if(race !== null) {
@@ -148,10 +131,10 @@ export class CharacterStorageService {
                                 character.perks[i] = new PerkAndLevel(perkAndLevel.level, foundPerk);
                             }
 
-                            character.languagesInLearnOrder.forEach(l => Object.setPrototypeOf(l, Language.prototype));
-                        }
+                            return character;
+                        });
 
-                        o.next(parsed);
+                        o.next(parsedAndTransformed);
                         o.complete();
                     } catch (error) {
                         console.error(error);

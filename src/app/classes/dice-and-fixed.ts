@@ -1,14 +1,17 @@
 import {Dice} from "./dice";
-import {DeepReadonly} from "ts-essentials";
+import {immerable} from "immer";
 
 
 export class DiceAndFixed {
+    [immerable] = true;
 
-    public static EMPTY: DiceAndFixed = new DiceAndFixed(0, []);
+    public static empty():DiceAndFixed {
+        return new DiceAndFixed(0, [])
+    };
 
-    constructor(public readonly fixedNumber: number, public readonly dices: DeepReadonly<Dice[]>) { }
+    constructor(public readonly fixedNumber: number, public readonly dices: Dice[]) { }
 
-    increaseDice(times: number, sides: number) : DeepReadonly<DiceAndFixed> {
+    increaseDice(times: number, sides: number) : DiceAndFixed {
         let newDices = Array.from(this.dices);
 
         let index = newDices.findIndex(value => value.sides === sides);
@@ -22,7 +25,7 @@ export class DiceAndFixed {
         return new DiceAndFixed(this.fixedNumber, newDices);
     }
 
-    increaseFixed(number: number): DeepReadonly<DiceAndFixed> {
+    increaseFixed(number: number): DiceAndFixed {
         return new DiceAndFixed(this.fixedNumber + number, Array.from(this.dices));
     }
 

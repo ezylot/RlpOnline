@@ -2,9 +2,8 @@ import {Race} from "../classes/race";
 import {LevelUpBonus} from "../classes/levelupbonus";
 import {Stats} from "../classes/stats";
 import {ANIMALS} from "./languages";
-import {PerkAndLevel} from "../classes/perk-and-level";
-import {cloneDeep} from "lodash-es";
-import {ZERO_STATS} from "./stats";
+import {zeroStats} from "./stats";
+import produce from "immer";
 
 export function getAllRaces() : Race[] { return RACES; }
 const RACES: Race[] = [
@@ -290,7 +289,7 @@ const RACES: Race[] = [
         textDescription: "Humans can freely add 4 attribute points, but they can not increase any attribute above 12 with this.<br />" +
             "Additionally, humans can create their character with 1800 CP instead of 1500<br /><br />" +
             "Humans start the game with 25 Health, 25 Stamina and 25 Mana.",
-        statboni: ZERO_STATS,
+        statboni: zeroStats(),
         conditionalStatbonis: [],
         traitsAsStrings: [ ],
         startingHealth: 25,
@@ -440,9 +439,9 @@ const RACES: Race[] = [
                 let oldAdditionalFixedIncrease = pal.perk.additionalData.additionalFixedIncrease;
                 let newAdditionalFixedIncrease = oldAdditionalFixedIncrease + 2 * pal.level;
 
-                let cloned = cloneDeep(pal) as PerkAndLevel;
-                cloned.perk.additionalData.additionalFixedIncrease = newAdditionalFixedIncrease;
-                return cloned;
+                return produce(pal, draft => {
+                    pal.perk.additionalData.additionalFixedIncrease = newAdditionalFixedIncrease;
+                });
             }
             return pal;
         },

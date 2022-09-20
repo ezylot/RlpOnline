@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {take, takeUntil} from "rxjs";
-import {Character} from "../../classes/character";
 import {Language} from "../../classes/language";
 import {getAllLanguages} from "../../data/languages";
-import {cloneDeep} from "lodash-es";
+import produce from "immer";
 
 @Component({
   selector: 'app-languages',
@@ -54,27 +53,25 @@ export class LanguagesComponent extends CharacterInjectingComponent {
 
     selectLanguage(selectedLanguage: Language) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-
-            if(selectedLanguage.getCpCost(charToEdit.languagesInLearnOrder) > this.openCharacterPoints) {
+            if(selectedLanguage.getCpCost(char.languagesInLearnOrder) > this.openCharacterPoints) {
                 this._snackBar.open("Language is too expensive", "Warning");
                 return;
             }
 
-            charToEdit.languagesInLearnOrder.push(selectedLanguage);
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                charToEdit.languagesInLearnOrder.push(selectedLanguage);
+            }));
         });
     }
 
     deselectLanguage(selectedLanguage: Language) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-
-            let existingIndex = charToEdit.languagesInLearnOrder.findIndex(l => l.name == selectedLanguage.name);
+            let existingIndex = char.languagesInLearnOrder.findIndex(l => l.name == selectedLanguage.name);
             if(existingIndex === -1) { throw new Error("Deselected a language the user doesnt have"); }
 
-            charToEdit.languagesInLearnOrder.splice(existingIndex, 1)
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                charToEdit.languagesInLearnOrder.splice(existingIndex, 1);
+            }));
         });
     }
 

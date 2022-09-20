@@ -1,4 +1,8 @@
+import {immerable} from "immer";
+
 export class Dice {
+    [immerable] = true;
+
     constructor(public readonly multiplier: number, public readonly sides: number) { }
 
     average(): number {

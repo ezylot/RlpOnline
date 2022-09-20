@@ -1,6 +1,5 @@
 import {Race} from "./race";
 import {Stats} from "./stats";
-import {STANDARD_ARRAY} from "../data/stats";
 import {ZodiacSign} from "./zodiacsign";
 import {Background} from "./background";
 import {Culture} from "./culture";
@@ -14,9 +13,10 @@ import {getAllZodiacSigns} from "../data/zodiacsigns";
 import {getAllRaces} from "../data/races";
 import {getAllCultures} from "../data/cultures";
 import {getAllBackgrounds} from "../data/backgrounds";
-import {cloneDeep, orderBy} from "lodash-es";
-import {deepFreeze} from "../definitions";
-import {DeepReadonly} from "ts-essentials";
+import {orderBy} from "lodash-es";
+import {Type} from "class-transformer";
+import {immerable, produce} from "immer";
+import {standardArray} from "../data/stats";
 
 // TODO: add perk cache
 export class CharacterCaches {
@@ -29,50 +29,48 @@ export class CharacterCaches {
 }
 
 export class Character {
+    [immerable] = true;
 
     // TODO: inventory
     // TODO: list of actions in combat
     // TODO: point buy
 
-    startingCP = 1500;
-    startingGold = 500;
+    public readonly startingCP = 1500;
+    public readonly startingGold = 500;
+    public readonly combatXP: number = 0;
+    public readonly socialXP: number = 0;
+    public readonly adventuringXP: number = 0;
 
-
-    public name: string = "New Character";
-    public raceName: string | null = null;
-    public cultureName: string | null = null;
-    public backgroundName: string | null = null;
-    public zodiacSignName: string | null = null;
+    public readonly name: string = "New Character";
+    public readonly raceName: string | null = null;
+    public readonly cultureName: string | null = null;
+    public readonly backgroundName: string | null = null;
+    public readonly zodiacSignName: string | null = null;
 
     caches = new CharacterCaches();
 
-    public maxHealth: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
-    public healthRegenBonus: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
-    public maxStamina: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
-    public staminaRegenBonus: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
-    public maxMana: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
-    public manaRegenBonus: DeepReadonly<DiceAndFixed> = DiceAndFixed.EMPTY;
+    @Type(() => DiceAndFixed) public readonly maxHealth: DiceAndFixed = DiceAndFixed.empty();
+    @Type(() => DiceAndFixed) public readonly healthRegenBonus: DiceAndFixed = DiceAndFixed.empty();
+    @Type(() => DiceAndFixed) public readonly maxStamina: DiceAndFixed = DiceAndFixed.empty();
+    @Type(() => DiceAndFixed) public readonly staminaRegenBonus: DiceAndFixed = DiceAndFixed.empty();
+    @Type(() => DiceAndFixed) public readonly maxMana: DiceAndFixed = DiceAndFixed.empty();
+    @Type(() => DiceAndFixed) public readonly manaRegenBonus: DiceAndFixed = DiceAndFixed.empty();
 
-    public dodgeModifier: DeepReadonly<DiceAndFixedAndLevel> = DiceAndFixedAndLevel.EMPTY;
-    public noticeModifier: DeepReadonly<DiceAndFixedAndLevel> = DiceAndFixedAndLevel.EMPTY;
-    public willpowerModifier: DeepReadonly<DiceAndFixedAndLevel> = DiceAndFixedAndLevel.EMPTY;
+    @Type(() => DiceAndFixedAndLevel) public readonly dodgeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.empty();
+    @Type(() => DiceAndFixedAndLevel) public readonly noticeModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.empty();
+    @Type(() => DiceAndFixedAndLevel) public readonly willpowerModifier: DiceAndFixedAndLevel = DiceAndFixedAndLevel.empty();
 
-    public statcap: Stats = new Stats(12, 12, 12, 12, 12,12, 12);
+    @Type(() => Stats) public readonly statcap: Stats = new Stats(12, 12, 12, 12, 12,12, 12);
+    @Type(() => Stats) public readonly stats: Stats = standardArray();
 
-    public stats: Stats = STANDARD_ARRAY;
-    public perks: PerkAndLevel[] = [];
-    public additionalData: any = { };
+    @Type(() => PerkAndLevel) public readonly perks: PerkAndLevel[] = [];
+    @Type(() => Language) public readonly languagesInLearnOrder: Language[] = [];
 
-    public equipment: [] | null = null;
-    public languagesInLearnOrder: Language[] = [];
+    public readonly equipment: [] | null = null;
+    public readonly additionalData: any = { };
 
-    combatXP: number = 0;
-    socialXP: number = 0;
-    adventuringXP: number = 0;
 
-    constructor(readonly id: string, public readonly createdTime: number, public updatedTime: number) {
-        this.deepFreeze();
-    }
+    constructor(public readonly id: string, public readonly createdTime: number, public updatedTime: number) { }
 
     hasEquipment(equipmentName: string): boolean {
         return true;
@@ -136,7 +134,7 @@ export class Character {
         let finalChar = this.getFinalCharacter();
         let race = finalChar.getRace();
 
-        return Object.freeze({
+        return {
             maxHealth: finalChar.maxHealth
                 .increaseFixed(race?.startingHealth || 0)
                 .increaseFixed(finalChar.stats.vitality),
@@ -150,7 +148,7 @@ export class Character {
             dodgeModifier: finalChar.dodgeModifier.increaseFixed(finalChar.stats.agility),
             noticeModifier: finalChar.noticeModifier.increaseFixed(finalChar.stats.perception),
             willpowerModifier: finalChar.willpowerModifier.increaseFixed(finalChar.stats.empathy),
-        });
+        };
     }
 
     getHealthRecovery() : DiceAndFixed {
@@ -263,29 +261,28 @@ export class Character {
         return 1;
     }
 
-    getFinalCharacter(): DeepReadonly<Character> {
-
+    getFinalCharacter(): Character {
         if(this.caches.finalCharacterCache !== null) return this.caches.finalCharacterCache;
 
-        let charCopy: Character = cloneDeep(this);
+        let chosenStats = this.stats.toStatNumberArray();
+        let raceStatBonis = this.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0);
+        if(this.getRace()?.name === "Humans") raceStatBonis = this.additionalData.chosenStats.toStatNumberArray();
 
-        let chosenStats = charCopy.stats.toStatNumberArray();
-        let raceStatBonis = charCopy.getRace()?.statboni?.toStatNumberArray() || new Array(7).fill(0);
-        if(charCopy.getRace()?.name === "Humans") raceStatBonis = charCopy.additionalData.chosenStats.toStatNumberArray();
-
-        charCopy.stats = Stats.fromArray(chosenStats.map(function(stat, i) {
-            return stat + raceStatBonis[i];
-        }));
+        let newChar: Character = produce(this, draft => {
+            draft.stats = Stats.fromArray(chosenStats.map(function(stat, i) {
+                return stat + raceStatBonis[i];
+            }));
+        });
 
         for (let pal of orderBy(this.perks, ['perk.priority'], ['asc'])) {
             let race = this.getRace();
             if(race !== null) {
                 pal = race.modifyPerkWhenLearning(pal);
             }
-            charCopy = pal.perk.applyEffect(cloneDeep(charCopy).deepFreeze(), pal.level) as Character;
+            newChar = pal.perk.applyEffect(newChar, pal.level)
         }
 
-        this.caches.finalCharacterCache = charCopy;
+        this.caches.finalCharacterCache = newChar;
         return this.caches.finalCharacterCache;
     }
 
@@ -297,9 +294,5 @@ export class Character {
         } = this;
 
         return objectWithoutCaches;
-    }
-
-    private deepFreeze(): Character {
-        return deepFreeze(this, [ "caches" ]);
     }
 }

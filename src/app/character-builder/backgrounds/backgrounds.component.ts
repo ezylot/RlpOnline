@@ -4,7 +4,7 @@ import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Background} from "../../classes/background";
 import {getAllBackgrounds} from "../../data/backgrounds";
-import {cloneDeep} from "lodash-es";
+import produce from "immer";
 
 @Component({
     selector: 'app-background',
@@ -17,9 +17,9 @@ export class BackgroundsComponent extends CharacterInjectingComponent {
 
     changeBackground(background: Background) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-            charToEdit.backgroundName = background.name;
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, draft => {
+                draft.backgroundName = background.name;
+            }));
         });
     }
 }

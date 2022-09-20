@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {Character} from "../../classes/character";
 import {take, takeUntil} from "rxjs";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {ADVENTURING_TEXT, COMBATLEVEL_TEXT, SOCIALLEVEL_TEXT} from "../../data/texts";
-import {cloneDeep} from "lodash-es";
+import produce from "immer";
 
 @Component({
     selector: 'app-name-selector',
@@ -37,32 +36,30 @@ export class NameSelectorComponent extends CharacterInjectingComponent{
         let newAdventuringXP = this.adventuringXP;
         let newSocialXP = this.socialXP;
 
+        if (newName === "") {
+            this._snackBar.open("Name must not be empty");
+            return
+        }
+        if (newCombatXP < 0) {
+            this._snackBar.open("combatXP cannot be negative");
+            return;
+        }
+        if (newAdventuringXP < 0) {
+            this._snackBar.open("adventuringXP cannot be negative");
+            return;
+        }
+        if (newSocialXP < 0) {
+            this._snackBar.open("socialXP cannot be negative");
+            return;
+        }
+
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-
-            charToEdit.name = newName;
-            charToEdit.combatXP = newCombatXP;
-            charToEdit.adventuringXP = newAdventuringXP;
-            charToEdit.socialXP = newSocialXP;
-
-            if (charToEdit.name === "") {
-                this._snackBar.open("Name must not be empty");
-                return
-            }
-            if (charToEdit.combatXP < 0) {
-                this._snackBar.open("combatXP cannot be negative");
-                return;
-            }
-            if (charToEdit.adventuringXP < 0) {
-                this._snackBar.open("adventuringXP cannot be negative");
-                return;
-            }
-            if (charToEdit.socialXP < 0) {
-                this._snackBar.open("socialXP cannot be negative");
-                return;
-            }
-
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, draft => {
+                draft.name = newName;
+                draft.combatXP = newCombatXP;
+                draft.adventuringXP = newAdventuringXP;
+                draft.socialXP = newSocialXP;
+            }));
         });
     }
 }

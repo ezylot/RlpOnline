@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {take} from "rxjs";
-import {Character} from "../../classes/character";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Culture} from "../../classes/culture";
 import {getAllCultures} from "../../data/cultures";
-import {cloneDeep} from "lodash-es";
+import produce from "immer";
 
 @Component({
     selector: 'app-culture',
@@ -17,9 +16,9 @@ export class CultureComponent extends CharacterInjectingComponent {
 
     changeCulture(culture: Culture) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-            charToEdit.cultureName = culture.name;
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, draft => {
+                draft.cultureName = culture.name;
+            }));
         });
     }
 }

@@ -1,7 +1,7 @@
 import {Character} from "./character";
 import {PerkAndLevel} from "./perk-and-level";
-import {DeepReadonly} from "ts-essentials";
 import {Stats} from "./stats";
+import {immerable, Immutable} from "immer";
 
 export enum PerkCategory {
     BASE,
@@ -23,9 +23,9 @@ export interface Perk {
     additionalData: any;
     priority: number;
     internalCategory: PerkCategory;
-    getCpCostForLevel(level: number, allPerks: DeepReadonly<PerkAndLevel[]>): number;
-    getGoldCostForLevel(level: number, allPerks: DeepReadonly<PerkAndLevel[]>): number;
-    applyEffect(character: DeepReadonly<Character>, level: number): DeepReadonly<Character>;
+    getCpCostForLevel(level: number, allPerks: PerkAndLevel[]): number;
+    getGoldCostForLevel(level: number, allPerks: PerkAndLevel[]): number;
+    applyEffect(character: Character, level: number): Character;
 }
 
 export class PerkRequirement {
@@ -33,7 +33,7 @@ export class PerkRequirement {
                 public readonly perkname?: string,
                 public readonly attributeName?: keyof Stats) { }
 
-    public hasRequirements(char: DeepReadonly<Character>, wantedLevel: number): boolean {
+    public hasRequirements(char: Immutable<Character>, wantedLevel: number): boolean {
         if(this.perkname) {
             let perk = char.perks.find(pal => pal.perk.name == this.perkname)
             return (perk != undefined && perk.level >= this.getRequiredLevelForWantedLevel(wantedLevel));
@@ -49,7 +49,7 @@ export class PerkRequirement {
     }
 
     public toCustomString(wantedLevel: number) : string {
-        return `${this.perkname || this.attributeName} : ${this.getRequiredLevelForWantedLevel(wantedLevel)}`
+        return `${this.perkname || this.attributeName?.toString()} : ${this.getRequiredLevelForWantedLevel(wantedLevel)}`
     }
 
     private getRequiredLevelForWantedLevel(wantedLevel: number) {

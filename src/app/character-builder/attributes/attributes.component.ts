@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
-import {Character} from "../../classes/character";
 import {Stats} from "../../classes/stats";
-import {STANDARD_ARRAY} from "../../data/stats";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {take, takeUntil} from "rxjs";
@@ -15,8 +13,9 @@ import {
     STRENGTH_TEXT,
     VITALITY_TEXT,
 } from "../../data/texts";
-import {cloneDeep} from "lodash-es";
 import {Mutable, OnlyProperties} from "../../definitions";
+import produce from "immer";
+import {standardArray} from "../../data/stats";
 
 @Component({
     selector: 'app-attributes',
@@ -34,8 +33,7 @@ export class AttributesComponent extends CharacterInjectingComponent{
     _EMPATHY_TEXT = EMPATHY_TEXT;
     conditionalStatsWarning = CONDITIONAL_STAT_TEXT;
 
-    //TODO: add human column to distribute attributes
-    stats: Stats = STANDARD_ARRAY;
+    stats: Stats = standardArray();
 
     override ngOnInit(): void {
         super.ngOnInit();
@@ -44,31 +42,28 @@ export class AttributesComponent extends CharacterInjectingComponent{
 
     drop($event: CdkDragDrop<string[]>) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
             let chosenOrder = this.stats.toStatNumberArray();
-
             moveItemInArray(chosenOrder, $event.previousIndex, $event.currentIndex);
-
             this.stats = Stats.fromArray(chosenOrder);
-            charToEdit.stats = this.stats;
-            this.characterStorageService.saveCharacter(charToEdit);
-        });
 
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                charToEdit.stats = this.stats;
+            }));
+        });
     }
 
     // Increase and Decrease for humans
     decreaseStat(statName: keyof OnlyProperties<Stats>) {
         this.character$.pipe(take(1)).subscribe(char => {
-            let charToEdit = cloneDeep(char) as Character;
-            let newStats = charToEdit.additionalData.chosenStats as OnlyProperties<Mutable<Stats>>;
+            let newStats = char.additionalData.chosenStats as OnlyProperties<Mutable<Stats>>;
             if(newStats[statName] <= 0) {
                 this._snackBar.open("Cant decrease stats to negative values.");
                 return;
             }
-            newStats[statName] -= 1;
 
-            charToEdit.additionalData.chosenStats = newStats;
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                charToEdit.additionalData.chosenStats[statName] -= 1;
+            }));
         });
     }
 
@@ -79,13 +74,9 @@ export class AttributesComponent extends CharacterInjectingComponent{
                 return;
             }
 
-            let charToEdit = cloneDeep(char) as Character;
-            let newStats = charToEdit.additionalData.chosenStats as OnlyProperties<Mutable<Stats>>;
-
-            newStats[statName] += 1;
-
-            charToEdit.additionalData.chosenStats = newStats;
-            this.characterStorageService.saveCharacter(charToEdit);
+            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
+                charToEdit.additionalData.chosenStats[statName] += 1;
+            }));
         });
     }
 }

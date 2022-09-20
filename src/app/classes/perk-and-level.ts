@@ -1,6 +1,9 @@
 import {Perk} from "./perk";
+import {immerable} from "immer";
 
 export class PerkAndLevel {
+    [immerable] = true;
+
     constructor(public readonly level: number, public readonly perk: Perk) {
     }
 

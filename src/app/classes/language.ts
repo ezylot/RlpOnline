@@ -1,5 +1,7 @@
+import {immerable} from "immer";
 
 export class Language {
+    [immerable] = true;
 
     constructor(
         readonly family: string,
