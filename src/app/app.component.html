@@ -3,22 +3,22 @@
         <h1>RLP Online</h1>
         <h3>Release 41</h3>
         <div class="nav-circles">
-            <div class="circled-outline">
-                <span class="new-character" (click)="createNewChar()" [matTooltip]="'Create new character'">
+            <div class="circled-outline" (click)="createNewChar()">
+                <span class="new-character" [matTooltip]="'Create new character'">
                     <i data-feather="user-plus"></i>
                 </span>
             </div>
-            <div class="circled-outline">
-                <input #fileInput id="fileInput" type="file" (change)="uploadFile($event)" style="display: none" />
-                <span (click)="fileInput.click()" [matTooltip]="'Upload saved character'">
+            <div class="circled-outline" (click)="fileInput.click()" (change)="uploadFile($event)">
+                <input #fileInput id="fileInput" type="file" style="display: none" />
+                <span [matTooltip]="'Upload saved character'">
                     <i data-feather="upload"></i>
                 </span>
             </div>
-            <div class="circled-outline">
-                <a [href]="downloadJsonHref" [matTooltip]="'Save current character as file'" download="{{character.name}}">
+            <a [href]="downloadJsonHref" [matTooltip]="'Save current character as file'" download="{{character.name}}">
+                <div class="circled-outline">
                     <i data-feather="download"></i>
-                </a>
-            </div>
+                </div>
+            </a>
             <div class="circled-outline" (click)="toggleDarkmode()">
                 <span [matTooltip]="'Toggle darkmode'" *ngIf="!this.isDarkMode" >
                     <i data-feather="sun"></i>
