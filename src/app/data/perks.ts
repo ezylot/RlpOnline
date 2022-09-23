@@ -388,7 +388,7 @@ const PERKS: Perk[] = [
         name: "Axe Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with axes. This includes all weapons with the \"Axe\" descriptor. You add your\n" +
+        description: "You are trained with axes. This includes all weapons with the \"Axe\" and without the \"Unusual\" descriptor. You add your\n" +
             "level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -408,7 +408,7 @@ const PERKS: Perk[] = [
         name: "Blunt Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with blunt weapons. This includes all weapons with the \"Blunt\" descriptor. You\n" +
+        description: "You are trained with blunt weapons. This includes all weapons with the \"Blunt\" and without the \"Unusual\" descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 155,
@@ -428,7 +428,7 @@ const PERKS: Perk[] = [
         name: "Bow Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with bows. This includes all weapons with the \"Bow\" descriptor. You add your\n" +
+        description: "You are trained with bows. This includes all weapons with the \"Bow\" and without the \"Unusual\" descriptor. You add your\n" +
             "level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -448,7 +448,7 @@ const PERKS: Perk[] = [
         name: "Crossbow Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with crossbows. This includes all weapons with the \"Crossbow\" descriptor. You\n" +
+        description: "You are trained with crossbows. This includes all weapons with the \"Crossbow\" and without the \"Unusual\" descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -468,7 +468,7 @@ const PERKS: Perk[] = [
         name: "Polearm Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with polearms. This includes all weapons that have the \"Polearm\" descriptor.\n" +
+        description: "You are trained with polearms. This includes all weapons that have the \"Polearm\" and without the \"Unusual\" descriptor.\n" +
             "You add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -488,7 +488,7 @@ const PERKS: Perk[] = [
         name: "Shield Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with shields. This includes all weapons with the \"Shield\" descriptor. You add\n" +
+        description: "You are trained with shields. This includes all weapons with the \"Shield\" and without the \"Unusual\" descriptor. You add\n" +
             "your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -508,7 +508,7 @@ const PERKS: Perk[] = [
         name: "Sword Training",
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
-        description: "You are trained with swords. This includes all weapons that have the \"Sword\" descriptor. You\n" +
+        description: "You are trained with swords. This includes all weapons that have the \"Sword\" and without the \"Unusual\" descriptor. You\n" +
             "add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 160,
@@ -529,7 +529,7 @@ const PERKS: Perk[] = [
         requirements: [new PerkRequirement({1: 1}, "Simple Weapon Training")],
         tags: ["Passive", "Repeatable", "Source"],
         description: "You are trained with throwing weapons. This includes all weapons that have the \"Throwing\"\n" +
-            "descriptor. You add your level to attack and block rolls made with these weapons.",
+            " and without the \"Unusual\" descriptor. You add your level to attack and block rolls made with these weapons.",
         startingLevel: 0,
         priority: 155,
         internalCategory: PerkCategory.MARTIAL,

@@ -49,18 +49,18 @@
             <div class="stat boxed-stat stat-empathy" cdkDrag>{{stats.empathy}}</div>
         </div>
 
-        <div class="fixed-column">
-            <h2>&nbsp;</h2>
-            <p class="stat">+</p>
-            <p class="stat">+</p>
-            <p class="stat">+</p>
-            <p class="stat">+</p>
-            <p class="stat">+</p>
-            <p class="stat">+</p>
-            <p class="stat">+</p>
-        </div>
-
         <ng-container *ngIf="character.getRace() as race;">
+            <div class="fixed-column">
+                <h2>&nbsp;</h2>
+                <p class="stat">+</p>
+                <p class="stat">+</p>
+                <p class="stat">+</p>
+                <p class="stat">+</p>
+                <p class="stat">+</p>
+                <p class="stat">+</p>
+                <p class="stat">+</p>
+            </div>
+
             <div class="statlist" *ngIf="race.name !== 'Humans'; else humanBlock">
                 <h2>Race Bonis</h2>
                 <div class="stat boxed-stat stat-strength">{{race.statboni.strength}}</div>
