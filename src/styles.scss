@@ -151,7 +151,7 @@ input[type=number] {
         background-color: $dark-background-fore !important;
     }
 
-    input {
+    input, select {
         background: rgb(43, 42, 51);
         border: 1px solid #696969;
     }

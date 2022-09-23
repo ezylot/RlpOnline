@@ -1186,6 +1186,7 @@ function withArmorBonus(character: Character, level: number): Character {
     const oldLevel = character.additionalData.addedArmorLevel || 0;
     if(oldLevel >= level) return character;
 
+    // TODO: check if wearing the corret armor type
     let dm = character.dodgeModifier;
     if(oldLevel == 0) {
         dm = new DiceAndFixedAndLevel(

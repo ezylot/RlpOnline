@@ -63,7 +63,7 @@ export class PerksComponent extends CharacterInjectingComponent {
         let returnList = list;
 
         if (!!this.searchString) {
-            returnList =  returnList.filter(p => {
+            returnList = returnList.filter(p => {
                 return p.perk.name.toLowerCase().indexOf(this.searchString.toLowerCase()) !== -1
                     || p.perk.description.toLowerCase().indexOf(this.searchString.toLowerCase()) !== -1;
             })

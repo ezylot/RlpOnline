@@ -17,6 +17,10 @@ import {orderBy} from "lodash-es";
 import {Type} from "class-transformer";
 import {immerable, produce} from "immer";
 import {standardArray} from "../data/stats";
+import {EquipmentAndQuality} from "./equipment/equipment-and-quality";
+import {getEquipmentByName} from "../data/equipment";
+import {EquipmentType} from "./equipment/equipment";
+import {Armor, ArmorType} from "./equipment/armor";
 
 // TODO: add perk cache
 export class CharacterCaches {
@@ -66,14 +70,14 @@ export class Character {
     @Type(() => PerkAndLevel) public readonly perks: PerkAndLevel[] = [];
     @Type(() => Language) public readonly languagesInLearnOrder: Language[] = [];
 
-    public readonly equipment: [] | null = null;
+    public readonly equipment: EquipmentAndQuality[] = [];
     public readonly additionalData: any = { };
 
 
     constructor(public readonly id: string, public readonly createdTime: number, public updatedTime: number) { }
 
-    hasEquipment(equipmentName: string): boolean {
-        return true;
+    getEquipment(equipmentName: string): EquipmentAndQuality | undefined {
+        return this.equipment.filter(value => value.equipmentName === equipmentName)[0];
     }
 
     hasItems(itemName: string): boolean {
@@ -273,6 +277,30 @@ export class Character {
                 return stat + raceStatBonis[i];
             }));
         });
+
+        let wornArmors = newChar.equipment
+            .map(value => getEquipmentByName(value.equipmentName))
+            .filter(value => value.type == EquipmentType.ARMOR) as Armor[];
+
+        newChar = produce(newChar, draft => {
+            if(wornArmors.some(value => value.armorType === ArmorType.LIGHT)) draft.statcap.agility = Math.min(draft.statcap.agility, 10);
+            if(wornArmors.some(value => value.armorType === ArmorType.MEDIUM)) draft.statcap.agility = Math.min(draft.statcap.agility, 8);
+            if(wornArmors.some(value => value.armorType === ArmorType.HEAVY)) draft.statcap.agility = Math.min(draft.statcap.agility, 6);
+        });
+
+        // TODO: Wearing two pieces of armor reduces a character’s Agility by 2, to a minimum of 1.
+        // TODO: add armor quality bonus
+
+        newChar = produce(newChar, draft => {
+            draft.stats.strength = Math.min(draft.stats.strength, draft.statcap.strength);
+            draft.stats.vitality = Math.min(draft.stats.vitality, draft.statcap.vitality);
+            draft.stats.dexterity = Math.min(draft.stats.dexterity, draft.statcap.dexterity);
+            draft.stats.agility = Math.min(draft.stats.agility, draft.statcap.agility);
+            draft.stats.intellect = Math.min(draft.stats.intellect, draft.statcap.intellect);
+            draft.stats.perception = Math.min(draft.stats.perception, draft.statcap.perception);
+            draft.stats.empathy = Math.min(draft.stats.empathy, draft.statcap.empathy);
+        });
+
 
         for (let pal of orderBy(this.perks, ['perk.priority'], ['asc'])) {
             let race = this.getRace();

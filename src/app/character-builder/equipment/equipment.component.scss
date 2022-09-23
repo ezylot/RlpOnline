@@ -23,3 +23,38 @@
         letter-spacing: 0.2px;
     }
 }
+
+.searchbar {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.equipment-row {
+    display: flex;
+    align-content: center;
+
+    .select-box {
+        width: 40px;
+        margin: 12px 0;
+        cursor: pointer;
+    }
+
+    .equipment-expandable {
+        margin-bottom: 5px;
+        flex: 1;
+    }
+
+    .armor-resists {
+        margin-right: 50px;
+        margin-left: auto;
+    }
+
+    .item-quality-select {
+        margin-right: 120px;
+        margin-left: 60px;
+        border-radius: 0;
+        border: 1px solid #888888;
+        height: 25px;
+        width: 80px;
+    }
+}
