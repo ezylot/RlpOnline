@@ -72,6 +72,7 @@
             <b class="perk-description">
                 Requirements: <span *ngFor="let req of pal.perk.requirements">{{ req.toCustomString(pal.level) }}</span>
             </b><br />
+            <!-- TODO: Add tooltips for perk description -->
             <b class="perk-description">Tags: {{ pal.perk.tags }}</b><br />
 
             <blockquote class="perk-description" [innerHTML]="pal.perk.description"></blockquote>
