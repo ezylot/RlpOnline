@@ -51,7 +51,9 @@
             </mat-expansion-panel-header>
             <div *ngIf="asArmorOrNull(equipment) as armor">
                 <p>{{ armor.resists.toString() }}</p>
-                <p>{{ armor.attributes.join(", ") }}</p>
+                <p>
+                    <span *ngFor="let attr of armor.attributes; let last = last" [attr.data-tippy-content]="getTooltipForAttr(attr)">{{ attr }} {{ last ? '' : ', ' }}</span>
+                </p>
                 <p>{{ armor.size.toString() }}</p>
                 <p>{{ armor.price.toString() }}</p>
 

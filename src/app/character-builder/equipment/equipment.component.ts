@@ -3,7 +3,7 @@ import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Equipment, EquipmentType} from "../../classes/equipment/equipment";
 import {BehaviorSubject, take, takeUntil} from "rxjs";
 import {combineLatest} from "rxjs";
-import {getAllEquipment} from "../../data/equipment";
+import {getAllEquipment, getTagDescription} from "../../data/equipment";
 import {Armor, ArmorType} from "../../classes/equipment/armor";
 import produce from "immer";
 import {eq} from "lodash-es";
@@ -92,5 +92,9 @@ export class EquipmentComponent extends CharacterInjectingComponent{
                 equipmentToEdit.quality = Number(selectElement.value);
             }));
         });
+    }
+
+    getTooltipForAttr(attr: string) {
+        return getTagDescription(attr);
     }
 }
