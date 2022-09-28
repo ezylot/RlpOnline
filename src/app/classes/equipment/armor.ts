@@ -1,4 +1,5 @@
 import {Equipment, EquipmentType} from "./equipment";
+import {Character} from "../character";
 
 export enum ArmorType {
     CLOTHING = "Clothing",
@@ -50,4 +51,7 @@ export class Armor implements Equipment {
         this.price = price;
     }
 
+    applyEffect = function (character: Character): Character {
+        return character;
+    }
 }

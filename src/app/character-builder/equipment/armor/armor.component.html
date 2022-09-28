@@ -24,13 +24,13 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div>
-            <p>{{ armor.resists.toString() }}</p>
-            <p>
+            <p>Resistances: {{ armor.resists.toString() }}</p>
+            <p>Attributes:
                 <span *ngFor="let attr of armor.attributes; let last = last"
                       [attr.data-tippy-content]="getTooltipForAttr(attr)">{{ attr }} {{ last ? '' : ', ' }}</span>
             </p>
-            <p>{{ armor.size.toString() }}</p>
-            <p>{{ armor.price.toString() }}</p>
+            <p>Size: {{ armor.size.toString() }}</p>
+            <p>Price: {{ armor.price.toString() }}</p>
 
             <div *ngIf="armor.armorType === _armorType.CLOTHING">
                 Clothing in itself does not count as armor, but it does grant Armor Reduction.

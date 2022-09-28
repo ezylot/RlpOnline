@@ -10,11 +10,13 @@
                 {{ equipment.name }}
             </mat-panel-title>
             <mat-panel-description>
+                <span>{{ equipment.size.toString() }}</span>
+                <span>{{ equipment.price.toString() }}</span>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div>
-            <p>{{ equipment.size.toString() }}</p>
-            <p>{{ equipment.price.toString() }}</p>
+            <p>Size: {{ equipment.size.toString() }}</p>
+            <p>Price: {{ equipment.price.toString() }}</p>
             <p>{{ equipment.description.toString() }}</p>
         </div>
     </mat-expansion-panel>

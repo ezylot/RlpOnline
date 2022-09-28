@@ -1,3 +1,5 @@
+import {Character} from "../character";
+
 export enum EquipmentType {
     ARMOR,
     WEAPON,
@@ -17,4 +19,5 @@ export interface Equipment {
     price: string;
     attributes: string[];
     description: string;
+    applyEffect: (character: Character) => Character;
 }

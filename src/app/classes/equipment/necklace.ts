@@ -1,8 +1,8 @@
 import {Equipment, EquipmentType} from "./equipment";
 import {Character} from "../character";
 
-export class Hat implements Equipment {
-    type: EquipmentType = EquipmentType.HAT;
+export class Necklace implements Equipment {
+    type: EquipmentType = EquipmentType.NECKLACE;
     attributes: string[] = [];
 
     constructor(readonly name: string,

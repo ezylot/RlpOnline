@@ -321,11 +321,8 @@ export class Character {
             });
         }
 
-        // The knight’s helmet is a full metal helmet with a visor. It reduces the wearer’s perception by 2, to a minimum of 1.
-        if(newChar.equipment.find(value => value.equipmentName === "Knights Helmet")) {
-            newChar = produce(newChar, draft => {
-                draft.statcap.perception = draft.statcap.perception - 2;
-            });
+        for (let e of newChar.equipment) {
+            newChar = getEquipmentByName(e.equipmentName).applyEffect(newChar);
         }
 
         // TODO: add armor quality bonus

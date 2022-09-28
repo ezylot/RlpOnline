@@ -1,6 +1,12 @@
 import {Equipment} from "../classes/equipment/equipment";
 import {Armor, ArmorType, Resist} from "../classes/equipment/armor";
 import {Hat} from "../classes/equipment/hat";
+import {Glove} from "../classes/equipment/gloves";
+import {Boot} from "../classes/equipment/boot";
+import {Ring} from "../classes/equipment/ring";
+import {produce} from "immer";
+import {Necklace} from "../classes/equipment/necklace";
+import {Belt} from "../classes/equipment/belt";
 
 export const TAGS = {
     UNDER: "Under",
@@ -88,11 +94,82 @@ const EQUIPMENT: Equipment[] = [
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="HATS">
-    new Hat("Knights Helmet", "100G", "M", "The knight’s helmet is a full metal helmet with a visor. It reduces the wearer’s perception by 2, to a minimum of 1. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d6. On a 1, the attack does not deal additional damage from being a critical hit."),
+    new Hat("Knights Helmet", "100G", "M", "The knight’s helmet is a full metal helmet with a visor. It reduces the wearer’s perception by 2, to a minimum of 1. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d6. On a 1, the attack does not deal additional damage from being a critical hit.",
+        character => produce(character, draft => {
+            draft.statcap.perception = draft.statcap.perception - 2;
+        })),
     new Hat("Mages’ Hat", "150G", "M", "The mages’ hat is a signifier of a studied magister of magic. It is pointy and made of magical silk. While wearing a Mages’ Hat, the wearer can remember 4 additional spells."),
     new Hat("Leather Helmet", "20G", "M", "The Leather Helmet is a simple cap made of leather, with straps on the sides. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d12. On a 1, the attack does not deal additional damage from being a critical hit."),
     new Hat("Hood", "5G", "M", "This hood protects the wearer’s head of wind and rain and makes it more difficult to ee their face from the side."),
     new Hat("Skullcap", "50G", "M", "This metal cap hugs the wearer’s skull in order to protect it. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d8. On a 1, the attack does not deal additional damage from being a critical hit."),
     new Hat("Faceless Mask", "70G", "M", "This special mask is completely featureless. It blocks the user’s sight, making them effectively blind. However, it also increases their concentration. While wearing a faceless mask, the mana costs for spell upkeep is halved"),
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="GLOVES">
+    new Glove("Leather Gloves", "5G", "S", "These Leather Gloves protect the hands."),
+    new Glove("Gauntlets", "50G", "S", "These Gauntlets protect the hands. When the wearer is targeted disarming attempt, they can add 5 to their opposing weapon attack roll. Also, the wearer’s unarmed attacks deal 1d8 damage instead of 1d4."),
+    new Glove("Silk Gloves", "15G", "S", "These gloves protect against the weather and help the wearer with delicate work. When doing something filigree that requires a Dexterity check, the wearer can add 2 to that check"),
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="BOOT">
+    new Boot("Cloth boots", "2G", "S", "These boots provide basic protection from natural hazards without reducing agility."),
+    new Boot("Leather boots", "5G", "S", "These boots provide further protection from natural hazards without reducing agility."),
+    new Boot("Sabaton", "50G", "S", "These metallic boots provide advanced protection from natural hazards, but reduce the wearer’s Agility by 1.",
+        character => produce(character, draft => {
+            draft.stats.agility -= 1;
+        })),
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="RING">
+    new Ring("Ring of Protection", "500G", "T", "This ring increases the wearer’s resistance to blunt, piercing and cutting by 1.",
+        character => produce(character, draft => {
+            // TODO: add resistances
+        })),
+    new Ring("Fox Ring", "1000G", "T", "This ring increases the wearer’s agility by 1.",
+        character => produce(character, draft => {
+            draft.stats.agility += 1;
+        })),
+    new Ring("Ring of Health", "2500G", "T", "This ring increases the wearer’s health by 4 for every level of Increase Health that they have.",
+        character => {
+            const incHealthPal = character.perks.find(value => value.perk.name === "Increase Health")
+            if(incHealthPal === undefined) return character;
+
+            return produce(character, draft => {
+                draft.maxHealth = draft.maxHealth.increaseFixed(4 * incHealthPal.level);
+            });
+        }),
+    new Ring("Ring of Might", "1000G", "T", "This ring increases the wearer’s strength by 1.",
+        character => produce(character, draft => {
+            draft.stats.strength += 1;
+        })),
+    new Ring("Ring of the Mage", "2500G", "T", "This ring increases the wearer’s mana by 4 for every level of Increase Mana that they have.",
+        character => {
+            const incManaPal = character.perks.find(value => value.perk.name === "Increase Mana")
+            if(incManaPal === undefined) return character;
+
+            return produce(character, draft => {
+                draft.maxMana = draft.maxMana.increaseFixed(4 * incManaPal.level);
+            });
+        }),
+    new Ring("Ring of Stars", "5000G", "T", "This ring can be activated by the wearer by taking 4 AP to speak the ring’s command phrase. When doing so, the wearer gains +3 on Intellect, Perception and Empathy for the next 10 minutes. The ring then ceases to function for the next 24 hours."),
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="NECKLACE">
+    new Necklace("Amulet of the Lord", "1000G", "S", "This amulet increases the wearer’s Empathy by 1.", character => produce(character, draft => { draft.stats.empathy += 1 })),
+    new Necklace("Amulet of Vitality", "1000G", "S", "This amulet increases the wearer’s Vitality by 1.", character => produce(character, draft => { draft.stats.vitality += 1 })),
+    new Necklace("Amulet of Fatigue", "2500G", "S", "This amulet increases the wearer’s Stamina by 2 for every level of Increase Stamina that they have.", character => produce(character, draft => {
+        const incStaminaPal = character.perks.find(value => value.perk.name === "Increase Stamina")
+        if(incStaminaPal === undefined) return character;
+
+        return produce(character, draft => {
+            draft.maxStamina = draft.maxStamina.increaseFixed(2 * incStaminaPal.level);
+        });
+    })),
+    new Necklace("Amulet of Light", "1500G", "S", "This amulet allows the user to activate it for 2 AP by speaking its command phrase. When doing so, the amulet starts to glow. It sheds bright light in a radius of 6 ps (9 m, 30 ft) and dim light beyond that for 6 ps (9 m, 30 ft). Speaking its command phrase again ends the glowing"),
+    new Necklace("Amulet of Feathers", "1500G", "S", "This amulet allows the user to carry twice as much as they would be able to otherwise."),
+    new Necklace("Amulet of Poison Protection", "1500G", "S", "This Amulet allows you to roll twice whenever you try to resist poison effects, taking the higher result. If a poison would damage you, you only take half damage from it. This damage reduction is applied after the static reduction."),
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="BELT">
+    new Belt("Leather Belt", "5G", "M", "A Leather Belt can hold up to 4 different items that can be attached to a belt, like a quiver, bag or purse"),
+    new Belt("Girdle", "2G", "S", "This girdle keeps your pants up."),
+    new Belt("Potion Belt, 3 Slots", "10G", "S", "This belt can be used to strap 3 filled vials to a person’s body. This removes the need to retrieve it from that person’s backpack, making it far quicker to drink a potion."),
+    new Belt("Potion Belt, 5 Slots", "50G", "S", "This belt can be used to strap 5 filled vials to a person’s body. This removes the need to retrieve it from that person’s backpack, making it far quicker to drink a potion."),
+    new Belt("Potion Belt, 10 Slots", "200G", "S", "This belt can be used to strap 10 filled vials to a person’s body. This removes the need to retrieve it from that person’s backpack, making it far quicker to drink a potion"),
     //</editor-fold>
 ];
