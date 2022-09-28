@@ -1,0 +1,59 @@
+<ng-container *ngIf="character$ | async as character;">
+    <div class="select-box" (click)="toggleArmor(armor.name)">
+        <span class="material-icons-outlined" *ngIf="character.getEquipment(armor.name) != undefined">check_circle_outline</span>
+        <span class="material-icons-outlined" *ngIf="character.getEquipment(armor.name) == undefined">circle_outline</span>
+    </div>
+
+    <mat-expansion-panel class="equipment-expandable">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ armor.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{ armor.armorType.toString() }}
+                <p class="armor-resists">{{ armor.resists.toString() }}</p>
+                <select class="item-quality-select" (change)="selectQuality(armor.name, $event)">
+                    <option [selected]="character.getEquipment(armor.name)?.quality == -3">-3</option>
+                    <option [selected]="character.getEquipment(armor.name)?.quality == -2">-2</option>
+                    <option [selected]="character.getEquipment(armor.name)?.quality == -1">-1</option>
+                    <option [selected]="(character.getEquipment(armor.name)?.quality || 0) == 0">0</option>
+                    <option [selected]="character.getEquipment(armor.name)?.quality == 1">1</option>
+                    <option [selected]="character.getEquipment(armor.name)?.quality == 2">2</option>
+                    <option [selected]="character.getEquipment(armor.name)?.quality == 3">3</option>
+                </select>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+            <p>{{ armor.resists.toString() }}</p>
+            <p>
+                <span *ngFor="let attr of armor.attributes; let last = last"
+                      [attr.data-tippy-content]="getTooltipForAttr(attr)">{{ attr }} {{ last ? '' : ', ' }}</span>
+            </p>
+            <p>{{ armor.size.toString() }}</p>
+            <p>{{ armor.price.toString() }}</p>
+
+            <div *ngIf="armor.armorType === _armorType.CLOTHING">
+                Clothing in itself does not count as armor, but it does grant Armor Reduction.
+                While wearing clothing and robes, a character counts as ”unarmored”, meaning that they can add
+                their level to rolls for defensive actions.
+            </div>
+            <div *ngIf="armor.armorType === _armorType.LIGHT">
+                Light armor is flexible and allows agile users to move around freely. It can usually be donned and
+                doffed in a matter of one or two minutes. Leather, fur and very light, but also very expensive
+                metals or metal chains are used to create light armor. While wearing light armor, a character’s
+                Agility can not exceed 10.
+            </div>
+            <div *ngIf="armor.armorType === _armorType.MEDIUM">
+                Medium Armor is a great balance between the strong defenses of heavy armor and the agility of
+                light armor. It is often made of cloth with strips of metal sewn in, or with leather pads. It can also
+                consist of overlapping slabs of metal or leather, giving the armor scales. It takes 5 Minutes to don
+                or remove medium armor. While wearing medium armor, a character’s Agility can not exceed 8.
+            </div>
+            <div *ngIf="armor.armorType === _armorType.HEAVY">
+                Heavy Armor is slow and clunky, but also adds the biggest bonus to armor of any type. It requires
+                at least 10 minutes to don and doff such a piece of armor, and while wearing Heavy Armor, the
+                wearer’s Agility can not exceed a value of 6.
+            </div>
+        </div>
+    </mat-expansion-panel>
+</ng-container>

@@ -26,6 +26,8 @@ import {
     VITALITY_TEXT,
     WILLPOWER_TEXT
 } from "../../data/texts";
+import {Equipment} from "../../classes/equipment/equipment";
+import {getEquipmentByName} from "../../data/equipment";
 
 @Component({
   selector: 'app-overview',
@@ -77,5 +79,9 @@ export class OverviewComponent extends CharacterInjectingComponent {
 
     openPrintDialog() {
         window.print();
+    }
+
+    _getEquipmentByName(equipmentName: string): Equipment {
+        return getEquipmentByName(equipmentName);
     }
 }

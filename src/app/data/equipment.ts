@@ -1,5 +1,6 @@
 import {Equipment} from "../classes/equipment/equipment";
 import {Armor, ArmorType, Resist} from "../classes/equipment/armor";
+import {Hat} from "../classes/equipment/hat";
 
 export const TAGS = {
     UNDER: "Under",
@@ -84,5 +85,14 @@ const EQUIPMENT: Equipment[] = [
     new Armor(ArmorType.HEAVY, "Bronze Full Plate", new Resist(9, 9, 7), [TAGS.OVER, TAGS.POCKETS("2S")] ,"L" ,"750G"),
     new Armor(ArmorType.HEAVY, "Iron Full Plate", new Resist(12, 12, 10), [TAGS.OVER, TAGS.POCKETS("2S")] ,"XL" ,"1500G"),
     new Armor(ArmorType.HEAVY, "Steel Full Plate", new Resist(12, 12, 10), [TAGS.OVER, TAGS.POCKETS("2S")] ,"XL" ,"3200G"),
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="HATS">
+    new Hat("Knights Helmet", "100G", "M", "The knight’s helmet is a full metal helmet with a visor. It reduces the wearer’s perception by 2, to a minimum of 1. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d6. On a 1, the attack does not deal additional damage from being a critical hit."),
+    new Hat("Mages’ Hat", "150G", "M", "The mages’ hat is a signifier of a studied magister of magic. It is pointy and made of magical silk. While wearing a Mages’ Hat, the wearer can remember 4 additional spells."),
+    new Hat("Leather Helmet", "20G", "M", "The Leather Helmet is a simple cap made of leather, with straps on the sides. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d12. On a 1, the attack does not deal additional damage from being a critical hit."),
+    new Hat("Hood", "5G", "M", "This hood protects the wearer’s head of wind and rain and makes it more difficult to ee their face from the side."),
+    new Hat("Skullcap", "50G", "M", "This metal cap hugs the wearer’s skull in order to protect it. If the wearer of this helmet is subject to a critical hit from a weapon attack, the attacker must roll a d8. On a 1, the attack does not deal additional damage from being a critical hit."),
+    new Hat("Faceless Mask", "70G", "M", "This special mask is completely featureless. It blocks the user’s sight, making them effectively blind. However, it also increases their concentration. While wearing a faceless mask, the mana costs for spell upkeep is halved"),
     //</editor-fold>
 ];

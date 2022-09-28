@@ -1,24 +1,20 @@
 import {Component} from '@angular/core';
 import {CharacterInjectingComponent} from "../CharacterInjectingComponent";
 import {Equipment, EquipmentType} from "../../classes/equipment/equipment";
-import {BehaviorSubject, take, takeUntil} from "rxjs";
-import {combineLatest} from "rxjs";
-import {getAllEquipment, getTagDescription} from "../../data/equipment";
-import {Armor, ArmorType} from "../../classes/equipment/armor";
-import produce from "immer";
+import {BehaviorSubject, combineLatest, takeUntil} from "rxjs";
+import {getAllEquipment} from "../../data/equipment";
+import {Armor} from "../../classes/equipment/armor";
 import {eq} from "lodash-es";
-import {EquipmentAndQuality} from "../../classes/equipment/equipment-and-quality";
 
 @Component({
   selector: 'app-equipment',
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.scss']
 })
-export class EquipmentComponent extends CharacterInjectingComponent{
+export class EquipmentComponent extends CharacterInjectingComponent {
     availableEquipment: Equipment[] = [];
     searchString$: BehaviorSubject<string> = new BehaviorSubject<string>("");
-    equipmentQualityMap = new Map<string, number>();
-    _armorType = ArmorType;
+    _equipmentType = EquipmentType;
 
     override ngOnInit() {
         super.ngOnInit();
@@ -60,41 +56,12 @@ export class EquipmentComponent extends CharacterInjectingComponent{
         }
     }
 
-    toggleEquipment(equipmentName: string) {
-        this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
-                let equipmentId = charToEdit.equipment.findIndex(v => v.equipmentName === equipmentName);
-                if(equipmentId === -1) {
-                    charToEdit.equipment.push(new EquipmentAndQuality(equipmentName, this.equipmentQualityMap.get(equipmentName) || 0));
-                } else {
-                    charToEdit.equipment.splice(equipmentId, 1);
-                }
-            }));
-        });
-    }
-
     equipmentName(index: number, eq: Equipment) {
         return eq.name;
     }
 
-    asArmorOrNull(equipment: Equipment): Armor | null {
-        return (equipment instanceof Armor) ? equipment : null;
-    }
-
-    selectQuality(name: string, value: Event) {
-        let selectElement = value.target as HTMLSelectElement;
-        this.equipmentQualityMap.set(name, Number(selectElement.value));
-
-        this.character$.pipe(take(1)).subscribe(char => {
-            this.characterStorageService.saveCharacter(produce(char, charToEdit => {
-                let equipmentToEdit = charToEdit.equipment.find(v => v.equipmentName === name);
-                if(equipmentToEdit == undefined) return;
-                equipmentToEdit.quality = Number(selectElement.value);
-            }));
-        });
-    }
-
-    getTooltipForAttr(attr: string) {
-        return getTagDescription(attr);
+    asArmor(equipment: Equipment): Armor {
+        if(!(equipment instanceof Armor)) throw new Error("Tried to convert equipment to armor, but its not an armor: " + JSON.stringify(equipment));
+        return equipment;
     }
 }

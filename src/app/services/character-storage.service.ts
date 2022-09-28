@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Character, CharacterCaches} from '../classes/character';
+import {Character} from '../classes/character';
 import {
     BehaviorSubject,
     combineLatest,
@@ -14,13 +14,8 @@ import {
 import {Stats} from "../classes/stats";
 import {getAllPerks} from "../data/perks";
 import {PerkAndLevel} from "../classes/perk-and-level";
-import {DiceAndFixed} from "../classes/dice-and-fixed";
-import {getAllRaces} from "../data/races";
-import {DiceAndFixedAndLevel} from "../classes/dice-and-fixed-and-level";
-import {Language} from "../classes/language";
-import {immerable, setAutoFreeze} from "immer";
 import {OnlyProperties} from "../definitions";
-import {plainToClass, plainToClassFromExist} from "class-transformer";
+import {plainToClassFromExist} from "class-transformer";
 
 @Injectable({
   providedIn: 'root'

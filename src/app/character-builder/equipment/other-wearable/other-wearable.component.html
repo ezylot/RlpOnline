@@ -1,0 +1,21 @@
+<ng-container *ngIf="character$ | async as character;">
+    <div class="select-box" (click)="toggleEquipment(equipment.name)">
+        <span class="material-icons-outlined" *ngIf="character.getEquipment(equipment.name) != undefined">check_circle_outline</span>
+        <span class="material-icons-outlined" *ngIf="character.getEquipment(equipment.name) == undefined">circle_outline</span>
+    </div>
+
+    <mat-expansion-panel class="equipment-expandable">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ equipment.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+            <p>{{ equipment.size.toString() }}</p>
+            <p>{{ equipment.price.toString() }}</p>
+            <p>{{ equipment.description.toString() }}</p>
+        </div>
+    </mat-expansion-panel>
+</ng-container>

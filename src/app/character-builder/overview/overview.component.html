@@ -133,6 +133,12 @@
             </div>
             <div class="equipment" *ngIf="character.equipment">
                 <span class="border-overlapping-title">Equipment</span>
+                <div *ngFor="let eqAndQuality of character.equipment">
+                    <span class="overview-equipment-line" *ngIf="_getEquipmentByName(eqAndQuality.equipmentName) as equipment">
+                        <b>{{ equipment.name }}</b> ({{ equipment.size }}, {{ equipment.price }})
+                        {{ equipment.description }}
+                    </span>
+                </div>
             </div>
 
             <div class="languages" *ngIf="character.languagesInLearnOrder">

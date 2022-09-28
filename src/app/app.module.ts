@@ -26,6 +26,8 @@ import { CultureComponent } from './character-builder/culture/culture.component'
 import {SafeHtmlPipe} from "./services/SafeHtmlPipe";
 import {FeatherIconDirective} from "./services/feather-icon.directive";
 import { ItemsComponent } from './character-builder/items/items.component';
+import { ArmorComponent } from './character-builder/equipment/armor/armor.component';
+import { OtherWearableComponent } from './character-builder/equipment/other-wearable/other-wearable.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +47,8 @@ import { ItemsComponent } from './character-builder/items/items.component';
         SafeHtmlPipe,
         FeatherIconDirective,
         ItemsComponent,
+        ArmorComponent,
+        OtherWearableComponent,
     ],
     imports: [
         BrowserModule,

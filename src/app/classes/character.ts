@@ -278,27 +278,16 @@ export class Character {
             }));
         });
 
-        let wornArmors = newChar.equipment
-            .map(value => getEquipmentByName(value.equipmentName))
-            .filter(value => value.type == EquipmentType.ARMOR) as Armor[];
+        newChar = this.applyEquipmentEffects(newChar);
 
         newChar = produce(newChar, draft => {
-            if(wornArmors.some(value => value.armorType === ArmorType.LIGHT)) draft.statcap.agility = Math.min(draft.statcap.agility, 10);
-            if(wornArmors.some(value => value.armorType === ArmorType.MEDIUM)) draft.statcap.agility = Math.min(draft.statcap.agility, 8);
-            if(wornArmors.some(value => value.armorType === ArmorType.HEAVY)) draft.statcap.agility = Math.min(draft.statcap.agility, 6);
-        });
-
-        // TODO: Wearing two pieces of armor reduces a character’s Agility by 2, to a minimum of 1.
-        // TODO: add armor quality bonus
-
-        newChar = produce(newChar, draft => {
-            draft.stats.strength = Math.min(draft.stats.strength, draft.statcap.strength);
-            draft.stats.vitality = Math.min(draft.stats.vitality, draft.statcap.vitality);
-            draft.stats.dexterity = Math.min(draft.stats.dexterity, draft.statcap.dexterity);
-            draft.stats.agility = Math.min(draft.stats.agility, draft.statcap.agility);
-            draft.stats.intellect = Math.min(draft.stats.intellect, draft.statcap.intellect);
-            draft.stats.perception = Math.min(draft.stats.perception, draft.statcap.perception);
-            draft.stats.empathy = Math.min(draft.stats.empathy, draft.statcap.empathy);
+            draft.stats.strength = Math.min(draft.stats.strength, Math.max(1, draft.statcap.strength));
+            draft.stats.vitality = Math.min(draft.stats.vitality, Math.max(1, draft.statcap.vitality));
+            draft.stats.dexterity = Math.min(draft.stats.dexterity, Math.max(1, draft.statcap.dexterity));
+            draft.stats.agility = Math.min(draft.stats.agility, Math.max(1, draft.statcap.agility));
+            draft.stats.intellect = Math.min(draft.stats.intellect, Math.max(1, draft.statcap.intellect));
+            draft.stats.perception = Math.min(draft.stats.perception, Math.max(1, draft.statcap.perception));
+            draft.stats.empathy = Math.min(draft.stats.empathy, Math.max(1, draft.statcap.empathy));
         });
 
 
@@ -312,6 +301,36 @@ export class Character {
 
         this.caches.finalCharacterCache = newChar;
         return this.caches.finalCharacterCache;
+    }
+
+    private applyEquipmentEffects(newChar: Character) {
+        let wornArmors = newChar.equipment
+            .map(value => getEquipmentByName(value.equipmentName))
+            .filter(value => value.type == EquipmentType.ARMOR) as Armor[];
+
+        newChar = produce(newChar, draft => {
+            if(wornArmors.some(value => value.armorType === ArmorType.LIGHT)) draft.statcap.agility = Math.min(draft.statcap.agility, 10);
+            if(wornArmors.some(value => value.armorType === ArmorType.MEDIUM)) draft.statcap.agility = Math.min(draft.statcap.agility, 8);
+            if(wornArmors.some(value => value.armorType === ArmorType.HEAVY)) draft.statcap.agility = Math.min(draft.statcap.agility, 6);
+        });
+
+        // Wearing two pieces of armor reduces a character’s Agility by 2, to a minimum of 1.
+        if(wornArmors.length > 0) {
+            newChar = produce(newChar, draft => {
+                draft.statcap.agility = draft.statcap.agility - 2;
+            });
+        }
+
+        // The knight’s helmet is a full metal helmet with a visor. It reduces the wearer’s perception by 2, to a minimum of 1.
+        if(newChar.equipment.find(value => value.equipmentName === "Knights Helmet")) {
+            newChar = produce(newChar, draft => {
+                draft.statcap.perception = draft.statcap.perception - 2;
+            });
+        }
+
+        // TODO: add armor quality bonus
+
+        return newChar;
     }
 
     // noinspection JSUnusedGlobalSymbols
